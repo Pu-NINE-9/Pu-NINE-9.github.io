@@ -21,7 +21,7 @@ const work = computed(() => {
 
       <article class="work-detail pixel-card">
         <div class="detail-image">
-          <img v-if="work.image" :src="work.image" :alt="work.title" class="detail-img" />
+          <img v-if="work.image" v-lazy="work.image" :alt="work.title" class="detail-img" />
           <div v-else class="image-placeholder">
             <span class="placeholder-icon">🖥️</span>
           </div>
@@ -217,12 +217,66 @@ const work = computed(() => {
 }
 
 @media (max-width: 768px) {
+  .back-link {
+    font-size: 0.55rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .detail-image {
+    margin-bottom: 1.5rem;
+  }
+
+  .detail-img {
+    max-height: 250px;
+  }
+
   .image-placeholder {
     height: 180px;
   }
 
   .placeholder-icon {
     font-size: 3rem;
+  }
+
+  .detail-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .detail-content {
+    margin-bottom: 1.5rem;
+  }
+
+  .content-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-title {
+    font-size: 0.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .tag {
+    font-size: 0.4rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .section-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+
+  .detail-footer {
+    padding-top: 1.5rem;
+  }
+
+  .action-buttons {
+    gap: 0.8rem;
+  }
+
+  .no-source {
+    font-size: 0.5rem;
+    padding: 0.8rem 1.2rem;
   }
 }
 </style>

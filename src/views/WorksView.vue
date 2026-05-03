@@ -22,7 +22,7 @@ const { t } = useI18n()
           class="work-card pixel-card"
         >
           <div class="work-image">
-            <img v-if="work.image" :src="work.image" :alt="work.title" class="work-img" />
+            <img v-if="work.image" v-lazy="work.image" :alt="work.title" class="work-img" />
             <div v-else class="image-placeholder">
               <span class="placeholder-icon">🖥️</span>
             </div>

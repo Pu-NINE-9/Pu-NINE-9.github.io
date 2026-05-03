@@ -1,4 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+
+NProgress.configure({
+  showSpinner: false,
+  speed: 500,
+  minimum: 0.1,
+  trickleSpeed: 200
+})
 
 const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +41,15 @@ const router = createRouter({
   scrollBehavior() {
     return { top: 0 }
   }
+})
+
+router.beforeEach((_to, _from, next) => {
+  NProgress.start()
+  next()
+})
+
+router.afterEach(() => {
+  NProgress.done()
 })
 
 export default router

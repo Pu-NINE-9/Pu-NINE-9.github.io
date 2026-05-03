@@ -196,10 +196,11 @@ const isActive = (path: string) => {
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
+    z-index: 110;
   }
 
   .nav-menu {
-    position: absolute;
+    position: fixed;
     top: 100%;
     left: 0;
     right: 0;
@@ -209,6 +210,9 @@ const isActive = (path: string) => {
     padding: 1rem;
     gap: 1rem;
     display: none;
+    z-index: 105;
+    box-sizing: border-box;
+    min-height: calc(100vh - 60px);
   }
 
   .nav-menu.is-open {
@@ -218,6 +222,8 @@ const isActive = (path: string) => {
   .nav-link {
     width: 100%;
     text-align: center;
+    padding: 0.75rem 1rem;
+    font-size: 0.8rem;
   }
 
   .nav-controls {
@@ -225,8 +231,17 @@ const isActive = (path: string) => {
     justify-content: center;
     flex-direction: row;
     gap: 0.75rem;
-    padding-top: 0.5rem;
+    padding-top: 0.75rem;
     border-top: 2px solid var(--pixel-black);
+    margin-top: 0.5rem;
+  }
+
+  .logo-text {
+    font-size: 1rem;
+  }
+
+  .logo-img {
+    height: 28px;
   }
 }
 </style>

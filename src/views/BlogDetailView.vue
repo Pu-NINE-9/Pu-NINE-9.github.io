@@ -330,4 +330,46 @@ onUnmounted(() => {
     right: auto;
   }
 }
+
+@media (max-width: 768px) {
+  .back-link {
+    font-size: 0.55rem;
+    padding: 0.5rem 0.8rem;
+  }
+
+  .detail-header {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .date-badge {
+    font-size: 0.5rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  .detail-footer {
+    padding-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  .tag {
+    font-size: 0.4rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .sidebar-card {
+    padding: 0.8rem;
+  }
+
+  .sidebar-title {
+    font-size: 0.6rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+  }
+
+  .toc-link {
+    font-size: 0.5rem;
+    padding: 0.25rem 0;
+  }
+}
 </style>

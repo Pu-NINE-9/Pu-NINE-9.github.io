@@ -60,12 +60,12 @@ const closePreview = () => {
             <h3 class="feature-title pixel-float">{{ t('home.featureDevTitle') }}</h3>
             <p class="feature-desc pixel-float">{{ t('home.featureDev') }}</p>
           </div>
-          <a href="https://github.com/Pu-NINE-9/Self-introduction" target="_blank" class="feature-card pixel-card">
+          <a href="https://github.com/Pu-NINE-9/Self-introduction" target="_blank" rel="noopener noreferrer" class="feature-card pixel-card">
             <div class="feature-icon pixel-float">🌟</div>
             <h3 class="feature-title pixel-float">{{ t('home.featureAboutTitle') }}</h3>
             <p class="feature-desc pixel-float">{{ t('home.featureAbout') }}</p>
           </a>
-          <a href="https://blog.csdn.net/nineeea?type=blog" target="_blank" class="feature-card pixel-card">
+          <a href="https://blog.csdn.net/nineeea?type=blog" target="_blank" rel="noopener noreferrer" class="feature-card pixel-card">
             <div class="feature-icon pixel-float">📝</div>
             <h3 class="feature-title pixel-float">{{ t('home.featureBlogTitle') }}</h3>
             <p class="feature-desc pixel-float">{{ t('home.featureBlog') }}</p>
@@ -87,22 +87,22 @@ const closePreview = () => {
         <div class="gallery-grid">
           <div class="gallery-item">
             <div class="photo-frame" @click="openPreview('/images/photo1.jpg')">
-              <img src="/images/photo1.jpg" alt="Photo 1" class="gallery-img" />
+              <img v-lazy="'/images/photo1.jpg'" alt="Photo 1" class="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
             <div class="photo-frame" @click="openPreview('/images/photo2.jpg')">
-              <img src="/images/photo2.jpg" alt="Photo 2" class="gallery-img" />
+              <img v-lazy="'/images/photo2.jpg'" alt="Photo 2" class="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
             <div class="photo-frame" @click="openPreview('/images/photo3.jpg')">
-              <img src="/images/photo3.jpg" alt="Photo 3" class="gallery-img" />
+              <img v-lazy="'/images/photo3.jpg'" alt="Photo 3" class="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
             <div class="photo-frame" @click="openPreview('/images/photo4.jpg')">
-              <img src="/images/photo4.jpg" alt="Photo 4" class="gallery-img" />
+              <img v-lazy="'/images/photo4.jpg'" alt="Photo 4" class="gallery-img" />
             </div>
           </div>
         </div>
