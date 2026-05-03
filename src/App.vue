@@ -12,7 +12,7 @@ const pageViews = ref(0)
 
 const updatePageViews = () => {
   const savedViews = localStorage.getItem('pageViews')
-  const views = savedViews ? parseInt(savedViews, 10) + 1 : 10000
+  const views = savedViews ? parseInt(savedViews, 10) + 1 : 1
   pageViews.value = views
   localStorage.setItem('pageViews', views.toString())
 }
