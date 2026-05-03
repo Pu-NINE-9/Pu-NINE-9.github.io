@@ -8,10 +8,18 @@
     "title": "NINEのコードspace",
     "subtitle": "픽셀 레트로풍 웹사이트",
     "welcome": "제 코드 세계에 오신 것을 환영합니다!",
-    "description": "저는 NINE, 프로그래밍을 사랑하는 개발자입니다. 픽셀풍 게임, Discord 봇, 다양한 재미있는 프로젝트를 만드는 것을 좋아합니다.",
+    "description": "저는 NINE, 프로그래밍을 사랑하는 개발자입니다. 함께 힘내요~",
     "enterSite": "사이트 들어가기",
     "viewWorks": "작품 보기",
-    "latestNews": "최신 뉴스"
+    "latestNews": "최신 뉴스",
+    "featureDev": "프론트엔드 개발",
+    "featureDevTitle": "Frontend Dev",
+    "featureAbout": "자기소개 & 취미",
+    "featureAboutTitle": "About Me",
+    "featureBlog": "CSDN 기술 블로그",
+    "featureBlogTitle": "Blog",
+    "featureProjects": "개인 작품 전시",
+    "featureProjectsTitle": "Projects"
   },
   "works": {
     "title": "제 작품",

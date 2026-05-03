@@ -8,10 +8,18 @@
     "title": "NINEのコードspace",
     "subtitle": "Pixel Retro Personal Website",
     "welcome": "Welcome to my code world!",
-    "description": "I'm NINE, a developer who loves programming. I enjoy creating pixel art games, Discord bots, and various fun projects.",
+    "description": "I'm NINE, a developer who loves programming. Let's grow together~",
     "enterSite": "Enter Site",
     "viewWorks": "View Works",
-    "latestNews": "Latest News"
+    "latestNews": "Latest News",
+    "featureDev": "Vue3 / Frontend Dev",
+    "featureDevTitle": "Frontend Dev",
+    "featureAbout": "About Me & Hobbies",
+    "featureAboutTitle": "About Me",
+    "featureBlog": "CSDN Tech Blog",
+    "featureBlogTitle": "Blog",
+    "featureProjects": "Project Showcase",
+    "featureProjectsTitle": "Projects"
   },
   "works": {
     "title": "My Works",

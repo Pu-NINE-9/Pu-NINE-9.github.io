@@ -8,10 +8,18 @@
     "title": "NINEの代码space",
     "subtitle": "像素复古风个人网站",
     "welcome": "欢迎来到我的代码世界！",
-    "description": "我是NINE，一名热爱编程的开发者。我喜欢制作像素风游戏、Discord机器人和各种有趣的项目。",
+    "description": "我是NINE，一名热爱编程的开发者，让我们一起加油吧~",
     "enterSite": "进入网站",
     "viewWorks": "查看作品",
-    "latestNews": "最新动态"
+    "latestNews": "最新动态",
+    "featureDev": "前端开发",
+    "featureDevTitle": "Frontend Dev",
+    "featureAbout": "个人介绍 & 爱好",
+    "featureAboutTitle": "About Me",
+    "featureBlog": "CSDN 技术博客",
+    "featureBlogTitle": "Blog",
+    "featureProjects": "个人作品展示",
+    "featureProjectsTitle": "Projects"
   },
   "works": {
     "title": "我的作品",

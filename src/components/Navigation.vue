@@ -27,6 +27,7 @@ const isActive = (path: string) => {
   <header class="pixel-header">
     <div class="container header-content">
       <RouterLink to="/" class="logo" @click="closeMenu">
+        <img src="/logo.png" alt="Logo" class="logo-img" />
         <span class="logo-text pixel-float">NINE</span>
       </RouterLink>
 
@@ -90,6 +91,8 @@ const isActive = (path: string) => {
 
 .logo {
   text-decoration: none;
+  display: flex;
+  align-items: center;
 }
 
 .logo-text {
@@ -97,6 +100,13 @@ const isActive = (path: string) => {
   font-size: 1.2rem;
   color: var(--pixel-yellow);
   text-shadow: 3px 3px 0 var(--pixel-red);
+}
+
+.logo-img {
+  height: 32px;
+  width: auto;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
 .nav-menu {
