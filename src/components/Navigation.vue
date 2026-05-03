@@ -194,6 +194,16 @@ const isActive = (path: string) => {
 }
 
 @media (max-width: 768px) {
+  .pixel-header {
+    padding-top: calc(1rem + env(safe-area-inset-top));
+    padding-bottom: 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+  }
+
   .menu-toggle {
     display: block;
     z-index: 110;
@@ -201,18 +211,18 @@ const isActive = (path: string) => {
 
   .nav-menu {
     position: fixed;
-    top: 100%;
+    top: calc(60px + env(safe-area-inset-top));
     left: 0;
     right: 0;
     background: var(--bg-darker);
     border-bottom: 4px solid var(--pixel-black);
     flex-direction: column;
-    padding: 1rem;
-    gap: 1rem;
+    padding: 1.5rem 1rem;
+    gap: 1.25rem;
     display: none;
     z-index: 105;
     box-sizing: border-box;
-    min-height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px - env(safe-area-inset-top));
   }
 
   .nav-menu.is-open {
@@ -222,26 +232,53 @@ const isActive = (path: string) => {
   .nav-link {
     width: 100%;
     text-align: center;
-    padding: 0.75rem 1rem;
-    font-size: 0.8rem;
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
   }
 
   .nav-controls {
     width: 100%;
     justify-content: center;
     flex-direction: row;
-    gap: 0.75rem;
-    padding-top: 0.75rem;
+    gap: 1rem;
+    padding-top: 1rem;
     border-top: 2px solid var(--pixel-black);
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
   }
 
   .logo-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
   }
 
   .logo-img {
     height: 28px;
+  }
+
+  .header-content {
+    min-height: 44px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-text {
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+  }
+
+  .logo-img {
+    height: 24px;
+    margin-right: 0.35rem;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-menu {
+    padding: 1.25rem 0.75rem;
+    gap: 1rem;
   }
 }
 </style>

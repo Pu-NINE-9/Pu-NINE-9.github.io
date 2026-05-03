@@ -48,6 +48,12 @@ onMounted(() => {
   flex-direction: column;
 }
 
+@media (max-width: 768px) {
+  .page-content {
+    padding-top: calc(60px + env(safe-area-inset-top));
+  }
+}
+
 .pixel-footer {
   background: var(--bg-darker);
   border-top: 4px solid var(--pixel-black);
