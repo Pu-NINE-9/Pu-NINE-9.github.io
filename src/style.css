@@ -194,6 +194,7 @@ a:hover {
 .page-content {
   flex: 1;
   padding: 2rem 0;
+  background-color: var(--bg-dark);
 }
 
 .pixel-border {

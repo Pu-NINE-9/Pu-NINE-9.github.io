@@ -42,12 +42,17 @@ export const useAppStore = defineStore('app', () => {
   }
 
   function initTheme() {
-    const savedTheme = localStorage.getItem('theme') as Theme | null
-    if (savedTheme) {
-      setTheme(savedTheme)
+    const hour = new Date().getHours()
+    
+    if (hour >= 20 || hour < 6) {
+      setTheme('dark')
     } else {
-      const timeTheme = getThemeByTime()
-      setTheme(timeTheme)
+      const savedTheme = localStorage.getItem('theme') as Theme | null
+      if (savedTheme) {
+        setTheme(savedTheme)
+      } else {
+        setTheme('light')
+      }
     }
   }
 
@@ -60,6 +65,7 @@ export const useAppStore = defineStore('app', () => {
     closeMobileMenu,
     setTheme,
     toggleTheme,
-    initTheme
+    initTheme,
+    getThemeByTime
   }
 })
