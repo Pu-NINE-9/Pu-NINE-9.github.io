@@ -74,35 +74,25 @@ a {
 
 a:hover {
   color: var(--pixel-red);
-  text-shadow: 2px 2px 0 var(--pixel-black);
-}
-
-[data-theme="light"] a:hover {
-  text-shadow: 2px 2px 0 var(--pixel-gray);
+  text-decoration: none;
 }
 
 .pixel-title {
   font-family: var(--font-pixel);
   font-size: 1.5rem;
   color: var(--pixel-yellow);
-  text-shadow: 4px 4px 0 var(--pixel-black);
   margin-bottom: 1rem;
 }
 
 [data-theme="light"] .pixel-title {
-  text-shadow: 4px 4px 0 var(--pixel-gray);
+  color: var(--pixel-yellow);
 }
 
 .pixel-subtitle {
   font-family: var(--font-pixel);
   font-size: 0.75rem;
   color: var(--pixel-blue);
-  text-shadow: 2px 2px 0 var(--pixel-black);
   margin-bottom: 2rem;
-}
-
-[data-theme="light"] .pixel-subtitle {
-  text-shadow: 2px 2px 0 var(--pixel-gray);
 }
 
 .pixel-btn {

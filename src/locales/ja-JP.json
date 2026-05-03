@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "NINEの代码space",
-    "subtitle": "ピクセルレトロ風ウェブサイト",
+    "subtitle": "From myself in the past to the future",
     "welcome": "私のコード世界へようこそ！",
     "description": "私はNINE、プログラミングを愛する開発者です。一緒に頑張りましょう~",
     "enterSite": "サイトに入る",
@@ -35,7 +35,8 @@
     "subtitle": "プログラミングの心得を共有",
     "readMore": "もっと読む",
     "viewOriginal": "原文を見る",
-    "published": "公開日"
+    "published": "公開日",
+    "tableOfContents": "目次"
   },
   "music": {
     "play": "再生",
@@ -50,7 +51,7 @@
   },
   "footer": {
     "copyright": "著作権所有",
-    "madeWith": "♥ 込めて作成",
+    "madeWith": "Re.design the Wo.rld",
     "pageviews": "総閲覧数"
   }
 }

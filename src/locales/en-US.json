@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "NINEの代码space",
-    "subtitle": "Pixel Retro Personal Website",
+    "subtitle": "From myself in the past to the future",
     "welcome": "Welcome to my code world!",
     "description": "I'm NINE, a developer who loves programming. Let's grow together~",
     "enterSite": "Enter Site",
@@ -35,7 +35,8 @@
     "subtitle": "Sharing Programming Knowledge",
     "readMore": "Read More",
     "viewOriginal": "View Original",
-    "published": "Published"
+    "published": "Published",
+    "tableOfContents": "Table of Contents"
   },
   "music": {
     "play": "Play",
@@ -50,7 +51,7 @@
   },
   "footer": {
     "copyright": "All Rights Reserved",
-    "madeWith": "Made with ♥",
+    "madeWith": "Re.design the Wo.rld",
     "pageviews": "Total Views"
   }
 }

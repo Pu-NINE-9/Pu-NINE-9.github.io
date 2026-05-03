@@ -9,7 +9,7 @@ export interface SiteSettings {
 }
 
 export const siteSettings: SiteSettings = {
-  siteName: 'NINEのコードspace',
+  siteName: 'NINEの代码space',
   siteDescription: 'Pixel Retro Personal Website',
   primaryColor: '#D92626',
   secondaryColor: '#F2B705',

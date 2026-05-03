@@ -21,7 +21,8 @@ const work = computed(() => {
 
       <article class="work-detail pixel-card">
         <div class="detail-image">
-          <div class="image-placeholder">
+          <img v-if="work.image" :src="work.image" :alt="work.title" class="detail-img" />
+          <div v-else class="image-placeholder">
             <span class="placeholder-icon">🖥️</span>
           </div>
         </div>
@@ -43,13 +44,8 @@ const work = computed(() => {
 
           <section class="content-section">
             <h2 class="section-title">About This Project</h2>
-            <p class="section-text">
-              This is a showcase of my programming work. The project demonstrates
-              various technical skills and creative approaches to problem-solving.
-            </p>
-            <p class="section-text">
-              Feel free to explore the source code if it's available, and don't
-              hesitate to reach out if you have any questions or suggestions!
+            <p v-for="(paragraph, index) in work.content" :key="index" class="section-text">
+              {{ paragraph }}
             </p>
           </section>
         </div>
@@ -102,15 +98,24 @@ const work = computed(() => {
 }
 
 .back-link {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   margin: 1rem 0;
   font-family: var(--font-pixel);
-  font-size: 0.7rem;
-  color: var(--pixel-yellow);
+  font-size: 0.65rem;
+  color: white;
+  background: var(--pixel-red);
+  border: 3px solid var(--pixel-black);
+  box-shadow: 4px 4px 0 var(--pixel-black);
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  transition: all 0.2s;
 }
 
 .back-link:hover {
-  color: var(--pixel-red);
+  transform: translate(-2px, -2px);
+  box-shadow: 6px 6px 0 var(--pixel-black);
 }
 
 .work-detail {
@@ -119,6 +124,14 @@ const work = computed(() => {
 
 .detail-image {
   margin-bottom: 2rem;
+}
+
+.detail-img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border: 4px solid var(--pixel-black);
+  display: block;
 }
 
 .image-placeholder {

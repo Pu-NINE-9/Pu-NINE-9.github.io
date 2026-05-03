@@ -10,18 +10,20 @@ const { t } = useI18n()
   <div class="works-view">
     <div class="container">
       <header class="page-header">
-        <h1 class="pixel-title">{{ t('works.title') }}</h1>
+        <h1 class="pixel-title pixel-float">{{ t('works.title') }}</h1>
         <p class="pixel-subtitle">{{ t('works.subtitle') }}</p>
       </header>
 
       <div class="works-grid">
-        <article
+        <RouterLink
           v-for="work in works"
           :key="work.id"
+          :to="`/works/${work.id}`"
           class="work-card pixel-card"
         >
           <div class="work-image">
-            <div class="image-placeholder">
+            <img v-if="work.image" :src="work.image" :alt="work.title" class="work-img" />
+            <div v-else class="image-placeholder">
               <span class="placeholder-icon">🖥️</span>
             </div>
           </div>
@@ -41,9 +43,7 @@ const { t } = useI18n()
             </div>
 
             <div class="work-actions">
-              <RouterLink :to="`/works/${work.id}`" class="pixel-btn">
-                {{ t('works.viewProject') }}
-              </RouterLink>
+              <span class="view-project">{{ t('works.viewProject') }}</span>
               <a
                 v-if="work.githubUrl"
                 :href="work.githubUrl"
@@ -56,7 +56,7 @@ const { t } = useI18n()
               <span v-else class="no-source">{{ t('works.noSource') }}</span>
             </div>
           </div>
-        </article>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -82,6 +82,8 @@ const { t } = useI18n()
   display: flex;
   flex-direction: column;
   transition: transform 0.2s;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 .work-card:hover {
@@ -90,6 +92,14 @@ const { t } = useI18n()
 
 .work-image {
   margin-bottom: 1rem;
+}
+
+.work-img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border: 3px solid var(--pixel-black);
+  display: block;
 }
 
 .image-placeholder {
@@ -147,6 +157,16 @@ const { t } = useI18n()
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.view-project {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: var(--pixel-red);
+  border: 2px solid var(--pixel-black);
+  color: white;
+  box-shadow: 2px 2px 0 var(--pixel-black);
 }
 
 .work-actions .pixel-btn {

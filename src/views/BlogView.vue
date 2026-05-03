@@ -1,23 +1,29 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 import { blogs } from '@/config/blogs'
 
 const { t } = useI18n()
+
+const sortedBlogs = computed(() => {
+  return [...blogs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+})
 </script>
 
 <template>
   <div class="blog-view">
     <div class="container">
       <header class="page-header">
-        <h1 class="pixel-title">{{ t('blog.title') }}</h1>
+        <h1 class="pixel-title pixel-float">{{ t('blog.title') }}</h1>
         <p class="pixel-subtitle">{{ t('blog.subtitle') }}</p>
       </header>
 
       <div class="blogs-list">
-        <article
-          v-for="blog in blogs"
+        <RouterLink
+          v-for="blog in sortedBlogs"
           :key="blog.id"
+          :to="`/blog/${blog.id}`"
           class="blog-card pixel-card"
         >
           <div class="blog-date">
@@ -35,20 +41,18 @@ const { t } = useI18n()
             </div>
 
             <div class="blog-actions">
-              <RouterLink :to="`/blog/${blog.id}`" class="pixel-btn">
-                {{ t('blog.readMore') }}
-              </RouterLink>
+              <span class="read-more-btn">{{ t('blog.readMore') }}</span>
               <a
                 :href="blog.csdnUrl"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="pixel-btn pixel-btn-outline"
+                class="view-original-btn"
               >
                 {{ t('blog.viewOriginal') }}
               </a>
             </div>
           </div>
-        </article>
+        </RouterLink>
       </div>
     </div>
   </div>
@@ -73,7 +77,9 @@ const { t } = useI18n()
 .blog-card {
   display: flex;
   gap: 1.5rem;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
 }
 
 .blog-card:hover {
@@ -133,9 +139,35 @@ const { t } = useI18n()
   gap: 0.5rem;
 }
 
-.blog-actions .pixel-btn {
+.read-more-btn {
+  font-family: var(--font-pixel);
   font-size: 0.55rem;
   padding: 0.5rem 0.8rem;
+  background: var(--pixel-red);
+  color: white;
+  border: 3px solid var(--pixel-black);
+  box-shadow: 3px 3px 0 var(--pixel-black);
+  text-align: center;
+}
+
+.read-more-btn:hover {
+  background: #cc0000;
+}
+
+.view-original-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
+  padding: 0.5rem 0.8rem;
+  background: transparent;
+  color: var(--pixel-yellow);
+  border: 3px solid var(--pixel-yellow);
+  text-align: center;
+  text-decoration: none;
+}
+
+.view-original-btn:hover {
+  background: var(--pixel-yellow);
+  color: var(--pixel-black);
 }
 
 @media (max-width: 768px) {
@@ -152,7 +184,8 @@ const { t } = useI18n()
     flex-direction: column;
   }
 
-  .blog-actions .pixel-btn {
+  .read-more-btn,
+  .view-original-btn {
     width: 100%;
     text-align: center;
   }

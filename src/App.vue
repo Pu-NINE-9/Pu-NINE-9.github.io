@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigation from './components/Navigation.vue'
 import MusicPlayer from './components/MusicPlayer.vue'
@@ -8,19 +8,10 @@ import { useAppStore } from './stores/app'
 
 const musicStore = useMusicStore()
 const appStore = useAppStore()
-const pageViews = ref(0)
-
-const updatePageViews = () => {
-  const savedViews = localStorage.getItem('pageViews')
-  const views = savedViews ? parseInt(savedViews, 10) + 1 : 1
-  pageViews.value = views
-  localStorage.setItem('pageViews', views.toString())
-}
 
 onMounted(() => {
   appStore.initTheme()
   musicStore.initAudio('background-music.mp3')
-  updatePageViews()
 })
 </script>
 
@@ -38,12 +29,10 @@ onMounted(() => {
       <div class="container">
         <div class="footer-content">
           <p class="footer-text">
-            © 2025 NINEのコードspace | {{ $t('footer.madeWith') }}
+            © 2025 NINEの代码space | {{ $t('footer.madeWith') }}
           </p>
           <p class="footer-views">
-            <span class="views-icon">👁️</span>
-            <span class="views-label">{{ $t('footer.pageviews') }}:</span>
-            <span class="views-count">{{ pageViews.toLocaleString() }}</span>
+            <img :src="'https://visitor-badge.laobi.icu/badge?page_id=pu-nine-9.github.io'" alt="visitor badge" />
           </p>
         </div>
       </div>
@@ -82,25 +71,14 @@ onMounted(() => {
 }
 
 .footer-views {
-  font-family: var(--font-pixel);
-  font-size: 0.55rem;
-  color: var(--pixel-yellow);
+  margin: 0;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
-  margin: 0;
 }
 
-.views-icon {
-  font-size: 0.7rem;
-}
-
-.views-label {
-  color: var(--text-secondary);
-}
-
-.views-count {
-  color: var(--pixel-green);
+.footer-views img {
+  height: 20px;
+  border-radius: 4px;
 }
 
 @media (min-width: 769px) {

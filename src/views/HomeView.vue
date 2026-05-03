@@ -1,8 +1,18 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
+import { ref } from 'vue'
 
 const { t } = useI18n()
+const selectedImage = ref<string | null>(null)
+
+const openPreview = (src: string) => {
+  selectedImage.value = src
+}
+
+const closePreview = () => {
+  selectedImage.value = null
+}
 </script>
 
 <template>
@@ -46,24 +56,24 @@ const { t } = useI18n()
       <div class="container">
         <div class="features-grid">
           <div class="feature-card pixel-card">
-            <div class="feature-icon">💻</div>
-            <h3 class="feature-title">{{ t('home.featureDevTitle') }}</h3>
-            <p class="feature-desc">{{ t('home.featureDev') }}</p>
+            <div class="feature-icon pixel-float">💻</div>
+            <h3 class="feature-title pixel-float">{{ t('home.featureDevTitle') }}</h3>
+            <p class="feature-desc pixel-float">{{ t('home.featureDev') }}</p>
           </div>
           <a href="https://github.com/Pu-NINE-9/Self-introduction" target="_blank" class="feature-card pixel-card">
-            <div class="feature-icon">🌟</div>
-            <h3 class="feature-title">{{ t('home.featureAboutTitle') }}</h3>
-            <p class="feature-desc">{{ t('home.featureAbout') }}</p>
+            <div class="feature-icon pixel-float">🌟</div>
+            <h3 class="feature-title pixel-float">{{ t('home.featureAboutTitle') }}</h3>
+            <p class="feature-desc pixel-float">{{ t('home.featureAbout') }}</p>
           </a>
           <a href="https://blog.csdn.net/nineeea?type=blog" target="_blank" class="feature-card pixel-card">
-            <div class="feature-icon">📝</div>
-            <h3 class="feature-title">{{ t('home.featureBlogTitle') }}</h3>
-            <p class="feature-desc">{{ t('home.featureBlog') }}</p>
+            <div class="feature-icon pixel-float">📝</div>
+            <h3 class="feature-title pixel-float">{{ t('home.featureBlogTitle') }}</h3>
+            <p class="feature-desc pixel-float">{{ t('home.featureBlog') }}</p>
           </a>
           <RouterLink to="/works" class="feature-card pixel-card">
-            <div class="feature-icon">🚀</div>
-            <h3 class="feature-title">{{ t('home.featureProjectsTitle') }}</h3>
-            <p class="feature-desc">{{ t('home.featureProjects') }}</p>
+            <div class="feature-icon pixel-float">🚀</div>
+            <h3 class="feature-title pixel-float">{{ t('home.featureProjectsTitle') }}</h3>
+            <p class="feature-desc pixel-float">{{ t('home.featureProjects') }}</p>
           </RouterLink>
         </div>
       </div>
@@ -76,24 +86,31 @@ const { t } = useI18n()
 
         <div class="gallery-grid">
           <div class="gallery-item">
-            <div class="photo-frame">
+            <div class="photo-frame" @click="openPreview('/images/photo1.jpg')">
               <img src="/images/photo1.jpg" alt="Photo 1" class="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
-            <div class="photo-frame">
+            <div class="photo-frame" @click="openPreview('/images/photo2.jpg')">
               <img src="/images/photo2.jpg" alt="Photo 2" class="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
-            <div class="photo-frame">
+            <div class="photo-frame" @click="openPreview('/images/photo3.jpg')">
               <img src="/images/photo3.jpg" alt="Photo 3" class="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
-            <div class="photo-frame">
+            <div class="photo-frame" @click="openPreview('/images/photo4.jpg')">
               <img src="/images/photo4.jpg" alt="Photo 4" class="gallery-img" />
             </div>
+          </div>
+        </div>
+
+        <div v-if="selectedImage" class="lightbox" @click="closePreview">
+          <div class="lightbox-content" @click.stop>
+            <img :src="selectedImage" alt="Preview" class="lightbox-img" />
+            <button class="lightbox-close" @click="closePreview">✕</button>
           </div>
         </div>
       </div>
@@ -194,42 +211,56 @@ const { t } = useI18n()
 }
 
 .features-section {
-  padding: 2rem 0;
+  padding: 3rem 0;
 }
 
 .features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
 }
 
 .feature-card {
+  background: var(--bg-surface);
+  border: 4px solid var(--pixel-black);
+  box-shadow: 6px 6px 0 var(--pixel-black);
+  padding: 1.5rem;
   text-align: center;
-  transition: transform 0.2s;
+  transition: all 0.2s;
   cursor: pointer;
   text-decoration: none;
   display: block;
 }
 
 .feature-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-6px);
+  box-shadow: 10px 10px 0 var(--pixel-black);
 }
 
 .feature-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 3.5rem;
+  margin-bottom: 1.25rem;
+  animation: float 2s ease-in-out infinite;
 }
+
+.features-grid > :nth-child(1) .pixel-float { animation-delay: 0s; }
+.features-grid > :nth-child(2) .pixel-float { animation-delay: 0.2s; }
+.features-grid > :nth-child(3) .pixel-float { animation-delay: 0.4s; }
+.features-grid > :nth-child(4) .pixel-float { animation-delay: 0.6s; }
 
 .feature-title {
   font-family: var(--font-pixel);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--pixel-yellow);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .feature-desc {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
+  line-height: 1.5;
 }
 
 .gallery-section {
@@ -266,6 +297,7 @@ const { t } = useI18n()
   overflow: hidden;
   background: var(--bg-surface);
   transition: transform 0.2s;
+  cursor: pointer;
 }
 
 .photo-frame:hover {
@@ -391,6 +423,70 @@ const { t } = useI18n()
   .photo-frame {
     border-width: 3px;
     box-shadow: 3px 3px 0 var(--pixel-black);
+  }
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  cursor: pointer;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  cursor: default;
+}
+
+.lightbox-img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border: 4px solid var(--pixel-yellow);
+  box-shadow: 0 0 30px rgba(242, 183, 5, 0.3);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  background: var(--pixel-red);
+  border: 2px solid var(--pixel-black);
+  color: var(--pixel-white);
+  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .lightbox-img {
+    max-width: 95vw;
+    max-height: 75vh;
+  }
+
+  .lightbox-close {
+    top: -36px;
+    width: 28px;
+    height: 28px;
+    font-size: 1rem;
   }
 }
 </style>

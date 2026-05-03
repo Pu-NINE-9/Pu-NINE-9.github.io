@@ -6,7 +6,7 @@
   },
   "home": {
     "title": "NINEの代码space",
-    "subtitle": "像素复古风个人网站",
+    "subtitle": "From myself in the past to the future",
     "welcome": "欢迎来到我的代码世界！",
     "description": "我是NINE，一名热爱编程的开发者，让我们一起加油吧~",
     "enterSite": "进入网站",
@@ -35,7 +35,8 @@
     "subtitle": "分享编程心得",
     "readMore": "阅读更多",
     "viewOriginal": "查看原文",
-    "published": "发布于"
+    "published": "发布于",
+    "tableOfContents": "目录"
   },
   "music": {
     "play": "播放",
@@ -50,7 +51,7 @@
   },
   "footer": {
     "copyright": "版权所有",
-    "madeWith": "用 ♥ 制作",
+    "madeWith": "Re.design the Wo.rld",
     "pageviews": "总浏览量"
   }
 }
