@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "홈",
+    "works": "작품",
+    "blog": "블로그"
+  },
+  "home": {
+    "title": "NINEのコードspace",
+    "subtitle": "픽셀 레트로풍 웹사이트",
+    "welcome": "제 코드 세계에 오신 것을 환영합니다!",
+    "description": "저는 NINE, 프로그래밍을 사랑하는 개발자입니다. 픽셀풍 게임, Discord 봇, 다양한 재미있는 프로젝트를 만드는 것을 좋아합니다.",
+    "enterSite": "사이트 들어가기",
+    "viewWorks": "작품 보기",
+    "latestNews": "최신 뉴스"
+  },
+  "works": {
+    "title": "제 작품",
+    "subtitle": "프로그래밍 프로젝트 전시",
+    "viewProject": "프로젝트 보기",
+    "viewCode": "코드 보기",
+    "noSource": "미오픈",
+    "demo": "온라인 데모",
+    "tags": "기술 태그"
+  },
+  "blog": {
+    "title": "기술 블로그",
+    "subtitle": "프로그래밍 노하우 공유",
+    "readMore": "더 읽기",
+    "viewOriginal": "원문 보기",
+    "published": "발행일"
+  },
+  "music": {
+    "play": "재생",
+    "pause": "일시정지",
+    "nowPlaying": "재생 중"
+  },
+  "common": {
+    "loading": "로딩 중...",
+    "error": "오류가 발생했습니다",
+    "back": "돌아가기",
+    "close": "닫기"
+  },
+  "footer": {
+    "copyright": "저작권 소유",
+    "madeWith": "♥ 을 담아 제작"
+  }
+}

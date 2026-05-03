@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "Home",
+    "works": "Works",
+    "blog": "Blog"
+  },
+  "home": {
+    "title": "NINEのコードspace",
+    "subtitle": "Pixel Retro Personal Website",
+    "welcome": "Welcome to my code world!",
+    "description": "I'm NINE, a developer who loves programming. I enjoy creating pixel art games, Discord bots, and various fun projects.",
+    "enterSite": "Enter Site",
+    "viewWorks": "View Works",
+    "latestNews": "Latest News"
+  },
+  "works": {
+    "title": "My Works",
+    "subtitle": "Programming Projects Showcase",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "noSource": "Closed Source",
+    "demo": "Live Demo",
+    "tags": "Tech Tags"
+  },
+  "blog": {
+    "title": "Tech Blog",
+    "subtitle": "Sharing Programming Knowledge",
+    "readMore": "Read More",
+    "viewOriginal": "View Original",
+    "published": "Published"
+  },
+  "music": {
+    "play": "Play",
+    "pause": "Pause",
+    "nowPlaying": "Now Playing"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "back": "Back",
+    "close": "Close"
+  },
+  "footer": {
+    "copyright": "All Rights Reserved",
+    "madeWith": "Made with ♥"
+  }
+}

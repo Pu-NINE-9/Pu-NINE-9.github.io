@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "ホーム",
+    "works": "作品",
+    "blog": "ブログ"
+  },
+  "home": {
+    "title": "NINEのコードspace",
+    "subtitle": "ピクセルレトロ風ウェブサイト",
+    "welcome": "私のコード世界へようこそ！",
+    "description": "私はNINE、プログラミングが大好きな開発者です。ピクセル風ゲームやDiscordボット、さまざまな有趣なプロジェクトを作成することが好きです。",
+    "enterSite": "サイトに入る",
+    "viewWorks": "作品を見る",
+    "latestNews": "最新ニュース"
+  },
+  "works": {
+    "title": "私の作品",
+    "subtitle": "プログラミングプロジェクト展示",
+    "viewProject": "プロジェクトを見る",
+    "viewCode": "コードを見る",
+    "noSource": "未开源",
+    "demo": "オンラインデモ",
+    "tags": "技術タグ"
+  },
+  "blog": {
+    "title": "技術ブログ",
+    "subtitle": "プログラミングの心得を共有",
+    "readMore": "もっと読む",
+    "viewOriginal": "原文を見る",
+    "published": "公開日"
+  },
+  "music": {
+    "play": "再生",
+    "pause": "一時停止",
+    "nowPlaying": "再生中"
+  },
+  "common": {
+    "loading": "読み込み中...",
+    "error": "エラーが発生しました",
+    "back": "戻る",
+    "close": "閉じる"
+  },
+  "footer": {
+    "copyright": "版权所有",
+    "madeWith": "♥ 込めて作成"
+  }
+}

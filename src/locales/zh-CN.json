@@ -1,0 +1,47 @@
+{
+  "nav": {
+    "home": "首页",
+    "works": "作品",
+    "blog": "博客"
+  },
+  "home": {
+    "title": "NINEの代码space",
+    "subtitle": "像素复古风个人网站",
+    "welcome": "欢迎来到我的代码世界！",
+    "description": "我是NINE，一名热爱编程的开发者。我喜欢制作像素风游戏、Discord机器人和各种有趣的项目。",
+    "enterSite": "进入网站",
+    "viewWorks": "查看作品",
+    "latestNews": "最新动态"
+  },
+  "works": {
+    "title": "我的作品",
+    "subtitle": "编程项目展示",
+    "viewProject": "查看项目",
+    "viewCode": "查看源码",
+    "noSource": "未开源",
+    "demo": "在线演示",
+    "tags": "技术标签"
+  },
+  "blog": {
+    "title": "技术博客",
+    "subtitle": "分享编程心得",
+    "readMore": "阅读更多",
+    "viewOriginal": "查看原文",
+    "published": "发布于"
+  },
+  "music": {
+    "play": "播放",
+    "pause": "暂停",
+    "nowPlaying": "正在播放"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "出错了",
+    "back": "返回",
+    "close": "关闭"
+  },
+  "footer": {
+    "copyright": "版权所有",
+    "madeWith": "用 ♥ 制作"
+  }
+}
