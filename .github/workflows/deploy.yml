@@ -18,28 +18,38 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.11
         with:
-          node-version: '24'
+          fetch-depth: 0
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4.1.0
+        with:
+          node-version: 24.x
           cache: 'npm'
+
+      - name: Debug - Check environment
+        run: |
+          node --version
+          npm --version
+          pwd
+          ls -la
 
       - name: Install dependencies
         run: npm install
 
-      - name: Build
+      - name: Debug - Check node_modules
+        run: ls -la node_modules/.bin/
+
+      - name: Run build
         run: npm run build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v3.0.1
         with:
-          path: dist
+          path: ./dist
 
   deploy:
     environment:
@@ -50,4 +60,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
