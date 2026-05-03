@@ -36,11 +36,19 @@ export const useAppStore = defineStore('app', () => {
     document.documentElement.setAttribute('data-theme', t)
   }
 
+  function getThemeByTime(): Theme {
+    const hour = new Date().getHours()
+    return hour >= 20 || hour < 6 ? 'dark' : 'light'
+  }
+
   function initTheme() {
     const savedTheme = localStorage.getItem('theme') as Theme | null
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light')
-    setTheme(initialTheme)
+    if (savedTheme) {
+      setTheme(savedTheme)
+    } else {
+      const timeTheme = getThemeByTime()
+      setTheme(timeTheme)
+    }
   }
 
   return {

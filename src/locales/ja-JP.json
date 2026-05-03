@@ -5,7 +5,7 @@
     "blog": "ブログ"
   },
   "home": {
-    "title": "NINEのコードspace",
+    "title": "NINEの代码space",
     "subtitle": "ピクセルレトロ風ウェブサイト",
     "welcome": "私のコード世界へようこそ！",
     "description": "私はNINE、プログラミングを愛する開発者です。一緒に頑張りましょう~",
@@ -49,7 +49,8 @@
     "close": "閉じる"
   },
   "footer": {
-    "copyright": "版权所有",
-    "madeWith": "♥ 込めて作成"
+    "copyright": "著作権所有",
+    "madeWith": "♥ 込めて作成",
+    "pageviews": "総閲覧数"
   }
 }

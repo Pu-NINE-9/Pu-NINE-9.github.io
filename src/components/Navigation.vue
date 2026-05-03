@@ -223,8 +223,10 @@ const isActive = (path: string) => {
   .nav-controls {
     width: 100%;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.75rem;
+    padding-top: 0.5rem;
+    border-top: 2px solid var(--pixel-black);
   }
 }
 </style>

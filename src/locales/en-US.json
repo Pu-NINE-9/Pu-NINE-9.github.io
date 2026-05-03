@@ -5,7 +5,7 @@
     "blog": "Blog"
   },
   "home": {
-    "title": "NINEのコードspace",
+    "title": "NINEの代码space",
     "subtitle": "Pixel Retro Personal Website",
     "welcome": "Welcome to my code world!",
     "description": "I'm NINE, a developer who loves programming. Let's grow together~",
@@ -50,6 +50,7 @@
   },
   "footer": {
     "copyright": "All Rights Reserved",
-    "madeWith": "Made with ♥"
+    "madeWith": "Made with ♥",
+    "pageviews": "Total Views"
   }
 }

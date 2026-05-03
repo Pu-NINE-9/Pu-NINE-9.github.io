@@ -50,6 +50,7 @@
   },
   "footer": {
     "copyright": "版权所有",
-    "madeWith": "用 ♥ 制作"
+    "madeWith": "用 ♥ 制作",
+    "pageviews": "总浏览量"
   }
 }
