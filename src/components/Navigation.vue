@@ -193,7 +193,7 @@ const isActive = (path: string) => {
   bottom: 7px;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .pixel-header {
     padding-top: calc(1rem + env(safe-area-inset-top));
     padding-bottom: 1rem;
@@ -202,11 +202,12 @@ const isActive = (path: string) => {
     left: 0;
     right: 0;
     box-sizing: border-box;
+    z-index: 9999;
   }
 
   .menu-toggle {
     display: block;
-    z-index: 110;
+    z-index: 10000;
   }
 
   .nav-menu {
@@ -214,19 +215,19 @@ const isActive = (path: string) => {
     top: calc(60px + env(safe-area-inset-top));
     left: 0;
     right: 0;
-    background: var(--bg-darker);
+    background-color: var(--bg-darker);
     border-bottom: 4px solid var(--pixel-black);
     flex-direction: column;
     padding: 1.5rem 1rem;
     gap: 1.25rem;
-    display: none;
-    z-index: 105;
+    display: none !important;
+    z-index: 9998;
     box-sizing: border-box;
     min-height: calc(100vh - 60px - env(safe-area-inset-top));
   }
 
   .nav-menu.is-open {
-    display: flex;
+    display: flex !important;
   }
 
   .nav-link {
@@ -260,7 +261,7 @@ const isActive = (path: string) => {
   }
 }
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   .logo-text {
     font-size: 0.95rem;
     letter-spacing: 0.02em;
