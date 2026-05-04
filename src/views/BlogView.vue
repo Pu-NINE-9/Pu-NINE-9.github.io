@@ -1,13 +1,51 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 import { blogs } from '@/config/blogs'
 
 const { t } = useI18n()
 
+const visibleCount = ref(5)
+const isLoading = ref(false)
+
 const sortedBlogs = computed(() => {
   return [...blogs].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+})
+
+const visibleBlogs = computed(() => {
+  return sortedBlogs.value.slice(0, visibleCount.value)
+})
+
+const hasMore = computed(() => {
+  return visibleCount.value < sortedBlogs.value.length
+})
+
+const loadMore = () => {
+  if (hasMore.value && !isLoading.value) {
+    isLoading.value = true
+    setTimeout(() => {
+      visibleCount.value += 5
+      isLoading.value = false
+    }, 300)
+  }
+}
+
+const handleScroll = () => {
+  const scrollPosition = window.innerHeight + window.scrollY
+  const bodyHeight = document.body.offsetHeight
+  
+  if (scrollPosition >= bodyHeight - 500) {
+    loadMore()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', handleScroll)
 })
 </script>
 
@@ -21,7 +59,7 @@ const sortedBlogs = computed(() => {
 
       <div class="blogs-list">
         <RouterLink
-          v-for="blog in sortedBlogs"
+          v-for="blog in visibleBlogs"
           :key="blog.id"
           :to="`/blog/${blog.id}`"
           class="blog-card pixel-card"
@@ -31,8 +69,8 @@ const sortedBlogs = computed(() => {
           </div>
 
           <div class="blog-content">
-            <h2 class="blog-title">{{ blog.title }}</h2>
-            <p class="blog-summary">{{ blog.summary }}</p>
+            <h2 class="blog-title">{{ t(`blogs.${blog.id}.title`) }}</h2>
+            <p class="blog-summary">{{ t(`blogs.${blog.id}.summary`) }}</p>
 
             <div class="blog-tags">
               <span v-for="tag in blog.tags" :key="tag" class="tag">
@@ -53,6 +91,20 @@ const sortedBlogs = computed(() => {
             </div>
           </div>
         </RouterLink>
+      </div>
+
+      <div v-if="isLoading" class="load-more-container">
+        <div class="loader" />
+      </div>
+
+      <div v-else-if="hasMore" class="load-more-container">
+        <button class="load-more-btn pixel-btn" @click="loadMore">
+          {{ t('blog.loadMore') }}
+        </button>
+      </div>
+
+      <div v-else class="load-more-container">
+        <p class="no-more-text">{{ t('blog.noMoreArticles') }}</p>
       </div>
     </div>
   </div>
@@ -168,6 +220,40 @@ const sortedBlogs = computed(() => {
 .view-original-btn:hover {
   background: var(--pixel-yellow);
   color: var(--pixel-black);
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+}
+
+.load-more-btn {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.no-more-text {
+  font-family: var(--font-pixel);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.loader {
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--bg-surface);
+  border-top-color: var(--pixel-yellow);
+  border-right-color: var(--pixel-yellow);
+  border-bottom-color: var(--pixel-yellow);
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (max-width: 768px) {

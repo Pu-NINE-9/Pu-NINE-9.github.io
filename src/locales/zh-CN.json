@@ -21,22 +21,15 @@
     "featureProjects": "个人作品展示",
     "featureProjectsTitle": "Projects"
   },
-  "works": {
-    "title": "我的作品",
-    "subtitle": "编程项目展示",
-    "viewProject": "查看项目",
-    "viewCode": "查看源码",
-    "noSource": "未开源",
-    "demo": "在线演示",
-    "tags": "技术标签"
-  },
   "blog": {
     "title": "技术博客",
     "subtitle": "分享编程心得",
     "readMore": "阅读更多",
     "viewOriginal": "查看原文",
     "published": "发布于",
-    "tableOfContents": "目录"
+    "tableOfContents": "目录",
+    "loadMore": "加载更多",
+    "noMoreArticles": "没有更多文章了"
   },
   "music": {
     "play": "播放",
@@ -53,5 +46,93 @@
     "copyright": "版权所有",
     "madeWith": "Re.design the Wo.rld",
     "pageviews": "总浏览量"
+  },
+  "author": {
+    "name": "NINE",
+    "title": "我嘞个前端开发（新手ver.）",
+    "bio": "没毕业的准·码农 思密达。。。",
+    "bio2": "奥里给，干就完了xdm",
+    "bio3": "技术站点，不定期更新博客，分享技术经验，记录成长轨迹",
+    "bio4": "P.S. 相片是我家滴乖乖女儿啦~（狗头）",
+    "interests": "兴趣爱好",
+    "techStack": "技术栈"
+  },
+  "blogs": {
+    "1": {
+      "title": "JavaScript 文件上传机制详解",
+      "summary": "本文深入解析JavaScript文件上传全流程，从前端文件选择到后端接收存储"
+    },
+    "2": {
+      "title": ".env 与 .gitignore：现代软件开发中的环境管理与版本控制防护",
+      "summary": "本文系统介绍了.env和.gitignore文件在现代软件开发中的关键作用"
+    },
+    "3": {
+      "title": "Git 团队协作实战指南：从基础到高级技巧",
+      "summary": "本文全面介绍了Git在团队协作中的使用方法和最佳实践"
+    },
+    "4": {
+      "title": "Marked.js：一个强大的 Markdown 解析库",
+      "summary": "Marked.js是一款高效的Markdown解析库，支持浏览器端和Node.js环境，可将Markdown快速转换为HTML。"
+    },
+    "5": {
+      "title": "Vue 3 + TypeScript 项目性能优化全链路实战",
+      "summary": "本文详细介绍了Vue3项目的全链路优化方案，通过系统化手段实现了显著的性能提升。基于Vite构建工具，采用CDN外部化、精细化代码分割等策略，使首包体积从2.1MB降至130KB（降幅94%）。"
+    },
+    "6": {
+      "title": "Vue 图片性能优化双剑客：懒加载与自动压缩",
+      "summary": "Vue图片优化指南：使用vue-lazyload和vite-plugin-imagemin提升应用性能"
+    },
+    "7": {
+      "title": "Vue 3 项目 ESLint 配置详解",
+      "summary": "本文介绍了在pnpm create vue创建的Vue3项目中配置ESLint的方法"
+    },
+    "8": {
+      "title": "Trae 一键换装 Dracula 主题",
+      "summary": "本文介绍如何快速配置Trae编辑器的前端开发环境"
+    },
+    "9": {
+      "title": "快速上手 Dart 基础",
+      "summary": "本文介绍了Dart语言的基础知识，包括变量与常量的声明、常用数据类型及其常用操作方法。"
+    },
+    "10": {
+      "title": "JavaScript 后端日志系统：使用 Winston 构建专业日志",
+      "summary": "本文介绍了Node.js生态中流行的Winston日志库的使用方法"
+    }
+  },
+  "works": {
+    "title": "我的作品",
+    "subtitle": "编程项目展示",
+    "viewProject": "查看项目",
+    "viewCode": "查看源码",
+    "noSource": "未开源",
+    "demo": "在线演示",
+    "tags": "技术标签",
+    "1": {
+      "title": "AI-Desktop-Application",
+      "description": "基于 Electron-Vite、Vue3、Scss、TypeScript 搭建的 AI 集成桌面应用",
+      "content1": "AI Search Tool 的桌面端应用版正式来袭！",
+      "content2": "项目采用 Electron-Vite 作为底层框架，配合 Vue3 进行界面开发，使用 Scss 管理样式，TypeScript 提供类型安全。"
+    },
+    "2": {
+      "title": "Reno-Chatbox",
+      "description": "A AI chat application with Vue3 & Dify",
+      "content1": "Reno-Chatbox 是一个基于 Dify API 的 AI 聊天应用，提供流畅的对话体验。",
+      "content2": "使用 Vue3 + TypeScript 构建，TaliwindCSS 进行样式开发，科技感十足！",
+      "content3": "支持自定义 AI 助手配置，可以连接不同的 Dify 应用进行对话。"
+    },
+    "3": {
+      "title": "AI-Search-Tool",
+      "description": "AI 工具集合站",
+      "content1": "AI-Search-Tool 是一个聚合多种 AI 网站链接的工具站，帮助用户快速找到所需 AI 工具",
+      "content2": "使用 Next.js 构建，支持 SSR 渲染，SEO 友好。",
+      "content3": "界面简洁高效，支持多种 AI 搜索引擎的切换和对比。"
+    },
+    "4": {
+      "title": "MOOC-chrome-plugin",
+      "description": "mooc刷课浏览器插件，将视频倍速调至16倍速，支持快捷键操作",
+      "content1": "MOOC-chrome-plugin 是一个实用的刷课浏览器插件，专注于慕课平台视频加速。",
+      "content2": "纯 JavaScript 开发，无需后端支持，即装即用。",
+      "content3": "支持最高 16 倍速播放，配合快捷键操作，让刷课效率大幅提升。"
+    }
   }
 }

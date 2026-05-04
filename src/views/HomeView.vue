@@ -2,6 +2,7 @@
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
 import { ref } from 'vue'
+import AuthorInfo from '@/components/AuthorInfo.vue'
 
 const { t } = useI18n()
 const selectedImage = ref<string | null>(null)
@@ -51,6 +52,8 @@ const closePreview = () => {
         </div>
       </div>
     </section>
+
+    <AuthorInfo />
 
     <section class="features-section">
       <div class="container">

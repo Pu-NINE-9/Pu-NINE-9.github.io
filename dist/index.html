@@ -19,14 +19,93 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
+    <style>
+      #initial-loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #1a1a2e;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 99999;
+        transition: opacity 0.5s ease;
+      }
+      
+      #initial-loading.hidden {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loading-spinner {
+        width: 42px;
+        height: 42px;
+        position: relative;
+      }
+      
+      .loading-spinner .circular {
+        width: 42px;
+        height: 42px;
+        animation: loading-rotate 2s linear infinite;
+      }
+      
+      .loading-spinner .path {
+        stroke: #ffd700;
+        stroke-width: 3;
+        stroke-linecap: round;
+        animation: loading-dash 1.5s ease-in-out infinite;
+      }
+      
+      .loading-text {
+        margin-top: 20px;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 12px;
+        color: #ffd700;
+        text-shadow: 2px 2px 0 #d92626;
+      }
+      
+      @keyframes loading-rotate {
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      
+      @keyframes loading-dash {
+        0% {
+          stroke-dasharray: 1, 200;
+          stroke-dashoffset: 0;
+        }
+        50% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -40px;
+        }
+        100% {
+          stroke-dasharray: 90, 150;
+          stroke-dashoffset: -120px;
+        }
+      }
+    </style>
+    
     <title>NINEの代码space</title>
-    <script type="module" crossorigin src="/assets/index-Co1AuJMQ.js"></script>
+    <script type="module" crossorigin src="/assets/index-D4RqXDgQ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/chunks/rolldown-runtime-zyV8LgKe.js">
     <link rel="modulepreload" crossorigin href="/assets/chunks/vue-vendors-CXph_YoO.js">
     <link rel="stylesheet" crossorigin href="/assets/index-8QCOWOD0.css">
     <link rel="stylesheet" crossorigin href="/assets/ui-vendors-rxM8y41H.css">
   </head>
   <body>
+    <div id="initial-loading">
+      <div class="loading-spinner">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none"/>
+        </svg>
+      </div>
+      <div class="loading-text">LOADING...</div>
+    </div>
+    
     <div id="app"></div>
   </body>
 </html>

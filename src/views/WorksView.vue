@@ -22,15 +22,15 @@ const { t } = useI18n()
           class="work-card pixel-card"
         >
           <div class="work-image">
-            <img v-if="work.image" v-lazy="work.image" :alt="work.title" class="work-img" />
+            <img v-if="work.image" v-lazy="work.image" :alt="t(`works.${work.id}.title`)" class="work-img" />
             <div v-else class="image-placeholder">
               <span class="placeholder-icon">🖥️</span>
             </div>
           </div>
 
           <div class="work-content">
-            <h2 class="work-title">{{ work.title }}</h2>
-            <p class="work-description">{{ work.description }}</p>
+            <h2 class="work-title">{{ t(`works.${work.id}.title`) }}</h2>
+            <p class="work-description">{{ t(`works.${work.id}.description`) }}</p>
 
             <div class="work-tags">
               <span

@@ -21,15 +21,15 @@ const work = computed(() => {
 
       <article class="work-detail pixel-card">
         <div class="detail-image">
-          <img v-if="work.image" v-lazy="work.image" :alt="work.title" class="detail-img" />
+          <img v-if="work.image" v-lazy="work.image" :alt="t(`works.${work.id}.title`)" class="detail-img" />
           <div v-else class="image-placeholder">
             <span class="placeholder-icon">🖥️</span>
           </div>
         </div>
 
         <header class="detail-header">
-          <h1 class="pixel-title">{{ work.title }}</h1>
-          <p class="pixel-subtitle">{{ work.description }}</p>
+          <h1 class="pixel-title">{{ t(`works.${work.id}.title`) }}</h1>
+          <p class="pixel-subtitle">{{ t(`works.${work.id}.description`) }}</p>
         </header>
 
         <div class="detail-content">
@@ -44,8 +44,8 @@ const work = computed(() => {
 
           <section class="content-section">
             <h2 class="section-title">About This Project</h2>
-            <p v-for="(paragraph, index) in work.content" :key="index" class="section-text">
-              {{ paragraph }}
+            <p v-for="(_, index) in work.content" :key="index" class="section-text">
+              {{ t(`works.${work.id}.content${index + 1}`) }}
             </p>
           </section>
         </div>

@@ -26,3 +26,14 @@ app.use(VueLazyload, {
 })
 
 app.mount('#app')
+
+// 隐藏初始加载动画
+setTimeout(() => {
+  const loading = document.getElementById('initial-loading')
+  if (loading) {
+    loading.classList.add('hidden')
+    setTimeout(() => {
+      loading.remove()
+    }, 500)
+  }
+}, 300)
