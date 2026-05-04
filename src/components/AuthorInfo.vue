@@ -71,7 +71,7 @@ onUnmounted(() => {
       <div class="author-card">
         <div class="author-avatar">
           <div class="avatar-frame">
-            <img :v-lazy="avatarSrc" alt="Author Avatar" class="avatar-img" />
+            <img v-lazy="avatarSrc" alt="Author Avatar" class="avatar-img" />
           </div>
         </div>
         
