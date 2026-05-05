@@ -225,7 +225,19 @@ a:hover {
   border-top-color: var(--pixel-gray);
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px), screen and (max-device-width: 768px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 14px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
   .pixel-title {
     font-size: 1rem;
   }
@@ -241,6 +253,16 @@ a:hover {
 
   .container {
     padding: 0 0.5rem;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+
+  .page-content {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    box-sizing: border-box;
   }
 }
 

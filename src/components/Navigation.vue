@@ -193,8 +193,9 @@ const isActive = (path: string) => {
   bottom: 7px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 768px), screen and (max-device-width: 768px) {
   .pixel-header {
+    padding-top: calc(1rem + constant(safe-area-inset-top));
     padding-top: calc(1rem + env(safe-area-inset-top));
     padding-bottom: 1rem;
     position: fixed;
@@ -203,6 +204,8 @@ const isActive = (path: string) => {
     right: 0;
     box-sizing: border-box;
     z-index: 9999;
+    width: 100%;
+    min-width: 320px;
   }
 
   .menu-toggle {
@@ -212,6 +215,7 @@ const isActive = (path: string) => {
 
   .nav-menu {
     position: fixed;
+    top: calc(60px + constant(safe-area-inset-top));
     top: calc(60px + env(safe-area-inset-top));
     left: 0;
     right: 0;
@@ -223,7 +227,10 @@ const isActive = (path: string) => {
     display: none !important;
     z-index: 9998;
     box-sizing: border-box;
+    min-height: calc(100vh - 60px - constant(safe-area-inset-top));
     min-height: calc(100vh - 60px - env(safe-area-inset-top));
+    width: 100%;
+    min-width: 320px;
   }
 
   .nav-menu.is-open {

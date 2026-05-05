@@ -48,9 +48,13 @@ onMounted(() => {
   flex-direction: column;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px), screen and (max-device-width: 768px) {
   .page-content {
+    padding-top: calc(60px + constant(safe-area-inset-top));
     padding-top: calc(60px + env(safe-area-inset-top));
+    width: 100%;
+    min-width: 320px;
+    box-sizing: border-box;
   }
 }
 
