@@ -5,6 +5,7 @@ import { readFileSync } from 'fs'
 import compression from 'vite-plugin-compression'
 import { visualizer } from 'rollup-plugin-visualizer'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
+import vitePluginPurgeCss from 'vite-plugin-purgecss'
 
 function markdownLoader() {
   return {
@@ -22,6 +23,13 @@ export default defineConfig({
   plugins: [
     vue(),
     markdownLoader(),
+    vitePluginPurgeCss({
+      safelist: {
+        deep: [/^pixel-/, /^nes-/, /^loading-/, /^hamburger/, /^scanlines/]
+      },
+      keyframes: true,
+      variables: true
+    }),
     compression({
       verbose: true,
       disable: false,
@@ -98,17 +106,30 @@ export default defineConfig({
     assetsDir: 'assets',
     sourcemap: false,
     minify: 'esbuild',
+    cssMinify: true,
     chunkSizeWarningLimit: 500,
     cssCodeSplit: true,
+    modulePreload: {
+      polyfill: false
+    },
     rollupOptions: {
       output: {
         sanitizeFileName: true,
         manualChunks(id) {
+          if (id.includes('node_modules/marked') || id.includes('node_modules/marked-highlight') || id.includes('node_modules/highlight.js')) {
+            return 'markdown-vendors'
+          }
+          if (id.includes('node_modules/echarts')) {
+            return 'echarts-vendor'
+          }
           if (id.includes('node_modules/vue') || id.includes('node_modules/vue-router') || id.includes('node_modules/pinia') || id.includes('node_modules/vue-i18n')) {
             return 'vue-vendors'
           }
-          if (id.includes('node_modules/nes.css')) {
+          if (id.includes('node_modules/nes.css') || id.includes('node_modules/@vueuse')) {
             return 'ui-vendors'
+          }
+          if (id.includes('node_modules/dompurify')) {
+            return 'security-vendor'
           }
         },
         chunkFileNames: 'assets/chunks/[name]-[hash].js',
@@ -118,8 +139,12 @@ export default defineConfig({
     }
   },
   optimizeDeps: {
-    include: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
+    include: ['vue', 'vue-router', 'pinia', 'vue-i18n', 'echarts', 'marked', 'highlight.js'],
     exclude: ['markdown-loader']
+  },
+  css: {
+    devSourcemap: false,
+    preprocessorOptions: {}
   },
   server: {
     port: 5173,

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigation from './components/Navigation.vue'
-import MusicPlayer from './components/MusicPlayer.vue'
 import { useMusicStore } from './stores/music'
 import { useAppStore } from './stores/app'
+
+const MusicPlayer = defineAsyncComponent(() => import('./components/MusicPlayer.vue'))
 
 const musicStore = useMusicStore()
 const appStore = useAppStore()

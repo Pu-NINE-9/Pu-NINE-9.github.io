@@ -2,8 +2,6 @@
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { PieChart } from 'echarts/charts'
 import {
-  TitleComponent,
-  TooltipComponent,
   LegendComponent,
   GridComponent
 } from 'echarts/components'
@@ -12,8 +10,6 @@ import * as echarts from 'echarts/core'
 
 echarts.use([
   PieChart,
-  TitleComponent,
-  TooltipComponent,
   LegendComponent,
   GridComponent,
   CanvasRenderer

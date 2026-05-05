@@ -1,13 +1,23 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { useMusicStore } from '@/stores/music'
+import { useDraggable } from '@vueuse/core'
+import { ref } from 'vue'
 
 const { t } = useI18n()
 const musicStore = useMusicStore()
+const musicPlayer = ref<HTMLElement | null>(null)
+
+const initX = typeof window !== 'undefined' ? window.innerWidth - 200 : 0
+const initY = typeof window !== 'undefined' ? window.innerHeight - 100 : 0
+
+const { style } = useDraggable(musicPlayer, {
+  initialValue: { x: initX, y: initY },
+})
 </script>
 
 <template>
-  <div class="music-player">
+  <div ref="musicPlayer" class="music-player" :style="style">
     <button class="music-btn" @click="musicStore.toggle" :title="musicStore.isPlaying ? t('music.pause') : t('music.play')">
       <span v-if="musicStore.isPlaying" class="icon">⏸️</span>
       <span v-else class="icon">▶️</span>
@@ -22,8 +32,6 @@ const musicStore = useMusicStore()
 <style scoped>
 .music-player {
   position: fixed;
-  bottom: 1rem;
-  right: 1rem;
   display: flex;
   align-items: center;
   gap: 0.75rem;
@@ -32,6 +40,9 @@ const musicStore = useMusicStore()
   padding: 0.5rem 1rem;
   box-shadow: 4px 4px 0 var(--pixel-black);
   z-index: 1000;
+  cursor: move;
+  user-select: none;
+  touch-action: none;
 }
 
 .music-btn {
@@ -79,8 +90,6 @@ const musicStore = useMusicStore()
 
 @media (max-width: 768px) {
   .music-player {
-    bottom: 0.5rem;
-    right: 0.5rem;
     padding: 0.4rem 0.75rem;
   }
 
