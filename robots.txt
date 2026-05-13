@@ -1,0 +1,10 @@
+# 适用于所有搜索引擎
+User-agent: *
+
+# 禁止抓取图片目录
+Disallow: /images/
+Disallow: /assets/
+Disallow: /src/
+
+# 告诉搜索引擎你的网站地图在哪（如果有）
+Sitemap: https://pu-nine-9.github.io/sitemap.xml
