@@ -5,6 +5,22 @@ import PieChart from './PieChart.vue'
 
 const { t } = useI18n()
 
+// 颜色盘 - 后期扩展社交链接时会自动从这里循环取色
+const colorPalette = [
+  '#ffd700', // 金色
+  '#f0912d', // 橙色
+  '#4ade80', // 绿色
+  '#60a5fa', // 蓝色
+  '#f472b6', // 粉色
+  '#a78bfa', // 紫色
+  '#fb923c', // 珊瑚色
+  '#22d3ee', // 青色
+]
+
+const getColor = (index: number): string => {
+  return colorPalette[index % colorPalette.length]
+}
+
 const interestsData = [
   { name: '编程', value: 25, color: '#ffd700' },
   { name: '和平精英', value: 35, color: '#d92626' },
@@ -16,6 +32,34 @@ const interestsData = [
 const techTags = [
   'Vue.js', 'Scss', 'TypeScript', 'Vite',
   'TailwindCSS', 'Git', 'Node.js', 'Express.js'
+]
+
+// 社交链接数据 - 后期添加新链接只需在这里添加对象，颜色会自动分配
+const socialLinks = [
+  {
+    name: 'GitHub',
+    url: 'https://github.com/pu-nine-9',
+    icon: `<svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+          </svg>`
+  },
+  {
+    name: 'CSDN',
+    url: 'https://blog.csdn.net/nineeea',
+    icon: `<svg t="1777905122311" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2466">
+            <path d="M512 0c282.784 0 512 229.216 512 512s-229.216 512-512 512S0 794.784 0 512 229.216 0 512 0z m189.952 752l11.2-108.224c-31.904 9.536-100.928 16.128-147.712 16.128-134.464 0-205.728-47.296-195.328-146.304 11.584-110.688 113.152-145.696 232.64-145.696 54.784 0 122.432 8.8 151.296 18.336L768 272.704C724.544 262.24 678.272 256 599.584 256c-203.2 0-388.704 94.88-406.4 263.488C178.336 660.96 303.584 768 535.616 768c80.672 0 138.464-6.432 166.336-16z" fill="#2c2c2c" p-id="2467"></path>
+           </svg>
+          `
+  },
+  {
+    name: 'LeeCode',
+    url: 'https://leetcode.cn/u/i3lissful-neumannbzl',
+    icon: `<svg t="1778635934628" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5616">
+            <path d="M701.28 766.86a58.9 58.9 0 0 1 83.1 83.52l-102.24 102c-94.3 94.16-248 95.52-344 3.16-0.56-0.52-43.26-42.4-184.12-180.54-93.72-92-103.06-238.94-14.88-333.36l164.44-176C391.12 172 552.46 161.68 652.54 242.6l149.34 120.78a58.92 58.92 0 0 1-74 91.76l-149.34-120.78c-52.34-42.34-144-36.52-189.06 11.84l-164.44 176c-42.94 46-38.22 120 11.26 168.54l183.26 179.7c49.86 48 130.48 47.3 179.42-1.58z" fill="#2c2c2c" p-id="5617"></path>
+            <path d="M452.94 664.7a58.96 58.96 0 0 1 0-118h434a58.96 58.96 0 0 1 0 118z" fill="#2c2c2c" p-id="5618"></path>
+            <path d="M534.22 18.68a58.9 58.9 0 1 1 86 80.56L225.1 522.28c-42.92 46-38.22 120 11.24 168.54l182.46 178.9A58.92 58.92 0 0 1 336.46 954L154.06 775.08c-93.7-92-103.04-238.94-14.84-333.36z" p-id="5619"></path>
+          </svg>`
+  },
 ]
 
 const avatarSrc = new URL('../assets/img/avatar.jpg', import.meta.url).href
@@ -86,17 +130,17 @@ onUnmounted(() => {
           </p>
           
           <div class="author-social">
-            <a href="https://github.com/pu-nine-9" target="_blank" rel="noopener noreferrer" class="social-link github">
-              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-              </svg>
-              <span>GitHub</span>
-            </a>
-            <a href="https://blog.csdn.net/nineeea" target="_blank" rel="noopener noreferrer" class="social-link csdn">
-              <svg t="1777905122311" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2466" width="16" height="16">
-                <path d="M512 0c282.784 0 512 229.216 512 512s-229.216 512-512 512S0 794.784 0 512 229.216 0 512 0z m189.952 752l11.2-108.224c-31.904 9.536-100.928 16.128-147.712 16.128-134.464 0-205.728-47.296-195.328-146.304 11.584-110.688 113.152-145.696 232.64-145.696 54.784 0 122.432 8.8 151.296 18.336L768 272.704C724.544 262.24 678.272 256 599.584 256c-203.2 0-388.704 94.88-406.4 263.488C178.336 660.96 303.584 768 535.616 768c80.672 0 138.464-6.432 166.336-16z" fill="#2c2c2c" p-id="2467"></path>
-              </svg>
-              <span>CSDN</span>
+            <a
+              v-for="(link, index) in socialLinks"
+              :key="link.name"
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="social-link"
+              :style="{ backgroundColor: getColor(index) }"
+            >
+              <span class="social-icon-wrap" v-html="link.icon"></span>
+              <span class="social-text">{{ link.name }}</span>
             </a>
           </div>
         </div>
@@ -253,13 +297,25 @@ onUnmounted(() => {
   box-shadow: 1px 1px 0 var(--pixel-black);
 }
 
-.social-link.csdn {
-  background: #f0912d;
-}
-
 .social-icon {
   width: 16px;
   height: 16px;
+}
+
+.social-icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-icon-wrap :deep(svg) {
+  width: 16px;
+  height: 16px;
+}
+
+.social-text {
+  font-family: var(--font-pixel);
+  font-size: 0.65rem;
 }
 
 .carousel-container {
