@@ -33,12 +33,13 @@ onMounted(() => {
             © 2025 NINEの代码space | {{ $t('footer.madeWith') }}
           </p>
           <p class="footer-views">
-            <img :src="'https://visitor-badge.laobi.icu/badge?page_id=pu-nine-9.github.io'" alt="visitor badge" />
+            <img v-lazy="`https://visitor-badge.laobi.icu/badge?page_id=pu-nine-9.github.io`" alt="visitor badge" />
           </p>
         </div>
       </div>
     </footer>
     <MusicPlayer />
+    <Lightbox />
   </div>
 </template>
 

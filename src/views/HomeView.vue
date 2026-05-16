@@ -1,19 +1,9 @@
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
 import { RouterLink } from 'vue-router'
-import { ref } from 'vue'
 import AuthorInfo from '@/components/AuthorInfo.vue'
 
 const { t } = useI18n()
-const selectedImage = ref<string | null>(null)
-
-const openPreview = (src: string) => {
-  selectedImage.value = src
-}
-
-const closePreview = () => {
-  selectedImage.value = null
-}
 </script>
 
 <template>
@@ -23,7 +13,7 @@ const closePreview = () => {
         <div class="hero-content">
           <div class="avatar-container pixel-float">
             <div class="avatar-placeholder">
-              <span class="avatar-icon">👾</span>
+              <img v-lazy="'/logo.png'" alt="Logo" class="avatar-img" />
             </div>
           </div>
 
@@ -89,31 +79,24 @@ const closePreview = () => {
 
         <div class="gallery-grid">
           <div class="gallery-item">
-            <div class="photo-frame" @click="openPreview('/images/photo1.jpg')">
-              <img v-lazy="'/images/photo1.jpg'" alt="Photo 1" class="gallery-img" />
+            <div class="photo-frame">
+              <PreviewImage src="/images/photo1.jpg" alt="Photo 1" class-name="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
-            <div class="photo-frame" @click="openPreview('/images/photo2.jpg')">
-              <img v-lazy="'/images/photo2.jpg'" alt="Photo 2" class="gallery-img" />
+            <div class="photo-frame">
+              <PreviewImage src="/images/photo2.jpg" alt="Photo 2" class-name="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
-            <div class="photo-frame" @click="openPreview('/images/photo3.jpg')">
-              <img v-lazy="'/images/photo3.jpg'" alt="Photo 3" class="gallery-img" />
+            <div class="photo-frame">
+              <PreviewImage src="/images/photo3.jpg" alt="Photo 3" class-name="gallery-img" />
             </div>
           </div>
           <div class="gallery-item">
-            <div class="photo-frame" @click="openPreview('/images/photo4.jpg')">
-              <img v-lazy="'/images/photo4.jpg'" alt="Photo 4" class="gallery-img" />
+            <div class="photo-frame">
+              <PreviewImage src="/images/photo4.jpg" alt="Photo 4" class-name="gallery-img" />
             </div>
-          </div>
-        </div>
-
-        <div v-if="selectedImage" class="lightbox" @click="closePreview">
-          <div class="lightbox-content" @click.stop>
-            <img :src="selectedImage" alt="Preview" class="lightbox-img" />
-            <button class="lightbox-close" @click="closePreview">✕</button>
           </div>
         </div>
       </div>
@@ -169,6 +152,12 @@ const closePreview = () => {
 
 .avatar-icon {
   font-size: 4rem;
+}
+
+.avatar-img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
 }
 
 .welcome-text {
@@ -426,70 +415,6 @@ const closePreview = () => {
   .photo-frame {
     border-width: 3px;
     box-shadow: 3px 3px 0 var(--pixel-black);
-  }
-}
-
-.lightbox {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2000;
-  cursor: pointer;
-}
-
-.lightbox-content {
-  position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
-  cursor: default;
-}
-
-.lightbox-img {
-  max-width: 100%;
-  max-height: 85vh;
-  object-fit: contain;
-  border: 4px solid var(--pixel-yellow);
-  box-shadow: 0 0 30px rgba(242, 183, 5, 0.3);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: -40px;
-  right: 0;
-  background: var(--pixel-red);
-  border: 2px solid var(--pixel-black);
-  color: var(--pixel-white);
-  font-size: 1.2rem;
-  width: 32px;
-  height: 32px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
-}
-
-.lightbox-close:hover {
-  transform: scale(1.1);
-}
-
-@media (max-width: 768px) {
-  .lightbox-img {
-    max-width: 95vw;
-    max-height: 75vh;
-  }
-
-  .lightbox-close {
-    top: -36px;
-    width: 28px;
-    height: 28px;
-    font-size: 1rem;
   }
 }
 </style>

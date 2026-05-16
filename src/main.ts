@@ -4,6 +4,8 @@ import App from './App.vue'
 import router from './router'
 import i18n from './locales'
 import VueLazyload from 'vue-lazyload'
+import Lightbox from './components/Lightbox.vue'
+import PreviewImage from './components/PreviewImage.vue'
 import 'nes.css/css/nes.min.css'
 import './style.css'
 
@@ -24,6 +26,9 @@ app.use(VueLazyload, {
   throttleWait: 200,
   silent: true
 })
+
+app.component('Lightbox', Lightbox)
+app.component('PreviewImage', PreviewImage)
 
 app.mount('#app')
 

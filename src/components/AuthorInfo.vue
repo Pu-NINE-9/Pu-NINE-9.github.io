@@ -160,7 +160,7 @@ onUnmounted(() => {
                 class="carousel-slide"
                 :class="{ active: index === currentSlide }"
               >
-                <img v-lazy="slide.src" :alt="slide.alt" class="carousel-img" />
+                <PreviewImage :src="slide.src" :alt="slide.alt" class-name="carousel-img" />
               </div>
             </div>
             

@@ -22,7 +22,7 @@ const { t } = useI18n()
           class="work-card pixel-card"
         >
           <div class="work-image">
-            <img v-if="work.image" v-lazy="work.image" :alt="t(`works.${work.id}.title`)" class="work-img" />
+            <PreviewImage v-if="work.image" :src="work.image" :alt="t(`works.${work.id}.title`)" class-name="work-img" />
             <div v-else class="image-placeholder">
               <span class="placeholder-icon">🖥️</span>
             </div>
@@ -50,6 +50,7 @@ const { t } = useI18n()
                 target="_blank"
                 rel="noopener noreferrer"
                 class="pixel-btn pixel-btn-secondary"
+                @click.stop
               >
                 {{ t('works.viewCode') }}
               </a>

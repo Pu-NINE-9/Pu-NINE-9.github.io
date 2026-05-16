@@ -79,14 +79,15 @@ onUnmounted(() => {
             </div>
 
             <div class="blog-actions">
-              <span class="read-more-btn">{{ t('blog.readMore') }}</span>
+              <span class="read-more-btn">{{ t('blog.viewOriginal') }}</span>
               <a
                 :href="blog.csdnUrl"
                 target="_blank"
                 rel="noopener noreferrer"
                 class="view-original-btn"
+                @click.stop
               >
-                {{ t('blog.viewOriginal') }}
+                {{ t('blog.readMore') }}
               </a>
             </div>
           </div>

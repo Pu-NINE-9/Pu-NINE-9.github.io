@@ -27,7 +27,7 @@ const isActive = (path: string) => {
   <header class="pixel-header">
     <div class="container header-content">
       <RouterLink to="/" class="logo" @click="closeMenu">
-        <img src="/logo.png" alt="Logo" class="logo-img" />
+        <img v-lazy="'/logo.png'" alt="Logo" class="logo-img" />
         <span class="logo-text pixel-float">NINE</span>
       </RouterLink>
 
