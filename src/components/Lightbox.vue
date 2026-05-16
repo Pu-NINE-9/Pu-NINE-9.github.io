@@ -1,7 +1,22 @@
 <script setup lang="ts">
+import { onMounted, onUnmounted } from 'vue'
 import { useLightbox } from '@/composables/useLightbox'
 
 const { currentImage, isOpen, close } = useLightbox()
+
+const handleKeydown = (e: KeyboardEvent) => {
+  if (e.key === 'Escape') {
+    close()
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('keydown', handleKeydown)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <template>

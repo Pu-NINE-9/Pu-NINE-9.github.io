@@ -76,6 +76,8 @@ const slides = [
 const currentSlide = ref(0)
 let intervalTimer: number | null = null
 
+const { open } = useLightbox()
+
 const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % slides.length
 }
@@ -86,6 +88,10 @@ const prevSlide = () => {
 
 const goToSlide = (index: number) => {
   currentSlide.value = index
+}
+
+const openCurrentSlide = () => {
+  open(slides[currentSlide.value].src)
 }
 
 const handleMouseEnter = () => {
