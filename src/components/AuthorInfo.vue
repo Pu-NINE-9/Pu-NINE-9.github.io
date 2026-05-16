@@ -2,6 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import PieChart from './PieChart.vue'
+import { useLightbox } from '@/composables/useLightbox'
 
 const { t } = useI18n()
 
@@ -160,7 +161,7 @@ onUnmounted(() => {
                 class="carousel-slide"
                 :class="{ active: index === currentSlide }"
               >
-                <PreviewImage :src="slide.src" :alt="slide.alt" class-name="carousel-img" />
+                <img v-lazy="slide.src" :alt="slide.alt" class="carousel-img" @click="openCurrentSlide" />
               </div>
             </div>
             
