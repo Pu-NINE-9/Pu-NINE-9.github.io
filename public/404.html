@@ -8,8 +8,11 @@
       // 将所有路径重写为index.html，让Vue Router接管
       (function() {
         var path = window.location.pathname;
-        if (path !== '/' && !path.includes('.')) {
-          window.history.replaceState({}, '', '/' + path);
+        // 确保路径以单斜杠开头，避免协议相对URL问题
+        var cleanPath = path.startsWith('/') ? path : '/' + path;
+        if (cleanPath !== '/' && !cleanPath.includes('.')) {
+          // 使用 pushState 而不是 replaceState，避免跨域问题
+          window.history.pushState({}, '', cleanPath);
           location.href = '/';
         }
       })();
