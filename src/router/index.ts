@@ -62,6 +62,15 @@ router.beforeEach((to, _from) => {
     document.title = to.meta.title as string
   }
   
+  // 处理 GitHub Pages 404 fallback 的路由恢复
+  if (to.path === '/' && window.history.state && window.history.state.originalPath) {
+    const originalPath = window.history.state.originalPath
+    // 清除保存的状态
+    window.history.replaceState({}, '', '/')
+    // 导航到原始路径
+    return { path: originalPath }
+  }
+  
   return true
 })
 

@@ -5,15 +5,19 @@
     <title>NINEの代码space</title>
     <script>
       // GitHub Pages 404 fallback for Vue Router History mode
-      // 将所有路径重写为index.html，让Vue Router接管
+      // 正确处理路由回退
       (function() {
         var path = window.location.pathname;
-        // 确保路径以单斜杠开头，避免协议相对URL问题
-        var cleanPath = path.startsWith('/') ? path : '/' + path;
-        if (cleanPath !== '/' && !cleanPath.includes('.')) {
-          // 使用 pushState 而不是 replaceState，避免跨域问题
-          window.history.pushState({}, '', cleanPath);
-          location.href = '/';
+        var query = window.location.search;
+        var hash = window.location.hash;
+        
+        // 只有当路径不是根路径且不是静态资源时才处理
+        if (path !== '/' && !path.includes('.')) {
+          // 使用 replaceState 保存原始路径，然后跳转到首页
+          // 这样 Vue Router 加载后可以从 history.state 中获取原始路径
+          window.history.replaceState({ originalPath: path + query + hash }, '', '/');
+          // 直接跳转到首页，Vue Router 会处理路由
+          window.location.href = '/';
         }
       })();
     </script>
