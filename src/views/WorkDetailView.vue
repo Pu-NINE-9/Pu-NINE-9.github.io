@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref, onMounted, onUnmounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useRoute, RouterLink } from 'vue-router'
 import { works } from '@/config/works'
@@ -9,6 +9,21 @@ const route = useRoute()
 
 const work = computed(() => {
   return works.find(w => w.id === route.params.id)
+})
+
+const originalTitle = ref('')
+
+onMounted(() => {
+  // 设置动态标题
+  originalTitle.value = document.title
+  if (work.value) {
+    document.title = `${t(`works.${work.value.id}.title`)} - NINEの代码space`
+  }
+})
+
+onUnmounted(() => {
+  // 恢复原始标题
+  document.title = originalTitle.value
 })
 </script>
 

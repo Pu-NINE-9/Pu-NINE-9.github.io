@@ -16,6 +16,7 @@ const headings = ref<{ id: string; text: string; level: number }[]>([])
 const isSticky = ref(false)
 const sidebarOffset = ref(0)
 const sidebarHeight = ref(0)
+const originalTitle = ref('')
 
 const handleHeadings = (headingList: { id: string; text: string; level: number }[]) => {
   headings.value = headingList
@@ -52,6 +53,12 @@ const handleScroll = () => {
 }
 
 onMounted(() => {
+  // 设置动态标题
+  originalTitle.value = document.title
+  if (blog.value) {
+    document.title = `${blog.value.title} - NINEの代码space`
+  }
+  
   setTimeout(() => {
     const sidebar = document.querySelector('.blog-sidebar')
     if (sidebar) {
@@ -65,6 +72,9 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
+  // 恢复原始标题
+  document.title = originalTitle.value
+  
   if (scrollTimeout) {
     clearTimeout(scrollTimeout)
   }
