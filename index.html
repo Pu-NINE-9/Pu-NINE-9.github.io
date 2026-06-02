@@ -10,7 +10,7 @@
     <meta name="description" content="NINEの代码space - Pixel Retro Personal Website" />
     <meta name="theme-color" content="#1a1a2e" />
     
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://visitor-badge.laobi.icu https://*.github.io; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https://visitor-badge.laobi.icu https://*.github.io; font-src 'self' https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
@@ -26,6 +26,11 @@
     <link rel="modulepreload" href="/src/main.ts" />
     
     <style>
+      /* 字体加载前使用系统字体作为fallback */
+      :root {
+        --font-pixel-fallback: 'Courier New', Courier, monospace;
+      }
+      
       #initial-loading {
         position: fixed;
         top: 0;
@@ -67,10 +72,11 @@
       
       .loading-text {
         margin-top: 20px;
-        font-family: 'Press Start 2P', monospace;
+        font-family: var(--font-pixel-fallback);
         font-size: 12px;
         color: #ffd700;
         text-shadow: 2px 2px 0 #d92626;
+        letter-spacing: 2px;
       }
       
       @keyframes loading-rotate {
@@ -96,6 +102,30 @@
     </style>
     
     <title>NINEの代码space</title>
+    
+    <!-- 异步加载 Google Fonts -->
+    <script>
+      (function() {
+        // 检测是否支持 Font Face Observer
+        function loadFonts() {
+          var link = document.createElement('link');
+          link.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap';
+          link.rel = 'stylesheet';
+          link.media = 'print';
+          link.onload = function() {
+            link.media = 'all';
+          };
+          document.head.appendChild(link);
+        }
+        
+        // DOM加载完成后加载字体
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', loadFonts);
+        } else {
+          loadFonts();
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="initial-loading">

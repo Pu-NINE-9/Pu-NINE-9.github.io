@@ -2,8 +2,7 @@
 import { ref, onMounted, onUnmounted, watch, computed } from 'vue'
 import { PieChart } from 'echarts/charts'
 import {
-  LegendComponent,
-  GridComponent
+  LegendComponent
 } from 'echarts/components'
 import { CanvasRenderer } from 'echarts/renderers'
 import * as echarts from 'echarts/core'
@@ -11,7 +10,6 @@ import * as echarts from 'echarts/core'
 echarts.use([
   PieChart,
   LegendComponent,
-  GridComponent,
   CanvasRenderer
 ])
 
@@ -76,26 +74,36 @@ const option = computed(() => ({
 
 const initChart = () => {
   if (chartRef.value && !chartInstance) {
-    chartInstance = echarts.init(chartRef.value)
-    chartInstance.setOption(option.value)
+    // 使用 requestAnimationFrame 延迟初始化，避免强制重排
+    requestAnimationFrame(() => {
+      if (chartRef.value && !chartInstance) {
+        chartInstance = echarts.init(chartRef.value)
+        chartInstance.setOption(option.value)
+      }
+    })
   }
 }
 
 const updateChart = () => {
   if (chartInstance) {
-    chartInstance.setOption(option.value)
+    requestAnimationFrame(() => {
+      chartInstance?.setOption(option.value)
+    })
   }
 }
 
 const handleResize = () => {
-  chartInstance?.resize()
+  // 使用 requestAnimationFrame 延迟 resize，避免强制重排
+  requestAnimationFrame(() => {
+    chartInstance?.resize()
+  })
 }
 
 watch(() => props.data, updateChart, { deep: true })
 
 onMounted(() => {
   initChart()
-  window.addEventListener('resize', handleResize)
+  window.addEventListener('resize', handleResize, { passive: true })
 })
 
 onUnmounted(() => {

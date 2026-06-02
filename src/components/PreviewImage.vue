@@ -5,6 +5,8 @@ defineProps<{
   src: string
   alt?: string
   className?: string
+  width?: number | string
+  height?: number | string
 }>()
 
 const { open } = useLightbox()
@@ -15,6 +17,8 @@ const { open } = useLightbox()
     :src="src"
     :alt="alt || ''"
     :class="className"
+    :width="width"
+    :height="height"
     v-lazy="src"
     @click="open(src)"
     style="cursor: pointer;"

@@ -2,17 +2,14 @@
 import { onMounted, defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import Navigation from './components/Navigation.vue'
-import { useMusicStore } from './stores/music'
 import { useAppStore } from './stores/app'
 
 const MusicPlayer = defineAsyncComponent(() => import('./components/MusicPlayer.vue'))
 
-const musicStore = useMusicStore()
 const appStore = useAppStore()
 
 onMounted(() => {
   appStore.initTheme()
-  musicStore.initAudio('background-music.mp3')
 })
 </script>
 
@@ -32,9 +29,17 @@ onMounted(() => {
           <p class="footer-text">
             © 2025 NINEの代码space | {{ $t('footer.madeWith') }}
           </p>
-          <p class="footer-views">
-            <img v-lazy="`https://visitor-badge.laobi.icu/badge?page_id=pu-nine-9.github.io`" alt="visitor badge" />
-          </p>
+          <div class="footer-views-wrapper">
+            <p class="footer-views">
+              <img 
+                v-lazy="`https://visitor-badge.laobi.icu/badge?page_id=pu-nine-9.github.io`" 
+                alt="visitor badge" 
+                width="150" 
+                height="20"
+                class="visitor-badge"
+              />
+            </p>
+          </div>
         </div>
       </div>
     </footer>
@@ -65,6 +70,7 @@ onMounted(() => {
   border-top: 4px solid var(--pixel-black);
   padding: 1.5rem 0;
   margin-top: auto;
+  min-height: 100px;
 }
 
 .footer-content {
@@ -80,17 +86,31 @@ onMounted(() => {
   color: var(--text-secondary);
   text-align: center;
   margin: 0;
+  flex-shrink: 0;
+}
+
+.footer-views-wrapper {
+  flex-shrink: 0;
+  width: 150px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .footer-views {
   margin: 0;
   display: flex;
   align-items: center;
+  width: 100%;
+  height: 100%;
 }
 
 .footer-views img {
   height: 20px;
+  width: 150px;
   border-radius: 4px;
+  object-fit: contain;
 }
 
 @media (min-width: 769px) {

@@ -5,6 +5,7 @@ export const useMusicStore = defineStore('music', () => {
   const isPlaying = ref(false)
   const currentTrack = ref('background-music.mp3')
   const volume = ref(0.3)
+  const isInitialized = ref(false)
 
   const audio = ref<HTMLAudioElement | null>(null)
 
@@ -16,9 +17,14 @@ export const useMusicStore = defineStore('music', () => {
     audio.value = new Audio(`/music/${src}`)
     audio.value.loop = true
     audio.value.volume = volume.value
+    isInitialized.value = true
   }
 
   function play() {
+    // 如果还没初始化，先初始化
+    if (!isInitialized.value) {
+      initAudio(currentTrack.value)
+    }
     if (audio.value) {
       audio.value.play()
       isPlaying.value = true
@@ -51,6 +57,7 @@ export const useMusicStore = defineStore('music', () => {
     isPlaying,
     currentTrack,
     volume,
+    isInitialized,
     initAudio,
     play,
     pause,

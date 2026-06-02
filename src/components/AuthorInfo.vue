@@ -122,7 +122,7 @@ onUnmounted(() => {
       <div class="author-card">
         <div class="author-avatar">
           <div class="avatar-frame">
-            <img v-lazy="avatarSrc" alt="Author Avatar" class="avatar-img" />
+            <img v-lazy="avatarSrc" alt="Author Avatar" class="avatar-img" width="120" height="160" />
           </div>
         </div>
         
@@ -167,7 +167,7 @@ onUnmounted(() => {
                 class="carousel-slide"
                 :class="{ active: index === currentSlide }"
               >
-                <img v-lazy="slide.src" :alt="slide.alt" class="carousel-img" @click="openCurrentSlide" />
+                <img v-lazy="slide.src" :alt="slide.alt" class="carousel-img" @click="openCurrentSlide" width="752" height="422" />
               </div>
             </div>
             

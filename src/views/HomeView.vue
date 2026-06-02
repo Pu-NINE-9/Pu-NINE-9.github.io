@@ -13,7 +13,7 @@ const { t } = useI18n()
         <div class="hero-content">
           <div class="avatar-container pixel-float">
             <div class="avatar-placeholder">
-              <img v-lazy="'/logo.png'" alt="Logo" class="avatar-img" />
+              <img v-lazy="'/logo.png'" alt="Logo" class="avatar-img" width="120" height="120" />
             </div>
           </div>
 
