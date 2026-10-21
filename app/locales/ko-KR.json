@@ -1,0 +1,121 @@
+{
+  "nav": { "home": "홈", "works": "작품", "blog": "블로그" },
+  "home": {
+    "title": "NINEの代码space",
+    "subtitle": "From myself in the past to the future",
+    "welcome": "제 코드 세계에 오신 것을 환영합니다!",
+    "description": "저는 NINE, 프로그래밍을 사랑하는 개발자입니다. 함께 힘내요~",
+    "enterSite": "사이트 들어가기",
+    "viewWorks": "작품 보기",
+    "latestNews": "최신 뉴스",
+    "featureDev": "Vue3 / 프론트엔드 개발",
+    "featureDevTitle": "Frontend Dev",
+    "featureAbout": "자기소개 & 취미",
+    "featureAboutTitle": "About Me",
+    "featureBlog": "CSDN 기술 블로그",
+    "featureBlogTitle": "Blog",
+    "featureProjects": "개인 작품 전시",
+    "featureProjectsTitle": "Projects"
+  },
+  "blog": {
+    "title": "기술 블로그",
+    "subtitle": "프로그래밍 노하우 공유",
+    "readMore": "더 읽기",
+    "viewOriginal": "원문 보기",
+    "published": "발행일",
+    "tableOfContents": "목차",
+    "loadMore": "더 불러오기",
+    "noMoreArticles": "더 이상 글이 없습니다"
+  },
+  "music": { "play": "재생", "pause": "일시정지", "nowPlaying": "재생 중" },
+  "common": { "loading": "로딩 중...", "error": "오류가 발생했습니다", "back": "돌아가기", "close": "닫기" },
+  "footer": { "copyright": "저작권 소유", "madeWith": "Re.design the Wo.rld", "pageviews": "총 조회수" },
+  "author": {
+    "name": "NINE",
+    "title": "프론트엔드 개발자 (초보자 ver.)",
+    "bio": "아직 졸업하지 않은 프로그래머입니다.",
+    "bio2": "오케이, 하면 돼!",
+    "bio3": "기술 사이트, 불규칙적으로 블로그 업데이트, 기술 경험 공유, 성장 기록",
+    "bio4": "P.S. 사진은 제 귀여운 딸입니다~ (도지)",
+    "interests": "취미",
+    "techStack": "기술 스택"
+  },
+  "blogs": {
+    "1": {
+      "title": "JavaScript 파일 업로드 메커니즘 설명",
+      "summary": "이 글은 프론트엔드 파일 선택부터 백엔드 수신 및 저장까지 JavaScript 파일 업로드의 전체 프로세스를 깊이 분석합니다"
+    },
+    "2": {
+      "title": ".env 와 .gitignore: 현대 소프트웨어 개발에서 환경 관리 및 버전 관리 보호",
+      "summary": "이 글은 현대 소프트웨어 개발에서 .env 및 .gitignore 파일의 중요한 역할을 체계적으로 소개합니다"
+    },
+    "3": {
+      "title": "Git 팀 협업 실전 가이드: 기초부터 고급 기술까지",
+      "summary": "이 글은 팀 협업에서 Git의 사용 방법과 모범 사례를 종합적으로 소개합니다"
+    },
+    "4": {
+      "title": "Marked.js: 강력한 Markdown 파서",
+      "summary": "Marked.js는 브라우저와 Node.js 환경을 모두 지원하는 효율적인 Markdown 파서로, Markdown을 HTML로 빠르게 변환합니다"
+    },
+    "5": {
+      "title": "Vue 3 + TypeScript 프로젝트 성능 최적화 전체 체인 실천",
+      "summary": "이 글은 체계적인 방법을 통해 상당한 성능 개선을 달성하는 Vue 3 프로젝트의 전체 체인 최적화 방안을 소개합니다"
+    },
+    "6": {
+      "title": "Vue 이미지 성능 최적화 더블 마스터: 지연 로딩과 자동 압축",
+      "summary": "Vue 이미지 최적화 가이드: vue-lazyload와 vite-plugin-imagemin을 사용하여 애플리케이션 성능을 향상시킵니다"
+    },
+    "7": {
+      "title": "Vue 3 프로젝트 ESLint 설정 설명",
+      "summary": "이 글은 pnpm create vue로 만든 Vue 3 프로젝트에서 ESLint를 설정하는 방법을 소개합니다"
+    },
+    "8": {
+      "title": "Trae 원클릭 Dracula 테마 변경",
+      "summary": "이 글은 Trae 편집기의 프론트엔드 개발 환경을 빠르게 설정하는 방법을 소개합니다"
+    },
+    "9": {
+      "title": "Dart 기초 빠른 시작",
+      "summary": "이 글은 변수와 상수 선언, 일반적인 데이터 유형과 그 일반적인 조작 방법을 포함하는 Dart 언어 기초를 소개합니다"
+    },
+    "10": {
+      "title": "JavaScript 백엔드 로그 시스템: Winston으로 프로페셔널 로그 구축",
+      "summary": "이 글은 Node.js 생태계에서 인기 있는 Winston 로그 라이브러리의 사용 방법을 소개합니다"
+    }
+  },
+  "works": {
+    "title": "나의 작품",
+    "subtitle": "프로그래밍 프로젝트 전시",
+    "viewProject": "프로젝트 보기",
+    "viewCode": "코드 보기",
+    "noSource": "소스 미공개",
+    "demo": "온라인 데모",
+    "tags": "기술 태그",
+    "1": {
+      "title": "AI-Desktop-Application",
+      "description": "Electron-Vite, Vue 3, Scss, TypeScript로 구축된 AI 통합 데스크톱 애플리케이션",
+      "content1": "AI Search Tool의 데스크톱 애플리케이션 버전이 출시됐습니다!",
+      "content2": "프로젝트는 기반 프레임워크로 Electron-Vite를 사용하고, Vue 3로 인터페이스 개발, Scss로 스타일 관리, TypeScript로 타입 안전성을 제공합니다"
+    },
+    "2": {
+      "title": "Reno-Chatbox",
+      "description": "Vue 3 & Dify를 사용한 AI 채팅 애플리케이션",
+      "content1": "Reno-Chatbox는 Dify API 기반의 AI 채팅 애플리케이션으로, 부드러운 대화 경험을 제공합니다.",
+      "content2": "Vue 3 + TypeScript로 구축하고 TailwindCSS로 스타일링, 첨단 느낌!",
+      "content3": "커스텀 AI 어시스턴트 설정을 지원하며, 다른 Dify 애플리케이션에 연결하여 대화할 수 있습니다"
+    },
+    "3": {
+      "title": "AI-Search-Tool",
+      "description": "AI 툴 모음 사이트",
+      "content1": "AI-Search-Tool은 다양한 AI 웹사이트 링크를 집계한 툴 사이트로, 사용자가 필요한 AI 툴을 빠르게 찾을 수 있도록 도와줍니다",
+      "content2": "Next.js로 구축하고 SSR 렌더링 지원, SEO 친화적",
+      "content3": "심플하고 효율적인 인터페이스, 여러 AI 검색 엔진 전환과 비교를 지원"
+    },
+    "4": {
+      "title": "MOOC-chrome-plugin",
+      "description": "MOOC 영상 가속 브라우저 플러그인, 16배 재생과 키보드 단축키 지원",
+      "content1": "MOOC-chrome-plugin은 MOOC 플랫폼용 실용적인 영상 가속 브라우저 플러그인입니다.",
+      "content2": "순수 JavaScript 개발, 백엔드 필요 없음, 설치하고 즉시 사용 가능",
+      "content3": "최대 16배 재생 속도 지원, 키보드 단축키로 시청 효율성을 크게 향상"
+    }
+  }
+}
