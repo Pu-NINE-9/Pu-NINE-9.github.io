@@ -6,28 +6,44 @@ const busy = ref(false)
 const error = ref('')
 const volume = ref(0.3)
 // SSR-safe default values — actual values set in onMounted
-const position = reactive({ x: 22, y: 400 })
+// Keep the dock in the viewport even when an older saved position came from
+// a different screen size. Coordinates are the top-left corner in pixels.
+const position = reactive({ x: 20, y: 0 })
 const dragOffset = reactive({ x: 0, y: 0 })
 const isDragging = ref(false)
 const wasPlaying = ref(false)
+let resumeAfterGesture: (() => void) | undefined
 
 onMounted(() => {
-  // Restore saved position or use window-aware default
+  const maxX = () => Math.max(12, window.innerWidth - 260)
+  const maxY = () => Math.max(12, window.innerHeight - 78)
+  // Restore saved position, clamped to the current viewport. Older versions
+  // stored a bottom offset and could leave the player outside the screen.
   const saved = localStorage.getItem('music-dock-pos')
   if (saved) {
     try {
       const p = JSON.parse(saved)
-      position.x = p.x
-      position.y = p.y
+      position.x = Math.min(Math.max(Number(p.x) || 20, 12), maxX())
+      position.y = Math.min(Math.max(Number(p.y) || maxY(), 12), maxY())
     } catch {
-      position.y = window.innerHeight - 80
+      position.x = 20
+      position.y = maxY()
     }
   } else {
-    position.y = window.innerHeight - 80
+    position.x = 20
+    position.y = maxY()
   }
   // Try auto-play
-  setTimeout(() => tryAutoPlay(), 600)
+  setTimeout(() => tryAutoPlay(), 120)
+  window.addEventListener('resize', keepInViewport, { passive: true })
 })
+
+function keepInViewport() {
+  if (!import.meta.client) return
+  const dockWidth = Math.min(300, Math.max(220, window.innerWidth - 24))
+  position.x = Math.min(Math.max(position.x, 12), Math.max(12, window.innerWidth - dockWidth - 12))
+  position.y = Math.min(Math.max(position.y, 12), Math.max(12, window.innerHeight - 78))
+}
 
 function tryAutoPlay() {
   if (!audio.value) return
@@ -38,26 +54,27 @@ function tryAutoPlay() {
       playing.value = true
     })
     .catch(() => {
-      // Autoplay blocked — resume on first user interaction
       const resume = () => {
+        resumeAfterGesture = undefined
         audio.value
           ?.play()
           .then(() => {
             playing.value = true
           })
           .catch(() => {})
-        document.removeEventListener('click', resume)
-        document.removeEventListener('keydown', resume)
-        document.removeEventListener('touchstart', resume)
       }
-      document.addEventListener('click', resume, { once: true })
+      resumeAfterGesture = resume
+      document.addEventListener('pointerdown', resume, { once: true, passive: true })
       document.addEventListener('keydown', resume, { once: true })
-      document.addEventListener('touchstart', resume, { once: true })
     })
 }
-
 async function toggle() {
   if (!audio.value || busy.value) return
+  if (resumeAfterGesture) {
+    document.removeEventListener('pointerdown', resumeAfterGesture)
+    document.removeEventListener('keydown', resumeAfterGesture)
+    resumeAfterGesture = undefined
+  }
   error.value = ''
   if (playing.value) {
     audio.value.pause()
@@ -100,8 +117,8 @@ function startDrag(e: PointerEvent) {
 
 function onDrag(e: PointerEvent) {
   if (!isDragging.value) return
-  position.x = Math.max(0, Math.min(window.innerWidth - 200, e.clientX - dragOffset.x))
-  position.y = Math.max(0, Math.min(window.innerHeight - 60, e.clientY - dragOffset.y))
+  position.x = Math.max(12, Math.min(window.innerWidth - 260, e.clientX - dragOffset.x))
+  position.y = Math.max(12, Math.min(window.innerHeight - 78, e.clientY - dragOffset.y))
 }
 
 function endDrag() {
@@ -111,6 +128,8 @@ function endDrag() {
   window.removeEventListener('pointerup', endDrag)
   localStorage.setItem('music-dock-pos', JSON.stringify(position))
 }
+
+onUnmounted(() => window.removeEventListener('resize', keepInViewport))
 </script>
 
 <template>
@@ -125,7 +144,9 @@ function endDrag() {
       ref="audio"
       src="/music/background-music.mp3"
       loop
-      preload="none"
+      autoplay
+      playsinline
+      preload="auto"
       @play="playing = true"
       @pause="playing = false"
       @error="handleAudioError"

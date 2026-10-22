@@ -1,10 +1,9 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 
 @import 'tailwindcss';
 @import '@nuxt/ui';
 @import 'highlight.js/styles/atom-one-dark.css';
-@import "tw-animate-css";
+@import 'tw-animate-css';
 
 @custom-variant dark (&:is(.dark *));
 
@@ -542,7 +541,9 @@ button {
   left: 11%;
   background: #e8d4ff;
   border-radius: 50%;
-  box-shadow: 0 0 24px #c4a6ff, 0 0 6px #fff;
+  box-shadow:
+    0 0 24px #c4a6ff,
+    0 0 6px #fff;
 }
 .ring-two {
   inset: 1%;
@@ -1806,7 +1807,7 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  z-index: 40;
+  z-index: 1000;
   min-width: 200px;
   border: 1px solid #c0a7e321;
   border-radius: 9px;
@@ -1817,6 +1818,7 @@ button {
   cursor: grab;
   user-select: none;
   touch-action: none;
+  isolation: isolate;
 }
 .music-dock.dragging {
   cursor: grabbing;
@@ -3580,11 +3582,7 @@ body {
 /* CardStackItem 内部 Motion 层 —— 半透明毛玻璃，让 NeuralBackground 透过可见
    用 > div 选择到 Motion 组件渲染出来的根 div */
 .cs-item > div {
-  background: linear-gradient(
-    180deg,
-    rgba(13, 15, 25, 0.72) 0%,
-    rgba(13, 15, 25, 0.62) 100%
-  );
+  background: linear-gradient(180deg, rgba(13, 15, 25, 0.72) 0%, rgba(13, 15, 25, 0.62) 100%);
   /* blur 降到 8px：backdrop-filter 是 GPU 重运算，14px 在连续滚动时会卡 */
   backdrop-filter: blur(8px) saturate(130%);
   -webkit-backdrop-filter: blur(8px) saturate(130%);
@@ -3595,11 +3593,7 @@ body {
 
 /* 最后一个 item：不用 scale，100% 宽度铺满 */
 .cs-last > div {
-  background: linear-gradient(
-    180deg,
-    rgba(13, 15, 25, 0.75) 0%,
-    rgba(13, 15, 25, 0.85) 100%
-  );
+  background: linear-gradient(180deg, rgba(13, 15, 25, 0.75) 0%, rgba(13, 15, 25, 0.85) 100%);
 }
 
 /* ============================================================
