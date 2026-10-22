@@ -27,8 +27,7 @@ export default defineNuxtConfig({
         '/',
         '/works',
         '/blog',
-        ...Array.from({ length: 4 }, (_, i) => `/works/${i + 1}`),
-        ...Array.from({ length: 10 }, (_, i) => `/blog/${i + 1}`)
+        ...Array.from({ length: 4 }, (_, i) => `/works/${i + 1}`)
       ]
     }
   },

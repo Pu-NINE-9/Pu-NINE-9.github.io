@@ -1,6 +1,5 @@
 ﻿import { useI18n } from 'vue-i18n'
 import { works } from '../data/works'
-import { blogs } from '../data/blogs-lite'
 
 export function useSiteContent() {
   const { t, te, locale } = useI18n()
@@ -14,16 +13,7 @@ export function useSiteContent() {
       )
     }))
   )
-  const posts = computed(() =>
-    blogs
-      .map((post) => ({
-        ...post,
-        title: te(`blogs.${post.id}.title`) ? t(`blogs.${post.id}.title`) : post.title,
-        summary: te(`blogs.${post.id}.summary`) ? t(`blogs.${post.id}.summary`) : post.summary
-      }))
-      .sort((a, b) => b.date.localeCompare(a.date))
-  )
   const copy = (zh: string, en: string, ja?: string, ko?: string) =>
     ({ 'zh-CN': zh, 'en-US': en, 'ja-JP': ja ?? en, 'ko-KR': ko ?? en })[locale.value] ?? zh
-  return { projects, posts, t, locale, copy }
+  return { projects, t, locale, copy }
 }

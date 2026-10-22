@@ -1,0 +1,352 @@
+[
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/168444456",
+    "title": "牛客笔试 JavaScript(V8) 算法万能输入模板",
+    "desc": "牛客OJ笔试首选JavaScript(V8)模板：用readline()逐行读取所有输入至数组，统一解析后写算法逻辑，避免边读边处理的顺序问题。关键点：输入为字符串需手动转数字，用split(/\\s+/)分割，map(Number)转换，输出用join(' ')。注意语言必须选JS(V8)，禁止用NodeJS。适用于多行、单行、JSON等场景，稳定高效，校招必备。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/167916557",
+    "title": "Vue‑Flow 从零入门实战｜AI‑Agent 拓扑图开发",
+    "desc": "Vue-Flow 是基于 Vue3 的图编辑库，用于构建 DAG 工作流、Agent 流程图等拓扑结构。通过 nodes 和 edges 数组驱动画布，支持拖拽、缩放、连线及自定义节点。核心优势：简单易用、响应式更新、高性能优化（如 shallowRef、虚拟渲染）。适用于真实业务中异步加载图谱数据、事件监听与动态操作。需注意容器高度、样式导入、唯一 ID 等坑点。推荐用于 AI Agent 协作拓扑等复杂场景，结合懒加载提升首屏性能。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/167808880",
+    "title": "Agent 开发代码片段分享",
+    "desc": "本文分享了基于火山引擎Agent Plan API Key与LangChain构建简易Agent助手的代码实践。通过ChatOpenAI接入自定义模型，结合@tool定义信息查询工具，并利用多种中间件（如before_model、wrap_tool_call）实现调用日志追踪。最终通过create_agent创建智能体，实现对用户请求的自动化响应，展示了LangChain在Agent开发中的灵活性与可扩展性。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/166577568",
+    "title": "纯 CSS 旋转发光边框：一次真实需求里踩平所有坑的实现复盘",
+    "desc": "本文实现了一种动态主题、可复用的统计卡片光效：通过 conic-gradient 配合 @property 动画实现光带流动，利用 mask 抠出5px矩形环，结合 filter: blur()营造发光感。核心创新在于“旋转渐变角度”而非元素本身，确保透明背景下光效稳定；通过CSS变量驱动主题色，支持多页面复用。方案兼顾视觉效果与性能，兼容主流浏览器，且组件封装良好，满足渐变透明、动态配色、发光质感与样式收敛四大需求。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/163917488",
+    "title": "前端测试完全入门指南（新手秒懂：单元/组件/集成/E2E\\+AI写测试提示词）",
+    "desc": "本文系统介绍了前端测试的四种类型及其适用场景：单元测试（测纯函数）、组件测试（测UI渲染）、集成测试（测模块联动）和E2E测试（测用户流程）。重点阐述了Vitest与E2E工具的核心区别，并提出测试金字塔模型（单元/组件占70%）。文章还给出AI生成测试用例的实用提示词模板，覆盖工具函数、React组件、自定义Hook和E2E场景，强调mock数据和边界测试的原则。最后指出新手常见误区，如过度依赖E2E测试，并推荐核心业务必须测试，纯样式页面可免测的落地策略。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/163342819",
+    "title": "Vue3+TS+Express 转 Nuxt4 全栈开发笔记（Drizzle ORM + MySQL）",
+    "desc": "本文为Vue3+Express开发者提供Nuxt.js全栈转型指南。核心分为概念讲解和实操两大部分： 架构对比：解析传统前后端分离模式痛点，展示Nuxt一体化优势（内置Nitro后端、自动路由、SSR渲染、类型共享） 关键概念：通过Express经验类比理解Nuxt核心模块（Server Routes替代Express路由、Pages目录自动生成前端路由） 实战演示：从零搭建Nuxt4项目，整合MySQL+Drizzle ORM实现： 数据库表结构TS定义 连接池配置 RESTful接口开发 前后端类型共享"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/161692248",
+    "title": "大文件上传代码示例（原生前端三剑客 + Express.js后端）",
+    "desc": "本文介绍了前端实现大文件分片上传的核心流程和技术要点。分片上传能解决大文件上传的超时、断点续传、并发提速和内存占用问题。关键步骤包括：1) 使用Blob.slice切割文件；2) 用spark-md5计算文件唯一哈希；3) 上传前校验已传分片；4) 并发上传分片并携带索引信息；5) 请求后端合并文件；6) 实时展示进度。文章提供了完整的Express后端实现代码（含分片校验、上传和合并接口）和前端HTML示例（含文件哈希计算和分片上传逻辑），其中前端采用2MB分片大小，通过axios实现并发控制，并支持上传"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/161256187",
+    "title": "IntersectionObserver 详解：封装 Vue 指令实现图片懒加载",
+    "desc": "本文介绍了如何使用IntersectionObserver API实现图片懒加载功能。首先对比了传统scroll监听与IntersectionObserver的性能差异，后者只在元素交叉状态变化时触发，性能更优。然后详细讲解了IntersectionObserver的基本语法、回调参数和配置选项。重点展示了如何封装Vue指令实现图片懒加载，包括核心思路、指令封装代码、注册方法及组件使用示例。文章还提供了增强版指令，支持自定义占位图、错误处理等更多配置选项，通过异步监听元素可见性来优化图片加载性能。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/161146665",
+    "title": "Vue3 + ECharts 企业级封装实践：按需引入 + useECharts Hooks",
+    "desc": "本文介绍了一套在Vue 3项目中优化使用ECharts的完整方案。通过按需引入图表组件减少打包体积，封装统一的echarts实例导出模块确保类型安全，并开发了useECharts组合式函数自动处理图表生命周期管理。该方案实现了DOM挂载、配置响应式更新、窗口/元素尺寸自适应以及自动销毁等功能，提供了完整的类型支持。文中详细展示了三个核心文件的实现代码：按需注册的echarts实例封装、类型定义文件以及核心Hook实现，最后给出了基础使用示例。这套方案可直接落地应用，显著提升ECharts在Vue项目中的开发"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/161146557",
+    "title": "Vue2 vs Vue3 父子组件通信：纯代码示例",
+    "desc": "本文提供了Vue2和Vue3中父子组件通信的纯代码示例对比。Vue2使用props/$emit实现父子通信，Vue3则采用defineProps/defineEmits语法。文章包含可直接运行的.vue文件代码片段，展示了父传子和子传父两种场景的实现方式，并附有快速对比表。内容简洁实用，适合开发者快速查阅和复制使用。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/161146513",
+    "title": "前端埋点从入门到企业实践：手写一个Demo + 主流方案对比",
+    "desc": "前端埋点是数据采集的关键技术，通过在代码中植入数据采集逻辑，记录用户行为（如点击、页面访问等），解决产品功能评估、用户流失分析、运营效果追踪等问题。埋点分为三类：代码埋点（精准但开发成本高）、可视化埋点（灵活无需发版）、无埋点（全量采集但数据量大）。文章通过手写Demo演示基础埋点（手动上报）和封装SDK（批量上报），并对比大厂与中小企业的埋点落地策略，强调混合使用多种埋点方式以实现精准与效率平衡。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/161146486",
+    "title": "从SKU到SDK：10分钟理清互联网领域最易混淆的9个术语",
+    "desc": "互联网行业术语扫盲：9个高频缩写解析 本文整理了互联网公司常用的9个专业术语，涵盖电商、技术和数据分析领域。电商类包括SKU（具体商品编码）和SPU（商品家族）；技术开发类涉及SDK（开发工具包）和API（通信接口）；数据分析类包含UV（独立访客）、PV（浏览量）和DAU/MAU（活跃用户）；通用管理类则介绍UI（用户界面）和KPI（绩效指标）。文章通过实例说明每个术语的含义和应用场景，并附对比表格帮助理解。掌握这些术语有助于跨部门高效沟通，建议收藏备用。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/159387134",
+    "title": "JavaScript 字符串与数组核心方法详解",
+    "desc": "本文介绍了JavaScript中四个核心方法的使用场景和技巧： Array.some()：用于检测数组中是否存在满足条件的元素，在代码扫描工具中可用于多模式匹配检测。 RegExp.test()：快速验证字符串是否匹配正则表达式，适合表单验证和文本分析场景。 String.match()：提取字符串中匹配正则的内容，可获取捕获组信息，适用于模板解析等场景。 String.includes()：简单检查字符串是否包含子串，适合基础包含性判断。 这些方法各具特色：some()关注存在性，test()侧重验证，m"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/159354777",
+    "title": "前端SSE（Server-Sent Events）实现详解：从原理到前端AI对话应用",
+    "desc": "SSE（Server-Sent Events）是一种服务器向客户端单向推送数据的技术，适用于实时通信场景。其特点包括基于HTTP协议、自动重连、轻量级实现等。实现方式分为两种：使用原生EventSource API（仅支持GET请求）或fetch+ReadableStream（支持POST请求）。后端通过设置text/event-stream响应头并持续发送数据块，前端则需正确处理SSE格式数据、流式读取和解码。相比WebSocket，SSE实现更简单但仅支持单向通信。关键技术点包括数据格式处理、流式读取、"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/158811317",
+    "title": "深入理解 ES6 Map 数据结构：从理论到实战应用",
+    "desc": "摘要： Map是ES6引入的键值对集合，相比Object具有更灵活的特性：支持任意类型键、保持插入顺序、内置遍历方法和动态大小。基本操作包括set()、get()、has()和delete()。与Object相比，Map在频繁增删、有序遍历时表现更优，但不支持JSON序列化。实际应用包括请求去重、缓存管理和状态管理，其高效查找（O(1)）和键类型灵活性是核心优势。最佳实践建议在复杂键、频繁增删场景使用Map，而简单键值存储仍可用Object。注意及时清理无用数据以优化性能。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/158811297",
+    "title": "企业级 Axios 配置实战：从基础到完整封装",
+    "desc": "本文详细介绍了企业级Axios封装方案，涵盖核心功能实现：1）基于环境变量创建多实例；2）请求拦截器实现Token注入、重复请求取消和全局Loading管理；3）响应拦截器处理业务状态码、HTTP错误和401跳转；4）集成axios-retry实现自动重试机制；5）开发环境日志记录。通过AbortController替代传统CancelToken，采用计数器控制Loading显示，并提供了完整的错误处理链路。该方案可直接应用于生产环境，有效提升前端HTTP请求的健壮性和可维护性。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/158538959",
+    "title": "Canvas 简单案例",
+    "desc": "本文分享了一个HTML5 Canvas的简单案例，帮助初学者理解Canvas绘图功能。通过JavaScript代码演示了如何获取Canvas元素、创建2D绘图上下文，并实现图像绘制功能。文章包含完整的HTML示例代码，展示了使用drawImage方法在Canvas上绘制图片的基本操作。作者还提到后续会专门讲解Canvas，为读者提供进一步学习资源。该案例适合具备HTML5和JavaScript基础的学习者参考。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/157252746",
+    "title": "Vue Router 企业级配置全攻略：打造专业级路由系统",
+    "desc": "本文详细介绍了企业级Vue项目中路由配置的最佳实践。主要内容包括：路由在企业级应用中的核心作用（权限控制、用户体验、性能优化等）；推荐的模块化目录结构设计，实现职责分离；通过TypeScript扩展路由元信息，增强类型安全；具体路由配置示例展示模块化路由和静态路由的实现方式。文章强调优秀的路由配置能显著提升项目的可维护性、安全性和开发效率，为构建复杂Vue应用提供了实用指南。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/155578894",
+    "title": "JavaScript后端日志系统：使用Winston构建专业日志",
+    "desc": "本文介绍了Node.js生态中流行的Winston日志库的使用方法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/154882262",
+    "title": "快速上手 Dart 基础",
+    "desc": "本文介绍了Dart语言的基础知识，包括变量与常量的声明(var/const/final)、常用数据类型(String/数字/布尔/List/Map/dynamic)及其常用操作方法。同时讲解了Dart的空安全机制(?, ?., !, ??运算符)和运算符使用。内容涵盖字符串拼接、类型转换、列表增删改查、字典操作等基础语法，适合有前端基础的学习者快速掌握Dart核心语法要点"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/154798672",
+    "title": "Trae 一键换装 Dracula 主题 + 改注释颜色 + 去掉 console.log 多余分号",
+    "desc": "本文介绍如何快速配置Trae编辑器的前端开发环境"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/154727955",
+    "title": "Vue 3 项目 ESLint 配置详解：初始模板的正确配置",
+    "desc": "本文介绍了在pnpm create vue创建的Vue3项目中配置ESLint的方法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/154286054",
+    "title": "Vue 图片性能优化双剑客：懒加载与自动压缩实战指南",
+    "desc": "Vue图片优化指南：使用vue-lazyload和vite-plugin-imagemin提升应用性能"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/154239716",
+    "title": "DataGrip连接本地数据库报错 nested exception is:java.net.ConnectException: Connection timed out: connect.的解决方案",
+    "desc": "DataGrip连接本地数据库报错：DBMS: MySQL (no ver.) Case sensitivity: plain=mixed, delimited=exactConnection refused to host: 127.0.0.1; nested exception is: java.net.ConnectException: Connection timed out: connect. 的解决方案"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/153821538",
+    "title": "Vue 3 + TypeScript 项目性能优化全链路实战：从 2.1MB 到 130KB 的蜕变",
+    "desc": "本文详细介绍了Vue3项目的全链路优化方案，通过系统化手段实现了显著的性能提升。基于Vite构建工具，采用CDN外部化、精细化代码分割等策略，使首包体积从2.1MB降至130KB（降幅94%）。同时通过自动化图片压缩、智能预加载等技术，将LCP时间从3.2s缩短至1.8s（提升44%）。全文提供了完整的TypeScript配置代码和优化前后对比数据，包括构建体积减少70%、Lighthouse评分提升30%等具体成果。项目采用Vue3+TypeScript+Composition API技术栈。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/153263900",
+    "title": "教程: 在网页中利用原生CSS实现3D旋转动画",
+    "desc": "本文介绍如何实现3D旋转卡片效果，通过HTML和CSS代码演示"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/153043590",
+    "title": "# JavaScript 数组方法：.some()",
+    "desc": "JavaScript 数组的 .some() 方法是一个高效的短路求值工具，用于检测数组中是否存在满足条件的元素"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/152086301",
+    "title": "Marked.js：一个强大的Markdown解析库",
+    "desc": "摘要： Marked.js是一款高效的Markdown解析库，支持浏览器端和Node.js环境，可将Markdown快速转换为HTML。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/152078603",
+    "title": "MySQL 学习笔记 (Part.2)",
+    "desc": "本文介绍了MySQL中的 DQL（数据查询语言）语句"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151993112",
+    "title": "MySQL 学习笔记 (Part.1)",
+    "desc": "本文介绍了MySQL数据库的基础知识，包括其发展历史和关系型数据库特点、重点讲解了DDL（数据定义语言）和DML（数据操作语言）两类核心SQL语句。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151935025",
+    "title": "Git团队协作实战指南：从基础到高级技巧",
+    "desc": "本文全面介绍了Git在团队协作中的使用方法和最佳实践"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151934899",
+    "title": ".env与.gitignore：现代软件开发中的环境管理与版本控制防护",
+    "desc": "本文系统介绍了.env和.gitignore文件在现代软件开发中的关键作用"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151903388",
+    "title": "用 PyInstaller 把 Python 脚本变成“真正”的桌面应用——从安装到发布一篇通",
+    "desc": "PyInstaller是一个将Python脚本转换为可执行文件的工具，支持跨平台打包，让Python程序无需安装解释器即可运行"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151754190",
+    "title": "JavaScript 文件上传机制详解",
+    "desc": "本文深入解析JavaScript文件上传全流程，从前端文件选择到后端接收存储"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151711539",
+    "title": "ECharts 核心：深度解析 options 配置项",
+    "desc": "本文为ECharts初学者提供了一份系统性配置指南，重点解析折线图7大options核心模块的配置方法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151615144",
+    "title": "深入理解节流（Throttle）：原理、实现与应用场景",
+    "desc": "摘要： 节流是一种前端性能优化技术，用于限制高频事件（如滚动、鼠标移动等）的触发频率"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151614080",
+    "title": "深入理解防抖（Debounce）：原理、实现与应用场景",
+    "desc": "摘要： 防抖是一种前端性能优化技术，用于限制高频事件的触发频率，仅在单位时间内执行最后一次事件"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151581555",
+    "title": "JavaScript 中 map 和 filter 方法的快速上手指南 (附综合案例)",
+    "desc": "本文通过色彩轮播图示例介绍了JavaScript数组的map和filter方法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151398208",
+    "title": "10 分钟上手 ECharts：从“能跑”到“生产级”的完整踩坑之旅",
+    "desc": "快速上手echart教程"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151013629",
+    "title": "Next.js 快速上手指南",
+    "desc": "动态路由允许你定义一个页面模板，该模板可以根据 URL 中的参数动态加载不同的内容。例如，你有一个博客网站，每个博客文章都有一个唯一的 ID。你可以使用动态路由来创建一个页面模板，该模板可以根据文章 ID 显示不同的文章内容。layout通过动态路由，你可以根据 URL 参数动态加载页面内容，这非常适合构建需要根据参数显示不同内容的页面。而layout组件则允许你定义页面的共享结构，通过嵌套layout，你可以轻松地构建复杂的页面布局。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/151013048",
+    "title": "Axios 实例配置指南",
+    "desc": "本文介绍了Axios在前端项目中的配置与使用方法。Axios是基于Promise的HTTP客户端，具有简洁API、请求拦截、跨浏览器兼容等优势。文章详细展示了如何创建Axios实例（包括设置基础URL、超时时间），添加请求/响应拦截器（处理认证、错误等），并导出配置好的实例。最后演示了如何使用该实例发送GET/POST请求。通过合理配置Axios，可以显著提升前后端交互效率。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/149030149",
+    "title": "Python与JavaScript正则表达式详解",
+    "desc": "本文介绍了Python和JavaScript中正则表达式的基础用法和核心功能"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/149004659",
+    "title": "Python爬虫：Requests与Beautiful Soup库详解",
+    "desc": "本文介绍了Python爬虫的两个核心库Requests和Beautiful Soup的基本用法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148808789",
+    "title": "语法糖：编程中的甜蜜简化 (附 Vue 3 & Javascript 实战示例)",
+    "desc": "语法糖是编程语言中简化代码表达的语法结构，不增加新功能但提升可读性和开发效率"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148776741",
+    "title": "计算机导论期末快速复习指南",
+    "desc": "本文总结了计算机导论核心知识点，分为操作系统、网络基础、系统与编程、Web与数据库、新兴技术和实用工具六大板块"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148749114",
+    "title": "汇编语言期末快速过手笔记",
+    "desc": "您的支持与喜爱是激励我创作的最大动力！如果内容有误请及时联系我进行修改。：由硬件系统和软件系统组成。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148696035",
+    "title": "使用JavaScript实现复制文本功能：从原生JS到Vue3",
+    "desc": "现代Web开发中实现复制文本功能的两种方法：使用原生JavaScript的Clipboard API和Vue3框架"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148678248",
+    "title": "JavaScript 与 Vue 键盘事件全面指南(Composition API + ＜script setup＞)",
+    "desc": "JavaScript 和 Vue 3中键盘事件的处理方法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148678393",
+    "title": "Vue 组合式 API 与 选项式 API 全面对比教程",
+    "desc": "Vue提供选项式API（Options API）和组合式API（Composition API）两种组件开发方式"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148678240",
+    "title": "Vue 3 路由跳转全面指南(Composition API + ＜script setup＞)",
+    "desc": "Vue Router在Vue 3中的核心应用方法"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148586438",
+    "title": "JavaScript跨域全面指南：从原理到最佳实践",
+    "desc": "跨域（Cross-Origin）是浏览器同源策略限制下的资源访问问题，当网页脚本访问不同协议、域名或端口时会触发安全限制"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148500926",
+    "title": "Python控制台输出彩色字体指南",
+    "desc": "使用colorama库是在Python中实现跨平台彩色输出的最佳实践。它简单易用，能显著提升控制台应用的用户体验。通过封装类似这样的函数，可以更方便地在项目中使用彩色输出功能。您的支持与喜爱是激励我创作的最大动力！希望这篇指南能帮助你在Python项目中实现漂亮的彩色输出！如果内容有误请及时联系我进行修改！"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148379883",
+    "title": "基于 Husky 的代码检查工作流：提升前端项目质量的利器",
+    "desc": "本文介绍了基于Husky的代码检查工作流，通过Git Hooks机制在提交前自动检查代码质量"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148254634",
+    "title": "TailwindCSS v4 快速入门教程",
+    "desc": "TailwindCSS v4 是一个实用优先的CSS框架，通过原子化工具类快速构建定制化界面"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148115918",
+    "title": "优化 VS Code 中 console.log 的输出样式：去除烦人的分号与空行",
+    "desc": "本文聚焦于解决 VS Code 中使用快捷输入 “log” 时，自动生成的 console.log 输出语句带有分号和多余空行的问题"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148098505",
+    "title": "JavaScript 到 TypeScript：快速上手的实战指南",
+    "desc": "TypeScript 是 JavaScript 的超集，为 JS 添加了类型支持，旨在解决 JS 类型系统的缺陷，提升开发效率和代码可维护性"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148076776",
+    "title": "Sass 快速上手：开启 CSS 预处理器新世界",
+    "desc": "Sass 是一种强大的 CSS 预处理器，能够通过变量、嵌套、混合和继承等功能提升 CSS 的开发效率"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/148046080",
+    "title": "告别C盘拥挤，笔记本电脑桌面一键搬家至D盘保姆级教程来袭！",
+    "desc": "将桌面文件夹迁移到D盘来解决电脑卡顿问题的保姆级教程"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/147760152",
+    "title": "“你的电脑不能投影到其他屏幕。请尝试重新安装驱动程序或使用其他视频卡”的解决方案",
+    "desc": "“你的电脑不能投影到其他屏幕。请尝试重新安装驱动程序或使用其他视频卡”的解决方案"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/147224969",
+    "title": "2025 蓝桥杯 C/C++ A组 黑白棋的新解法 —— 无需编程五分钟速通",
+    "desc": "【2025年 蓝桥杯C/C++ A组 黑白棋の船新解法，无需编程即可解决】https://www.bilibili.com/video/BV1RZd6YDEsL?在上周六呢我也是第一次参加了蓝桥杯竞赛，下面这个视频是我比赛时解黑白棋的一个解题思路，感兴趣的朋友可以点进去看看。如果您觉得内容还行的话就三连支持一下吧（我是指B站视频和CSDN博客都要（doge）），我们下期见~~~建议先看题自己思考一下再看我的讲解哦！"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/146302650",
+    "title": "前端学习篇 —— 经典案例制作之Tab栏切换",
+    "desc": "经典小案例之Tab栏切换"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/146018786",
+    "title": "前端学习篇——用JavaScript (JS) 制作轮播图",
+    "desc": "基于 HTML、CSS 以及 JavaScript 仿写长虹官网轮播图"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145739946",
+    "title": "基于Ollama + DeepSeek + Chatbox 的AI大模型本地部署指南（适合小白）",
+    "desc": "Ollama + Deepseek + Chatbox的AI大模型本地部署并设置图形化 UI 界面"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145432535",
+    "title": "Python爬虫的学习——基于KIMI AI的小软件编写",
+    "desc": "基于KIMI AI的爬虫小软件的编写，运用了os、urllib.request、tkinter库"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145401264",
+    "title": "前端学习篇——CSS的学习（1）",
+    "desc": "CSS是样式表语言，用于美化内容。书写位置：title标签下方添加style双标签，style代码里面书写 CSS 代码。CSS 是给浏览器看的，只需要解释给我们就行（给浏览器看的都放在title里就行）晚安，我的朋友，快凌晨了，明天继续加油！如果内容有误请及时联系我进行修改。同时我的博客内容均为学习日常打卡，是分享我每天的学习生活的，而并非任何科普类博客，望周知。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145363276",
+    "title": "Python爬虫的学习——urllib学习篇1",
+    "desc": "分享爬虫学习日常的学习心得"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145345848",
+    "title": "前端学习篇——HTML5的复习",
+    "desc": "复习HTML5的日常打卡，分享学习日常"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145330298",
+    "title": "Python爬虫的学习——爬虫初识篇",
+    "desc": "解释1：通过一个程序，根据url进行爬取网页，获取有用信息解释2：使用程序模拟浏览器，去向服务器发送请求，获取响应信息通俗来说，就是一个程序，通过运行可以获得想要的数据已经晚上十一点过啦，大家早点休息哦，希望刷到这里的读者早点休息，拥有一个健壮的体魄比什么都重要~对了，老样子的，如果我的文章里有什么知识点讲解的错误或者有其他可以改进的地方，还劳请读者在评论区指出或者私信我，我看到后一定会虚心接受并及时修改的！明日任务：1. 复习HTML5基础2. 学习爬虫urllib。"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145310908",
+    "title": "Python爬虫的学习——Python基础篇2",
+    "desc": "a_list.pop() # 删除最后一个元素这里就讲下格式就行了好啦，本期到这里就结束噜，再次声明：本篇内容是基于爬虫需求而学习的Python基础知识，本人基础较差，是基于C语言的基础在学习Python（而且参照了网课），文章中难免会出现一些错误，如果读者发现有错误，还请及时私信我或者评论区留言，我看到后一定会虚心接受并及时修改！从明天开始我就要进行HTML5 + CSS的学习啦！"
+  },
+  {
+    "href": "https://blog.csdn.net/nineeea/article/details/145282404",
+    "title": "Python爬虫的学习——Python基础篇1",
+    "desc": "Python基础的学习笔记，希望能对您有所帮助！"
+  }
+]

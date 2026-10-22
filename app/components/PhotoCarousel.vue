@@ -33,10 +33,19 @@ function closePreview() {
   previewImage.value = null
   paused.value = false
 }
+function handleKeydown(event: KeyboardEvent) {
+  if (event.key === 'Escape') closePreview()
+}
 
 watch(paused, start)
-onMounted(start)
-onUnmounted(() => clearInterval(timer))
+onMounted(() => {
+  start()
+  window.addEventListener('keydown', handleKeydown)
+})
+onUnmounted(() => {
+  clearInterval(timer)
+  window.removeEventListener('keydown', handleKeydown)
+})
 </script>
 
 <template>
@@ -93,20 +102,24 @@ onUnmounted(() => clearInterval(timer))
         @click="current = index"
       />
     </div>
-    <Transition name="lightbox-fade">
-      <div
-        v-if="previewImage"
-        class="photo-lightbox"
-        role="dialog"
-        aria-modal="true"
-        :aria-label="previewImage.alt"
-        @click.self="closePreview"
-      >
-        <button type="button" class="lightbox-close" aria-label="Close preview" @click="closePreview">
-          <UIcon name="i-lucide-x" />
-        </button>
-        <img :src="previewImage.src" :alt="previewImage.alt" />
-      </div>
-    </Transition>
+    <Teleport to="body">
+      <Transition name="lightbox-fade">
+        <div
+          v-if="previewImage"
+          class="photo-lightbox"
+          role="dialog"
+          aria-modal="true"
+          :aria-label="previewImage.alt"
+          @click.self="closePreview"
+        >
+          <button type="button" class="lightbox-close" aria-label="Close preview" @click="closePreview">
+            <UIcon name="i-lucide-x" />
+          </button>
+          <div class="photo-lightbox-frame" :style="{ '--accent': accent }">
+            <img :src="previewImage.src" :alt="previewImage.alt" decoding="async" />
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </div>
 </template>
