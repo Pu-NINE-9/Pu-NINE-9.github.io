@@ -1,63 +1,63 @@
 <script setup lang="ts">
-import { cn } from "@inspira-ui/plugins";
-import { useTimeoutFn } from "@vueuse/core";
-import { ref } from "vue";
+import { cn } from '@inspira-ui/plugins'
+import { useTimeoutFn } from '@vueuse/core'
+import { ref } from 'vue'
 
 interface GlareCardProps {
-  class?: string;
+  class?: string
 }
 
-const props = defineProps<GlareCardProps>();
+const props = defineProps<GlareCardProps>()
 
-const isPointerInside = ref(false);
-const refElement = ref<HTMLElement | null>(null);
+const isPointerInside = ref(false)
+const refElement = ref<HTMLElement | null>(null)
 
 const state = ref({
   glare: { x: 50, y: 50 },
   background: { x: 50, y: 50 },
-  rotate: { x: 0, y: 0 },
-});
+  rotate: { x: 0, y: 0 }
+})
 
 function handlePointerMove(event: PointerEvent) {
-  const rotateFactor = 0.4;
-  const rect = refElement.value?.getBoundingClientRect();
+  const rotateFactor = 0.4
+  const rect = refElement.value?.getBoundingClientRect()
   if (rect) {
     const position = {
       x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    };
+      y: event.clientY - rect.top
+    }
     const percentage = {
       x: (100 / rect.width) * position.x,
-      y: (100 / rect.height) * position.y,
-    };
+      y: (100 / rect.height) * position.y
+    }
     const delta = {
       x: percentage.x - 50,
-      y: percentage.y - 50,
-    };
+      y: percentage.y - 50
+    }
 
-    state.value.background.x = 50 + percentage.x / 4 - 12.5;
-    state.value.background.y = 50 + percentage.y / 3 - 16.67;
-    state.value.rotate.x = -(delta.x / 3.5) * rotateFactor;
-    state.value.rotate.y = (delta.y / 2) * rotateFactor;
-    state.value.glare.x = percentage.x;
-    state.value.glare.y = percentage.y;
+    state.value.background.x = 50 + percentage.x / 4 - 12.5
+    state.value.background.y = 50 + percentage.y / 3 - 16.67
+    state.value.rotate.x = -(delta.x / 3.5) * rotateFactor
+    state.value.rotate.y = (delta.y / 2) * rotateFactor
+    state.value.glare.x = percentage.x
+    state.value.glare.y = percentage.y
   }
 }
 
 function handlePointerEnter() {
-  isPointerInside.value = true;
+  isPointerInside.value = true
   useTimeoutFn(() => {
     if (isPointerInside.value && refElement.value) {
-      refElement.value.style.setProperty("--duration", "0s");
+      refElement.value.style.setProperty('--duration', '0s')
     }
-  }, 300);
+  }, 300)
 }
 
 function handlePointerLeave() {
-  isPointerInside.value = false;
+  isPointerInside.value = false
   if (refElement.value) {
-    refElement.value.style.removeProperty("--duration");
-    state.value.rotate = { x: 0, y: 0 };
+    refElement.value.style.removeProperty('--duration')
+    state.value.rotate = { x: 0, y: 0 }
   }
 }
 </script>
@@ -73,9 +73,7 @@ function handlePointerLeave() {
     <div
       class="grid h-full origin-center transform-[rotateY(var(--r-x))_rotateX(var(--r-y))] overflow-hidden transition-transform delay-(--delay) duration-(--duration) ease-(--easing) will-change-transform hover:filter-none hover:[--duration:200ms] hover:[--easing:linear] hover:[--opacity:0.6]"
     >
-      <div
-        class="grid size-full mix-blend-soft-light [clip-path:inset(0_0_0_0_round_var(--radius))] [grid-area:1/1]"
-      >
+      <div class="grid size-full mix-blend-soft-light [clip-path:inset(0_0_0_0_round_var(--radius))] [grid-area:1/1]">
         <div :class="cn(`size-full bg-slate-950`, props.class)">
           <slot />
         </div>

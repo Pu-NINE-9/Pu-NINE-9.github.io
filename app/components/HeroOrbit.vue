@@ -67,7 +67,7 @@ const technologies = [
         v-for="(t, i) in technologies"
         :key="t.name"
         class="orbit-chip orbit-tech-tag"
-        :style="{ '--angle': t.angle + 'deg', '--radius': t.radius + 'px', '--float-delay': (i * 0.7) + 's' }"
+        :style="{ '--angle': t.angle + 'deg', '--radius': t.radius + 'px', '--float-delay': i * 0.7 + 's' }"
       >
         <span class="tech-brand-logo" v-html="t.logo" />
         <span class="orbit-tech-copy">

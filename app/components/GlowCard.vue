@@ -17,7 +17,7 @@ function move(event: PointerEvent) {
     '--mx': `${px}px`,
     '--my': `${py}px`,
     '--glare-x': `${(px / rect.width) * 100}%`,
-    '--glare-y': `${(py / rect.height) * 100}%`,
+    '--glare-y': `${(py / rect.height) * 100}%`
   }
   // rAF 平滑淡入 glare
   if (glareRaf != null) cancelAnimationFrame(glareRaf)

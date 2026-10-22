@@ -1,4 +1,6 @@
-<script setup lang="ts">
+﻿<script setup lang="ts">
+import { CardStack, CardStackItem } from '~/components/ui/card-stack'
+
 const { projects, posts, t, copy } = useSiteContent()
 useSeoMeta({ title: 'NINEの代码space', ogTitle: 'NINEの代码space', description: 'NINE 的个人 Website 啦~ 嘿嘿唔嘿~' })
 const stack = [
@@ -16,159 +18,169 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
 </script>
 
 <template>
-  <div>
-    <section class="hero site-container">
-      <div class="hero-copy">
-        <div class="hero-eyebrow">
-          <span class="status-dot" />{{
-            copy(
-              '沉心沉淀，全力以赴',
-              'FOCUSED MIND · FULL COMMITMENT',
-              '心を澄ませ、全力を尽くす',
-              '마음을 가다듬고 최선을 다하기'
-            )
-          }}<span class="eyebrow-line" />
-        </div>
-        <h1>NINE<br /><span class="gradient-text">Re.design the Wo.rld</span><span class="title-cursor">_</span></h1>
-        <p class="hero-description">
-          Personal Website Right Here! Let's Gooooo!
-        </p>
-        <div class="hero-buttons">
-          <UButton to="/works" size="xl" class="neon-button" trailing-icon="i-lucide-arrow-up-right">{{
-            copy('探索我的作品', 'Explore my work', '作品を見る', '프로젝트 보기')
-          }}</UButton
-          ><UButton
-            to="/blog"
-            size="xl"
-            color="neutral"
-            variant="outline"
-            class="outline-button"
-            icon="i-lucide-book-open"
-            >{{ copy('阅读技术笔记', 'Read my notes', '技術ノートを読む', '기술 노트 읽기') }}</UButton
-          >
-        </div>
-        <div class="hero-socials">
-          <span>FIND ME ON</span
-          ><a href="https://github.com/Pu-NINE-9" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
-            ><UIcon name="i-lucide-github" /></a
-          ><a
-            href="https://blog.csdn.net/nineeea"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="CSDN"
-            class="csdn-social-icon"
-            ><svg viewBox="0 0 1024 1024" role="img" aria-label="CSDN">
-              <path d="M0 0h1024v1024H0z" fill="#FF6633" />
-              <path
-                d="M698.9824 42.3936c-158.8736-32.5632-289.536 31.2832-324.9152 48.5888-94.72 46.2848-147.712 108.288-174.4896 140.288-25.9584 31.0272-82.7392 105.9328-108.288 215.8592-21.6576 93.1328-10.752 167.7824-6.0416 194.2528 11.4688 64.3072 33.28 186.88 150.4256 275.2 132.5056 99.8912 293.4784 85.5552 342.9888 80.9472 107.264-10.0352 289.4848-57.2928 300.8512-145.7152 5.1712-39.936-24.4224-89.4464-66.2016-102.5024-65.6384-20.5312-108.3392 63.5392-228.6592 80.9472-8.5504 1.2288-126.5664 16.6912-216.6272-48.5888-105.8816-76.6976-98.9696-211.3024-96.256-264.3968 1.536-30.5664 5.5808-93.5424 48.128-161.8944 14.7968-23.7568 60.3136-94.5664 156.4672-134.912 25.2928-10.5984 76.8512-31.5904 144.4352-26.9824 70.0416 4.7616 120.9856 34.5088 144.4352 48.5888 75.8272 45.4144 86.528 90.0608 120.3712 86.3232 35.8912-3.9424 69.9904-59.2896 66.2016-107.9296-7.424-93.7984-155.5968-158.1056-252.8256-178.0736z"
-                fill="#FFFFFF"
-              /></svg></a
-          ><span class="social-divider" /><span class="hero-location"
-            ><UIcon name="i-lucide-globe-2" /> BASED IN CHINA</span
-          >
-        </div>
-      </div>
-      <HeroOrbit />
-      <div class="hero-bottom">
-        <a href="#selected-work" class="scroll-cue"
-          ><span class="mouse-scroll"><i /></span>SCROLL TO EXPLORE</a
-        ><span class="hero-note">FROM MYSELF IN THE PAST TO THE FUTURE <UIcon name="i-lucide-move-up-right" /></span>
-      </div>
-    </section>
+  <ClientOnly>
+    <div class="index-page">
 
-    <div class="stack-strip">
-      <div class="site-container stack-strip-inner">
-        <span class="stack-label">MY TOOLKIT <UIcon name="i-lucide-arrow-right" /></span>
-        <div class="stack-ticker">
-          <div class="stack-track">
-            <div v-for="group in 2" :key="group" class="stack-group" :aria-hidden="group === 2">
-              <span v-for="tech in stack" :key="tech.name"
-                ><span class="stack-tech-logo" v-html="tech.logo"></span
-                >{{ tech.name }}<span class="stack-plus">✳</span></span
+      <!-- ===== 正常滚动区域 (Hero → Stack → Works) ===== -->
+      <section class="hero site-container">
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <span class="status-dot" />{{
+              copy(
+                '沉心沉淀，全力以赴',
+                'FOCUSED MIND · FULL COMMITMENT',
+                '心を澄ませ、全力を尽くす',
+                '마음을 가다듬고 최선을 다하기'
+              )
+            }}<span class="eyebrow-line" />
+          </div>
+          <h1>NINE<br /><span class="gradient-text">Re.design the Wo.rld</span><span class="title-cursor">_</span></h1>
+          <p class="hero-description">Personal Website Right Here! Let's Gooooo!</p>
+          <div class="hero-buttons">
+            <UButton to="/works" size="xl" class="neon-button" trailing-icon="i-lucide-arrow-up-right">{{
+              copy('探索我的作品', 'Explore my work', '作品を見る', '프로젝트 보기')
+            }}</UButton
+            ><UButton
+              to="/blog"
+              size="xl"
+              color="neutral"
+              variant="outline"
+              class="outline-button"
+              icon="i-lucide-book-open"
+              >{{ copy('阅读技术笔记', 'Read my notes', '技術ノートを読む', '기술 노트 읽기') }}</UButton
+            >
+          </div>
+          <div class="hero-socials">
+            <span>FIND ME ON</span
+            ><a href="https://github.com/Pu-NINE-9" target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+              ><UIcon name="i-lucide-github" /></a
+            ><a
+              href="https://blog.csdn.net/nineeea"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="CSDN"
+              class="csdn-social-icon"
+              ><svg viewBox="0 0 1024 1024" role="img" aria-label="CSDN">
+                <path d="M0 0h1024v1024H0z" fill="#FF6633" />
+                <path
+                  d="M698.9824 42.3936c-158.8736-32.5632-289.536 31.2832-324.9152 48.5888-94.72 46.2848-147.712 108.288-174.4896 140.288-25.9584 31.0272-82.7392 105.9328-108.288 215.8592-21.6576 93.1328-10.752 167.7824-6.0416 194.2528 11.4688 64.3072 33.28 186.88 150.4256 275.2 132.5056 99.8912 293.4784 85.5552 342.9888 80.9472 107.264-10.0352 289.4848-57.2928 300.8512-145.7152 5.1712-39.936-24.4224-89.4464-66.2016-102.5024-65.6384-20.5312-108.3392 63.5392-228.6592 80.9472-8.5504 1.2288-126.5664 16.6912-216.6272-48.5888-105.8816-76.6976-98.9696-211.3024-96.256-264.3968 1.536-30.5664 5.5808-93.5424 48.128-161.8944 14.7968-23.7568 60.3136-94.5664 156.4672-134.912 25.2928-10.5984 76.8512-31.5904 144.4352-26.9824 70.0416 4.7616 120.9856 34.5088 144.4352 48.5888 75.8272 45.4144 86.528 90.0608 120.3712 86.3232 35.8912-3.9424 69.9904-59.2896 66.2016-107.9296-7.424-93.7984-155.5968-158.1056-252.8256-178.0736z"
+                  fill="#FFFFFF"
+                /></svg></a
+              ><span class="social-divider" /><span class="hero-location"
+                ><UIcon name="i-lucide-globe-2" /> BASED IN CHINA</span
               >
+          </div>
+        </div>
+        <HeroOrbit />
+        <div class="hero-bottom">
+          <a href="#selected-work" class="scroll-cue"
+            ><span class="mouse-scroll"><i /></span>SCROLL TO EXPLORE</a
+          ><span class="hero-note"
+            >FROM MYSELF IN THE PAST TO THE FUTURE <UIcon name="i-lucide-move-up-right"
+          /></span>
+        </div>
+      </section>
+
+      <div class="stack-strip">
+        <div class="site-container stack-strip-inner">
+          <span class="stack-label">MY TOOLKIT <UIcon name="i-lucide-arrow-right" /></span>
+          <div class="stack-ticker">
+            <div class="stack-track">
+              <div v-for="group in 2" :key="group" class="stack-group" :aria-hidden="group === 2">
+                <span v-for="tech in stack" :key="tech.name"
+                  ><span class="stack-tech-logo" v-html="tech.logo"></span>{{ tech.name
+                  }}<span class="stack-plus">✳</span></span
+                >
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <section id="selected-work" class="site-container content-section">
-      <div class="section-heading">
-        <div>
-          <p class="section-eyebrow"><span>01 /</span> Project X</p>
-          <h2>
-            <span class="gradient-text">{{
-              copy('个人作品', 'PERSONAL PROJECTS', '個人プロジェクト', '개인 프로젝트')
-            }}</span>
-          </h2>
-        </div>
-        <NuxtLink to="/works" class="text-link"
-          >{{ copy('全部作品', 'All projects', 'すべての作品', '모든 프로젝트')
-          }}<span>{{ String(projects.length).padStart(2, '0') }}</span
-          ><UIcon name="i-lucide-arrow-up-right"
-        /></NuxtLink>
-      </div>
-      <div class="project-grid">
-        <ProjectCard
-          v-for="(project, index) in projects.slice(0, 2)"
-          :key="project.id"
-          :project="project"
-          :index="index"
-        />
-      </div>
-    </section>
-
-    <section id="about" class="site-container about-section">
-      <div class="about-intro">
-        <p class="section-eyebrow"><span>02 /</span> Self-Introduction</p>
-        <h2 class="about-greeting">玖 <span class="gradient-text">Right Here~</span></h2>
-        <div class="about-identity">
-          <UIcon name="i-lucide-sparkles" class="identity-sparkle" />
-          <span>{{
-            copy(
-              '没毕业的准·码农 思密达。。。',
-              'Still in school, junior dev in the making.',
-              'まだ卒業していない、駆け出しの開発者。',
-              '아직 졸업 안 한 주니어 개발자.'
-            )
-          }}</span>
-          <UIcon name="i-lucide-sparkles" class="identity-sparkle" />
-        </div>
-        <p class="about-tagline">
-          {{
-            copy(
-              '不定时更新博客内容，还请多多期待！',
-              'Notes from the road — stay tuned.',
-              '学びの記録を不定期更新中。お楽しみに！',
-              '배운 것을 기록합니다. 기대해 주세요!'
-            )
-          }}
-        </p>
-        <div class="about-tags">
-          <span><UIcon name="i-lucide-code-2" />{{ copy('编程', 'Code', 'コーディング', '코딩') }}</span
-          ><span><UIcon name="i-lucide-headphones" />{{ copy('音乐', 'Music', '音楽', '음악') }}</span
-          ><span><UIcon name="i-lucide-camera" />{{ copy('摄影', 'Photography', '写真', '사진') }}</span
-          ><span><UIcon name="i-lucide-gamepad-2" />{{ copy('游戏', 'Games', 'ゲーム', '게임') }}</span>
-        </div>
-        <a href="https://github.com/Pu-NINE-9" target="_blank" rel="noopener noreferrer" class="text-link"
-          >{{ copy('在 GitHub 和我打个招呼', 'Say hello on GitHub', 'GitHubで挨拶する', 'GitHub에서 인사하기')
-          }}<UIcon name="i-lucide-arrow-up-right"
-        /></a>
-      </div>
-      <div class="about-bento">
-        <GlowCard class="profile-bento"
-          ><img src="/imgs/avatar.jpg" alt="NINE 的头像" loading="lazy" width="64" height="64" />
+      <section id="selected-work" class="site-container content-section">
+        <div class="section-heading">
           <div>
-            <span class="mono">THE HUMAN BEHIND THE PIXELS</span>
-            <h3>玖 NINE<span class="tiny-dot" /></h3>
-            <p>Frontend Developer</p>
+            <p class="section-eyebrow"><span>01 /</span> Project X</p>
+            <h2>
+              <span class="gradient-text">{{
+                copy('个人作品', 'PERSONAL PROJECTS', '個人プロジェクト', '개인 프로젝트')
+              }}</span>
+            </h2>
           </div>
-          <UIcon name="i-lucide-asterisk" class="profile-asterisk" /></GlowCard
-        ><GlowCard class="code-bento" accent="#51e0cd"
-          ><div class="code-window-head">
-            <span /><span /><span /><small>about-me.ts</small><UIcon name="i-lucide-code-2" />
-          </div>
-          <pre><span class="code-purple">const</span> developer = {
+          <NuxtLink to="/works" class="text-link"
+            >{{ copy('全部作品', 'All projects', 'すべての作品', '모든 프로젝트')
+            }}<span>{{ String(projects.length).padStart(2, '0') }}</span
+            ><UIcon name="i-lucide-arrow-up-right"
+          /></NuxtLink>
+        </div>
+        <div class="project-grid">
+          <ProjectCard
+            v-for="(project, index) in projects.slice(0, 2)"
+            :key="project.id"
+            :project="project"
+            :index="index"
+          />
+        </div>
+      </section>
+
+      <!-- ===== CardStack 堆叠区域 (从 About 开始) ===== -->
+      <CardStack
+        :total-cards="3"
+        :scale-multiplier="0.025"
+        class="relative"
+      >
+        <CardStackItem :index="0" class="cs-item">
+          <section id="about" class="site-container about-section">
+            <div class="about-intro">
+              <p class="section-eyebrow"><span>02 /</span> Self-Introduction</p>
+              <h2 class="about-greeting">玖 <span class="gradient-text">Right Here~</span></h2>
+              <div class="about-identity">
+                <UIcon name="i-lucide-sparkles" class="identity-sparkle" />
+                <span>{{
+                  copy(
+                    '没毕业的准·码农 思密达。。。',
+                    'Still in school, junior dev in the making.',
+                    'まだ卒業していない、駆け出しの開発者。',
+                    '아직 졸업 안 한 주니어 개발자.'
+                  )
+                }}</span>
+                <UIcon name="i-lucide-sparkles" class="identity-sparkle" />
+              </div>
+              <p class="about-tagline">
+                {{
+                  copy(
+                    '不定时更新博客内容，还请多多期待！',
+                    'Notes from the road — stay tuned.',
+                    '学びの記録を不定期更新中。お楽しみに！',
+                    '배운 것을 기록합니다. 기대해 주세요!'
+                  )
+                }}
+              </p>
+              <div class="about-tags">
+                <span><UIcon name="i-lucide-code-2" />{{ copy('编程', 'Code', 'コーディング', '코딩') }}</span
+                ><span><UIcon name="i-lucide-headphones" />{{ copy('音乐', 'Music', '音楽', '음악') }}</span
+                ><span><UIcon name="i-lucide-camera" />{{ copy('摄影', 'Photography', '写真', '사진') }}</span
+                ><span><UIcon name="i-lucide-gamepad-2" />{{ copy('游戏', 'Games', 'ゲーム', '게임') }}</span>
+              </div>
+              <a href="https://github.com/Pu-NINE-9" target="_blank" rel="noopener noreferrer" class="text-link"
+                >{{ copy('在 GitHub 和我打个招呼', 'Say hello on GitHub', 'GitHubで挨拶する', 'GitHub에서 인사하기')
+                }}<UIcon name="i-lucide-arrow-up-right"
+              /></a>
+            </div>
+            <div class="about-bento">
+              <GlowCard class="profile-bento"
+                ><img src="/imgs/avatar.jpg" alt="NINE 的头像" loading="lazy" width="64" height="64" />
+                <div>
+                  <span class="mono">THE HUMAN BEHIND THE PIXELS</span>
+                  <h3>玖 NINE<span class="tiny-dot" /></h3>
+                  <p>Frontend Developer</p>
+                </div>
+                <UIcon name="i-lucide-asterisk" class="profile-asterisk" /></GlowCard
+              ><GlowCard class="code-bento" accent="#51e0cd"
+                ><div class="code-window-head">
+                  <span /><span /><span /><small>about-me.ts</small><UIcon name="i-lucide-code-2" />
+                </div>
+                <pre><span class="code-purple">const</span> developer = {
   name: <span class="code-green">'NINE'</span>,
   focus: [<span class="code-green">'Frontend'</span>, <span class="code-green">'AI'</span>],
   mindset: <span class="code-green">'Always learning'</span>,
@@ -176,104 +188,113 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
   <span class="code-comment">// {{ copy('下一行，由我定义未来', 'The next line defines my future') }}</span>
   next: <span class="code-purple">undefined</span>
 }</pre>
-          <span class="code-footer"
-            ><span class="tiny-dot" />{{ copy('持续构建中', 'WORK IN PROGRESS')
-            }}<UIcon name="i-lucide-terminal" /></span
-        ></GlowCard>
-      </div>
-    </section>
+                <span class="code-footer"
+                  ><span class="tiny-dot" />{{ copy('持续构建中', 'WORK IN PROGRESS')
+                  }}<UIcon name="i-lucide-terminal" /></span
+              ></GlowCard>
+            </div>
+          </section>
+        </CardStackItem>
 
-    <section class="site-container memories-section" aria-labelledby="memories-title">
-      <div class="section-heading">
-        <div>
-          <p class="section-eyebrow"><span>03 /</span> GALLERY</p>
-        </div>
-      </div>
-      <div class="memories-grid">
-        <GlowCard accent="#7ad8cf" class="daughter-gallery"
-          ><div class="gallery-heading">
-            <span class="gallery-mark"><UIcon name="i-lucide-heart" /></span>
+        <CardStackItem :index="1" class="cs-item">
+          <section class="site-container memories-section" aria-labelledby="memories-title">
+            <div class="section-heading">
+              <div>
+                <p class="section-eyebrow"><span>03 /</span> GALLERY</p>
+              </div>
+            </div>
+            <div class="memories-grid">
+              <GlowCard accent="#7ad8cf" class="daughter-gallery"
+                ><div class="gallery-heading">
+                  <span class="gallery-mark"><UIcon name="i-lucide-heart" /></span>
+                </div>
+                <PhotoCarousel :images="daughterPhotos" accent="#7ad8cf" aspect="landscape" /></GlowCard
+              ><GlowCard accent="#ee9edc" class="idol-gallery"
+                ><div class="gallery-heading">
+                  <span class="gallery-mark"><UIcon name="i-lucide-star" /></span>
+                </div>
+                <PhotoCarousel :images="idolPhotos" accent="#ee9edc" aspect="portrait"
+              /></GlowCard>
+            </div>
+          </section>
+        </CardStackItem>
+
+        <CardStackItem :index="2" class="cs-item cs-last">
+          <section class="site-container content-section notes-section">
+            <div class="section-heading">
+              <div>
+                <p class="section-eyebrow"><span>03 /</span> BLOGS</p>
+                <h2>
+                  {{ copy('个人博客，', 'MBLOG', '個人ブログ', '개인 블로그')
+                  }}<span class="gradient-text">{{
+                    copy('欢迎阅读', 'WELCOME TO READ', 'どうぞお読みください', '편하게 읽어 주세요')
+                  }}</span>
+                </h2>
+                <p>
+                  {{
+                    copy(
+                      '个人学习笔记 & 心得感悟',
+                      'Personal notes, lessons learned, and reflections from my journey.',
+                      '学びの記録と気づきを綴っています。',
+                      '배움의 기록과 생각을 공유합니다.'
+                    )
+                  }}
+                </p>
+              </div>
+              <NuxtLink to="/blog" class="text-link"
+                >{{ copy('全部文章', 'All notes', 'すべての記事', '모든 글') }}<UIcon name="i-lucide-arrow-up-right"
+              /></NuxtLink>
+            </div>
+            <div class="blog-grid">
+              <BlogCard v-for="(post, index) in posts.slice(0, 3)" :key="post.id" :post="post" :index="index" />
+            </div>
+          </section>
+        </CardStackItem>
+      </CardStack>
+
+      <!-- ===== Contact: 正常底部区域 ===== -->
+      <section class="site-container">
+        <div class="contact-banner">
+          <span class="contact-orbit" aria-hidden="true" />
+          <div>
+            <p class="section-eyebrow">LET'S MAKE SOMETHING GREAT</p>
+            <h2>
+              {{
+                copy(
+                  '跨越日升月落，',
+                  'Across every sunrise and sunset,',
+                  '日の出から月の入りまで、',
+                  '해가 뜨고 달이 질 때까지'
+                )
+              }}<span class="gradient-text">{{
+                copy('一起开拓未来。', "let's build the future.", '一緒に未来を切り拓こう。', '함께 미래를 열어가요.')
+              }}</span>
+            </h2>
+            <p>
+              {{
+                copy(
+                  '山回路转不见君，雪上空留马行处',
+                  'Mountain paths twist, your form is gone — only hoofprints remain in empty snow.',
+                  '面影は見えなくても、雪の上に馬の足跡を残す。',
+                  '산길 돌아 모습 보이지 않고, 눈 위에 말발굽 자리만 남네.'
+                )
+              }}
+            </p>
           </div>
-          <PhotoCarousel :images="daughterPhotos" accent="#7ad8cf" aspect="landscape" /></GlowCard
-        ><GlowCard accent="#ee9edc" class="idol-gallery"
-          ><div class="gallery-heading">
-            <span class="gallery-mark"><UIcon name="i-lucide-star" /></span>
-          </div>
-          <PhotoCarousel :images="idolPhotos" accent="#ee9edc" aspect="portrait"
-        /></GlowCard>
-      </div>
-    </section>
-
-    <section class="site-container content-section notes-section">
-      <div class="section-heading">
-        <div>
-          <p class="section-eyebrow"><span>03 /</span> BLOGS</p>
-          <h2>
-            {{ copy('个人博客，', 'MBLOG', '個人ブログ', '개인 블로그')
-            }}<span class="gradient-text">{{
-              copy('欢迎阅读', 'WELCOME TO READ', 'どうぞお読みください', '편하게 읽어 주세요')
-            }}</span>
-          </h2>
-          <p>
-            {{
-              copy(
-                '个人学习笔记 & 心得感悟',
-                'Personal notes, lessons learned, and reflections from my journey.',
-                '学びの記録と気づきを綴っています。',
-                '배움의 기록과 생각을 공유합니다.'
-              )
-            }}
-          </p>
+          <UButton
+            to="https://github.com/Pu-NINE-9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="neon-button"
+            size="xl"
+            trailing-icon="i-lucide-arrow-up-right"
+            >{{
+              copy('来Github和我一起交流吧~', "Let's connect", 'GitHubで話しましょう', 'GitHub에서 함께 이야기해요')
+            }}</UButton
+          >
         </div>
-        <NuxtLink to="/blog" class="text-link"
-          >{{ copy('全部文章', 'All notes', 'すべての記事', '모든 글') }}<UIcon name="i-lucide-arrow-up-right"
-        /></NuxtLink>
-      </div>
-      <div class="blog-grid">
-        <BlogCard v-for="(post, index) in posts.slice(0, 3)" :key="post.id" :post="post" :index="index" />
-      </div>
-    </section>
+      </section>
 
-    <section class="site-container">
-      <div class="contact-banner">
-        <span class="contact-orbit" aria-hidden="true" />
-        <div>
-          <p class="section-eyebrow">LET’S MAKE SOMETHING GREAT</p>
-          <h2>
-            {{
-              copy(
-                '跨越日升月落，',
-                'Across every sunrise and sunset,',
-                '日の出から月の入りまで、',
-                '해가 뜨고 달이 질 때까지'
-              )
-            }}<span class="gradient-text">{{
-              copy('一起开拓未来。', 'let’s build the future.', '一緒に未来を切り拓こう。', '함께 미래를 열어가요.')
-            }}</span>
-          </h2>
-          <p>
-            {{
-              copy(
-                '山回路转不见君，雪上空留马行处',
-                'Mountain paths twist, your form is gone — only hoofprints remain in empty snow.',
-                '面影は見えなくても、雪の上に馬の足跡を残す。',
-                '산길 돌아 모습 보이지 않고, 눈 위에 말발굽 자리만 남네.'
-              )
-            }}
-          </p>
-        </div>
-        <UButton
-          to="https://github.com/Pu-NINE-9"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="neon-button"
-          size="xl"
-          trailing-icon="i-lucide-arrow-up-right"
-          >{{
-            copy('来Github和我一起交流吧~', 'Let’s connect', 'GitHubで話しましょう', 'GitHub에서 함께 이야기해요')
-          }}</UButton
-        >
-      </div>
-    </section>
-  </div>
+    </div>
+  </ClientOnly>
 </template>

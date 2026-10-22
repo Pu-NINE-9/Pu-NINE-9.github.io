@@ -15,12 +15,15 @@ const year = new Date().getFullYear()
         ><small>PERSONAL DIGITAL SPACE</small></NuxtLink
       >
       <p>
-        © {{ year }} NINEの代码space. <span>{{ copy(
-              '沉心沉淀，全力以赴',
-              'FOCUSED MIND · FULL COMMITMENT',
-              '心を澄ませ、全力を尽くす',
-              '마음을 가다듬고 최선을 다하기'
-            ) }}</span>
+        © {{ year }} NINEの代码space.
+        <span>{{
+          copy(
+            '沉心沉淀，全力以赴',
+            'FOCUSED MIND · FULL COMMITMENT',
+            '心を澄ませ、全力を尽くす',
+            '마음을 가다듬고 최선을 다하기'
+          )
+        }}</span>
       </p>
       <a href="#main-content" class="back-top">BACK TO TOP <UIcon name="i-lucide-arrow-up-right" /></a>
     </footer>

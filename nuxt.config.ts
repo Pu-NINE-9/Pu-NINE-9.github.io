@@ -1,5 +1,7 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-10-20',
+  // 只扫描 .vue 组件，避免 index.ts 和 CardStack.vue 都注册成 UiCardStack
+  components: [{ path: '~/components', extensions: ['.vue'] }],
   modules: ['@nuxt/ui'],
   ui: { fonts: false },
   css: ['~/assets/css/main.css'],

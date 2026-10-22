@@ -1,6 +1,12 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
+
 @import 'tailwindcss';
 @import '@nuxt/ui';
 @import 'highlight.js/styles/atom-one-dark.css';
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme static {
   --font-sans: 'Inter', 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
@@ -8,16 +14,45 @@
 }
 
 :root {
-  --background: #070910;
   --surface: #10131e;
   --line: #ffffff12;
-  --muted: #858ba2;
-  --foreground: #f2f2f8;
+  --muted: oklch(0.97 0 0);
   --purple: #ac8cff;
   --cyan: #51e0cd;
   --ui-bg: #070910;
   --ui-text: #f2f2f8;
   --ui-border: #ffffff15;
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
 }
 html {
   scroll-behavior: smooth;
@@ -25,8 +60,6 @@ html {
 }
 body {
   margin: 0;
-  background: var(--background);
-  color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   font-size: 14px;
   line-height: 1.7;
@@ -70,7 +103,8 @@ button {
 }
 .site-shell {
   position: relative;
-  overflow: clip;
+  /* 只裁横向溢出，保留纵向滚动完整性（让 footer 在上下滚动中对称可见） */
+  overflow-x: clip;
   min-height: 100vh;
 }
 .site-container {
@@ -487,34 +521,46 @@ button {
 .orbit-ring {
   position: absolute;
   border-radius: 50%;
-  border: 1px solid #a786ff20;
+  border: 1.5px solid #a786ff66;
+  box-sizing: border-box;
 }
 .ring-one {
   inset: 12%;
-  border-color: #a786ff30;
-  box-shadow: 0 0 40px #8747ff08;
+  border-color: #c4a6ff;
+  border-width: 2px;
+  box-shadow:
+    0 0 60px #a078ff30,
+    inset 0 0 40px #b58fff12;
   animation: orbit-rotate 50s linear infinite;
 }
 .ring-one::after {
   content: '';
   position: absolute;
-  width: 6px;
-  height: 6px;
+  width: 10px;
+  height: 10px;
   top: 16%;
   left: 11%;
-  background: #c7aaff;
+  background: #e8d4ff;
   border-radius: 50%;
-  box-shadow: 0 0 16px #b07dfb;
+  box-shadow: 0 0 24px #c4a6ff, 0 0 6px #fff;
 }
 .ring-two {
   inset: 1%;
   transform: rotate(-30deg) scaleY(0.56);
-  border-color: #bea3fa30;
+  border-color: #9afff0;
+  border-width: 1.5px;
+  box-shadow:
+    0 0 40px #51e0cd30,
+    inset 0 0 24px #51e0cd10;
 }
 .ring-three {
   inset: 1%;
   transform: rotate(42deg) scaleY(0.6);
-  border-color: #62ddd626;
+  border-color: #ff9edf;
+  border-width: 1.5px;
+  box-shadow:
+    0 0 40px #ff7ad025,
+    inset 0 0 24px #ff9edf10;
 }
 .orbit-axis {
   position: absolute;
@@ -2679,6 +2725,10 @@ button {
     align-items: flex-start;
     gap: 28px;
   }
+  /* 移动端 stack-strip 稍微往下，避免和 hero 底部贴得太近 */
+  .stack-strip {
+    margin-top: 86px;
+  }
   .hero h1 {
     font-size: clamp(33px, 8.8vw, 49px);
     letter-spacing: -1.3px;
@@ -3429,5 +3479,139 @@ button {
   .stack-cards-track {
     position: static !important;
     height: auto !important;
+  }
+}
+
+@theme inline {
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-foreground: var(--foreground);
+  --color-background: var(--background);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/* ============================================================
+   CardStack 相关样式 (Inspira UI + motion-v)
+   ============================================================ */
+
+/* 滚动容器：motion-v useScroll 要求非 static 定位 */
+.cardstack-scroll {
+  position: relative;
+}
+
+/* NeuralBackground 全程可见：body 不设不透明背景 */
+body {
+  background: transparent !important;
+}
+
+/* CardStackItem 外层 sticky 容器 */
+.cs-item {
+  overflow: hidden;
+  /* 提示浏览器优化 scale 动画，减少滚动卡顿 */
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+/* CardStackItem 内部 Motion 层 —— 半透明毛玻璃，让 NeuralBackground 透过可见
+   用 > div 选择到 Motion 组件渲染出来的根 div */
+.cs-item > div {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 15, 25, 0.72) 0%,
+    rgba(13, 15, 25, 0.62) 100%
+  );
+  /* blur 降到 8px：backdrop-filter 是 GPU 重运算，14px 在连续滚动时会卡 */
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  border-top: 1px solid rgba(167, 134, 255, 0.18);
+  border-bottom: 1px solid rgba(167, 134, 255, 0.1);
+  will-change: transform, opacity;
+}
+
+/* 最后一个 item：不用 scale，100% 宽度铺满 */
+.cs-last > div {
+  background: linear-gradient(
+    180deg,
+    rgba(13, 15, 25, 0.75) 0%,
+    rgba(13, 15, 25, 0.85) 100%
+  );
+}
+
+/* ============================================================
+   HeroOrbit 技术标签（来自 HeroOrbit.vue）
+   以下样式已存在于文件中部 505-697 行区域，这里确保完整保留
+   ============================================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
