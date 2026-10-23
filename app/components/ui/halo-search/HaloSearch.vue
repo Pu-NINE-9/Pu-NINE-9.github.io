@@ -1,18 +1,18 @@
 <script lang="ts" setup>
-import type { HTMLAttributes } from "vue";
+import type { HTMLAttributes } from 'vue'
 
 interface Props {
-  class?: HTMLAttributes["class"];
+  class?: HTMLAttributes['class']
+  modelValue?: string
+  placeholder?: string
 }
 
-const props = defineProps<Props>();
+const props = defineProps<Props>()
+const emit = defineEmits<{ (event: 'update:modelValue', value: string): void }>()
 </script>
 
 <template>
-  <div
-    id="halo-search"
-    :class="props.class"
-  >
+  <div id="halo-search" :class="props.class">
     <div class="aurora-glow" />
     <div class="outer-ring" />
     <div class="outer-ring" />
@@ -24,10 +24,12 @@ const props = defineProps<Props>();
 
     <div id="search-wrapper">
       <input
-        placeholder="Search..."
+        :placeholder="props.placeholder ?? 'Search...'"
         type="text"
         name="text"
         class="search-field"
+        :value="props.modelValue"
+        @input="emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       />
       <div id="text-mask" />
       <div class="search-btn-border" />
@@ -35,10 +37,7 @@ const props = defineProps<Props>();
         class="absolute top-2 right-2 isolate z-2 flex size-full max-h-10 max-w-10 items-center justify-center overflow-hidden rounded-lg border border-solid border-transparent"
         style="background: linear-gradient(180deg, #161329, black, #1d1b4b)"
       >
-        <Icon
-          name="lucide:search"
-          size="24"
-        />
+        <Icon name="lucide:search" size="24" />
       </span>
     </div>
   </div>
@@ -59,8 +58,7 @@ const props = defineProps<Props>();
   height: 800px;
   width: 800px;
   background-image:
-    linear-gradient(to right, #0f0f10 1px, transparent 1px),
-    linear-gradient(to bottom, #0f0f10 1px, transparent 1px);
+    linear-gradient(to right, #0f0f10 1px, transparent 1px), linear-gradient(to bottom, #0f0f10 1px, transparent 1px);
   background-size: 1rem 1rem;
   background-position: center center;
   position: absolute;
@@ -117,7 +115,7 @@ const props = defineProps<Props>();
 }
 
 .inner-glow::before {
-  content: "";
+  content: '';
   z-index: -2;
   text-align: center;
   top: 50%;
@@ -148,7 +146,7 @@ const props = defineProps<Props>();
 }
 
 .main-border::before {
-  content: "";
+  content: '';
   z-index: -2;
   text-align: center;
   top: 50%;
@@ -160,14 +158,7 @@ const props = defineProps<Props>();
   filter: brightness(1.3);
   background-repeat: no-repeat;
   background-position: 0 0;
-  background-image: conic-gradient(
-    #1c191c,
-    #402fb5 5%,
-    #1c191c 14%,
-    #1c191c 50%,
-    #cf30aa 60%,
-    #1c191c 64%
-  );
+  background-image: conic-gradient(#1c191c, #402fb5 5%, #1c191c 14%, #1c191c 50%, #cf30aa 60%, #1c191c 64%);
   transition: all 2s;
 }
 
@@ -177,7 +168,7 @@ const props = defineProps<Props>();
 }
 
 .outer-ring::before {
-  content: "";
+  content: '';
   z-index: -2;
   text-align: center;
   top: 50%;
@@ -208,7 +199,7 @@ const props = defineProps<Props>();
 }
 
 .aurora-glow:before {
-  content: "";
+  content: '';
   z-index: -2;
   text-align: center;
   top: 50%;
@@ -261,7 +252,7 @@ const props = defineProps<Props>();
 }
 
 .search-btn-border::before {
-  content: "";
+  content: '';
   text-align: center;
   top: 50%;
   left: 50%;

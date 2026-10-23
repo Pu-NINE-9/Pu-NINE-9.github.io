@@ -1,80 +1,92 @@
 <script lang="ts" setup>
-import { cn } from "@inspira-ui/plugins";
+import { cn } from '@inspira-ui/plugins'
+import { useDebounceFn, useMouseInElement } from '@vueuse/core'
 
 interface Cards {
-  logo: string;
+  logo: string
 }
 
 interface Props {
-  class?: string;
-  textGlowStartColor?: string;
-  perspective?: number;
-  textGlowEndColor?: string;
-  cards: Cards[];
-  rotateX?: number;
-  rotateY?: number;
+  class?: string
+  textGlowStartColor?: string
+  perspective?: number
+  textGlowEndColor?: string
+  cards: Cards[]
+  rotateX?: number
+  rotateY?: number
 }
 
 const {
-  textGlowStartColor = "#38ef7d80",
-  textGlowEndColor = "#38ef7d",
+  textGlowStartColor = '#38ef7d80',
+  textGlowEndColor = '#38ef7d',
   perspective = 600,
   rotateX = -1,
   rotateY = -15,
   ...props
-} = defineProps<Props>();
+} = defineProps<Props>()
 
-const card = ref<HTMLElement[]>();
+const card = ref<HTMLElement[]>()
 
 function adjacentCardItems(i: number): HTMLElement[] {
   return [i - 1, i + 1, i - 4, i + 4]
     .filter((index) => {
-      if (index < 0 || index > 15) return false;
-      if (i % 4 === 0 && index === i - 1) return false;
-      if (i % 4 === 3 && index === i + 1) return false;
-      return true;
+      if (index < 0 || index > 15) return false
+      if (i % 4 === 0 && index === i - 1) return false
+      if (i % 4 === 3 && index === i + 1) return false
+      return true
     })
-    .map((index) => card.value?.[index]) as HTMLElement[];
+    .map((index) => card.value?.[index]) as HTMLElement[]
 }
 
 function removeCardClasses(el: HTMLElement, adjacentCards: HTMLElement[]) {
-  el.classList.remove("card-raised-big");
+  el.classList.remove('card-raised-big')
   adjacentCards.forEach((adjacentCard) => {
-    adjacentCard?.classList.remove("card-raised-small");
-  });
+    adjacentCard?.classList.remove('card-raised-small')
+  })
 }
 
 onMounted(() => {
   card.value?.forEach((el, i) => {
-    const { isOutside } = useMouseInElement(el);
-    const adjacentCards = adjacentCardItems(i);
+    const { isOutside } = useMouseInElement(el)
+    const adjacentCards = adjacentCardItems(i)
     // add class when mouse is inside the element
-    const removeClasses = useDebounceFn(() => removeCardClasses(el, adjacentCards), 200);
+    const removeClasses = useDebounceFn(() => removeCardClasses(el, adjacentCards), 200)
     watch(isOutside, (isOutside) => {
       if (!isOutside) {
-        el.classList.add("card-raised-big");
+        el.classList.add('card-raised-big')
         adjacentCards.forEach((adjacentCard) => {
-          adjacentCard?.classList.add("card-raised-small");
-        });
+          adjacentCard?.classList.add('card-raised-small')
+        })
       } else {
-        removeClasses();
+        removeClasses()
       }
-    });
-  });
-});
+    })
+  })
+})
 </script>
 
 <template>
   <div :class="cn('relative block', props.class)">
-    <div :style="{
-  transform: `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-}" :class="cn(
-  'relative grid w-full max-w-full items-center justify-center',
-  props.cards.length < 4 ? `grid-cols-${props.cards.length}` : 'grid-cols-4',
-)">
-      <div v-for="(item, index) in props.cards" :key="index" ref="card" class="card block rounded border border-transparent px-3 py-5 transition-all duration-200" :style="{
-  zIndex: index + 1,
-}">
+    <div
+      :style="{
+        transform: `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
+      }"
+      :class="
+        cn(
+          'relative grid w-full max-w-full items-center justify-center',
+          props.cards.length < 4 ? `grid-cols-${props.cards.length}` : 'grid-cols-4'
+        )
+      "
+    >
+      <div
+        v-for="(item, index) in props.cards"
+        :key="index"
+        ref="card"
+        class="card block rounded border border-transparent px-3 py-5 transition-all duration-200"
+        :style="{
+          zIndex: index + 1
+        }"
+      >
         <slot name="logo" :logo="item.logo" :index="index" />
       </div>
     </div>
@@ -90,7 +102,7 @@ onMounted(() => {
 }
 
 .grid-transform:before {
-  content: "";
+  content: '';
   z-index: -1;
   left: -10%;
   top: -10%;

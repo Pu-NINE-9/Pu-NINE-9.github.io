@@ -1710,7 +1710,7 @@ button {
   color: #6a6a80;
 }
 .contact-banner {
-  margin-top: 92px;
+  margin-top: 48px;
   border: 1px solid #b18bf326;
   border-radius: 14px;
   padding: 40px;
@@ -2653,7 +2653,7 @@ button {
   }
   .contact-banner {
     padding: 30px;
-    margin-top: 65px;
+    margin-top: 36px;
   }
   .contact-banner h2 {
     font-size: 22px;
@@ -2937,7 +2937,7 @@ button {
     align-items: flex-start;
     gap: 22px;
     padding: 28px;
-    margin-top: 55px;
+    margin-top: 32px;
   }
   .contact-banner h2 {
     font-size: 23px;
@@ -3175,6 +3175,20 @@ button {
     0 0 48px color-mix(in srgb, var(--accent, #51e0cd) 35%, transparent),
     0 24px 80px #000b;
   animation: card-border-angle 7s linear infinite;
+}
+.photo-modal-body {
+  width: auto !important;
+  max-width: min(96vw, 1240px) !important;
+  max-height: 94vh !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.photo-modal-content {
+  overflow: visible !important;
+  align-items: center;
+  justify-content: center;
 }
 .photo-lightbox-frame img {
   display: block;
@@ -3658,9 +3672,21 @@ body {
 .cs-last > div {
   background: linear-gradient(180deg, rgba(13, 15, 25, 0.75) 0%, rgba(13, 15, 25, 0.85) 100%);
 }
+/* The final card should finish close to its content; the earlier cards keep
+   the longer scroll dwell needed for the stack animation. */
+.cs-last {
+  min-height: 68vh;
+}
+.cs-last > div {
+  min-height: 68vh;
+}
 @media (max-width: 600px) {
   .cs-item {
     min-height: 132vh;
+  }
+  .cs-last,
+  .cs-last > div {
+    min-height: 76vh;
   }
 }
 

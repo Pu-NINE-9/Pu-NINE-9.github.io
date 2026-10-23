@@ -119,35 +119,37 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
         </div>
       </div>
 
-      <section id="selected-work" class="site-container content-section">
-        <div class="section-heading">
-          <div>
-            <p class="section-eyebrow"><span>01 /</span> Project X</p>
-            <h2>
-              <span class="gradient-text">{{
-                copy('个人作品', 'PERSONAL PROJECTS', '個人プロジェクト', '개인 프로젝트')
-              }}</span>
-            </h2>
-          </div>
-          <NuxtLink to="/works" class="text-link"
-            >{{ copy('全部作品', 'All projects', 'すべての作品', '모든 프로젝트')
-            }}<span>{{ String(projects.length).padStart(2, '0') }}</span
-            ><UIcon name="i-lucide-arrow-up-right"
-          /></NuxtLink>
-        </div>
-        <div class="project-grid">
-          <ProjectCard
-            v-for="(project, index) in projects.slice(0, 2)"
-            :key="project.id"
-            :project="project"
-            :index="index"
-          />
-        </div>
-      </section>
+      <CardStack :total-cards="4" :scale-multiplier="0.025" class="relative cardstack-scroll">
+        <CardStackItem :index="0" class="cs-item cs-work">
+          <section id="selected-work" class="site-container content-section">
+            <div class="section-heading">
+              <div>
+                <p class="section-eyebrow"><span>01 /</span> Project X</p>
+                <h2>
+                  <span class="gradient-text">{{
+                    copy('个人作品', 'PERSONAL PROJECTS', '個人プロジェクト', '개인 프로젝트')
+                  }}</span>
+                </h2>
+              </div>
+              <NuxtLink to="/works" class="text-link"
+                >{{ copy('全部作品', 'All projects', 'すべての作品', '모든 프로젝트')
+                }}<span>{{ String(projects.length).padStart(2, '0') }}</span
+                ><UIcon name="i-lucide-arrow-up-right"
+              /></NuxtLink>
+            </div>
+            <div class="project-grid">
+              <ProjectCard
+                v-for="(project, index) in projects.slice(0, 2)"
+                :key="project.id"
+                :project="project"
+                :index="index"
+              />
+            </div>
+          </section>
+        </CardStackItem>
 
-      <!-- ===== CardStack 堆叠区域 (从 About 开始) ===== -->
-      <CardStack :total-cards="3" :scale-multiplier="0.025" class="relative cardstack-scroll">
-        <CardStackItem :index="0" class="cs-item">
+        <!-- ===== CardStack 堆叠区域 (从 About 开始) ===== -->
+        <CardStackItem :index="1" class="cs-item">
           <section id="about" class="site-container about-section">
             <div class="about-intro">
               <p class="section-eyebrow"><span>02 /</span> Self-Introduction</p>
@@ -214,7 +216,7 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
           </section>
         </CardStackItem>
 
-        <CardStackItem :index="1" class="cs-item">
+        <CardStackItem :index="2" class="cs-item">
           <section class="site-container memories-section" aria-labelledby="memories-title">
             <div class="section-heading">
               <div>
@@ -237,8 +239,8 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
           </section>
         </CardStackItem>
 
-        <CardStackItem :index="2" class="cs-item cs-last">
-          <section class="site-container content-section notes-section glow-card" style="--accent: #a78bfa">
+        <CardStackItem :index="3" class="cs-item cs-last">
+          <section class="site-container content-section notes-section">
             <div class="section-heading">
               <div>
                 <p class="section-eyebrow"><span>03 /</span> BLOGS</p>

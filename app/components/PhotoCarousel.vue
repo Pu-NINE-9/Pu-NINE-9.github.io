@@ -13,6 +13,7 @@ const current = ref(0)
 const currentImage = computed(() => props.images[current.value])
 const paused = ref(false)
 const previewImage = ref<{ src: string; alt: string } | null>(null)
+const modalOpen = ref(false)
 let timer: ReturnType<typeof setInterval> | undefined
 
 function next() {
@@ -27,9 +28,11 @@ function start() {
 }
 function openPreview(image: { src: string; alt: string }) {
   previewImage.value = image
+  modalOpen.value = true
   paused.value = true
 }
 function closePreview() {
+  modalOpen.value = false
   previewImage.value = null
   paused.value = false
 }
@@ -102,24 +105,17 @@ onUnmounted(() => {
         @click="current = index"
       />
     </div>
-    <Teleport to="body">
-      <Transition name="lightbox-fade">
-        <div
-          v-if="previewImage"
-          class="photo-lightbox"
-          role="dialog"
-          aria-modal="true"
-          :aria-label="previewImage.alt"
-          @click.self="closePreview"
-        >
-          <button type="button" class="lightbox-close" aria-label="Close preview" @click="closePreview">
-            <UIcon name="i-lucide-x" />
-          </button>
-          <div class="photo-lightbox-frame" :style="{ '--accent': accent }">
-            <img :src="previewImage.src" :alt="previewImage.alt" decoding="async" />
-          </div>
-        </div>
-      </Transition>
-    </Teleport>
+    <AnimatedModal v-model:open="modalOpen" :close-on-esc="true" @close="closePreview">
+      <AnimatedModalBody
+        class="photo-modal-body"
+        content-class="photo-modal-content"
+        :close-on-outside="true"
+        :lock-scroll="true"
+      >
+        <AnimatedModalContent v-if="previewImage" class="photo-lightbox-frame" :style="{ '--accent': accent }">
+          <img :src="previewImage.src" :alt="previewImage.alt" decoding="async" />
+        </AnimatedModalContent>
+      </AnimatedModalBody>
+    </AnimatedModal>
   </div>
 </template>

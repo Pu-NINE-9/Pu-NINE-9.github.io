@@ -23,12 +23,7 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       crawlLinks: true,
-      routes: [
-        '/',
-        '/works',
-        '/blog',
-        ...Array.from({ length: 4 }, (_, i) => `/works/${i + 1}`)
-      ]
+      routes: ['/', '/works', '/blog', ...Array.from({ length: 4 }, (_, i) => `/works/${i + 1}`)]
     }
   },
   typescript: { strict: true }
