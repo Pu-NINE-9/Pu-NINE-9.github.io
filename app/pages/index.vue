@@ -58,7 +58,10 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
               )
             }}<span class="eyebrow-line" />
           </div>
-          <h1>NINE<br /><span class="gradient-text">Re.design the Wo.rld</span><span class="title-cursor">_</span></h1>
+          <h1>
+            {{ copy('玖', 'NINE', '九', '구') }}<br /><span class="gradient-text">Re.design the Wo.rld</span
+            ><span class="title-cursor">_</span>
+          </h1>
           <p class="hero-description">Personal Website Right Here! Let's Gooooo!</p>
           <div class="hero-buttons">
             <UButton to="/works" size="xl" class="neon-button" trailing-icon="i-lucide-arrow-up-right">{{
@@ -191,7 +194,7 @@ const daughterPhotos = [1, 2, 3, 4, 5].map((index) => ({ src: `/imgs/daughter${i
               <GlowCard class="profile-bento"
                 ><img src="/imgs/avatar.jpg" alt="NINE 的头像" loading="lazy" width="64" height="64" />
                 <div>
-                  <span class="mono">THE HUMAN BEHIND THE PIXELS</span>
+                  <span class="mono">Stay With Me</span>
                   <h3>玖 NINE<span class="tiny-dot" /></h3>
                   <p>Frontend Developer</p>
                 </div>

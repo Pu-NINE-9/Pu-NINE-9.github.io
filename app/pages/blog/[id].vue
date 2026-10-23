@@ -13,13 +13,17 @@ onMounted(() => {
 
 <template>
   <main v-if="article" class="site-container article-page article-redirect-page">
-    <NuxtLink to="/blog" class="text-link back-link"><UIcon name="i-lucide-arrow-left" />{{ copy('返回博客列表', 'Back to blog') }}</NuxtLink>
+    <NuxtLink to="/blog" class="text-link back-link"
+      ><UIcon name="i-lucide-arrow-left" />{{ copy('返回博客列表', 'Back to blog') }}</NuxtLink
+    >
     <div class="article-redirect-card glow-card" style="--accent: #a78bfa">
       <UIcon name="i-lucide-external-link" class="article-redirect-icon" />
       <p class="section-eyebrow">CSDN / EXTERNAL ARTICLE</p>
       <h1>{{ article.title }}</h1>
       <p>{{ copy('正在打开 CSDN 原文…', 'Opening the original article on CSDN…') }}</p>
-      <a :href="article.href" target="_blank" rel="noopener noreferrer" class="text-link">{{ copy('立即打开', 'Open article') }} <UIcon name="i-lucide-arrow-up-right" /></a>
+      <a :href="article.href" target="_blank" rel="noopener noreferrer" class="text-link"
+        >{{ copy('立即打开', 'Open article') }} <UIcon name="i-lucide-arrow-up-right"
+      /></a>
     </div>
   </main>
 </template>

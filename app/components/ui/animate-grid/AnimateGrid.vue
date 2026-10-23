@@ -2,16 +2,12 @@
 import { cn } from '@inspira-ui/plugins'
 import { useDebounceFn, useMouseInElement } from '@vueuse/core'
 
-interface Cards {
-  logo: string
-}
-
 interface Props {
   class?: string
   textGlowStartColor?: string
   perspective?: number
   textGlowEndColor?: string
-  cards: Cards[]
+  cards: any[]
   rotateX?: number
   rotateY?: number
 }
@@ -28,11 +24,12 @@ const {
 const card = ref<HTMLElement[]>()
 
 function adjacentCardItems(i: number): HTMLElement[] {
-  return [i - 1, i + 1, i - 4, i + 4]
+  const columns = Math.min(3, Math.max(1, props.cards.length))
+  return [i - 1, i + 1, i - columns, i + columns]
     .filter((index) => {
-      if (index < 0 || index > 15) return false
-      if (i % 4 === 0 && index === i - 1) return false
-      if (i % 4 === 3 && index === i + 1) return false
+      if (index < 0 || index >= props.cards.length) return false
+      if (i % columns === 0 && index === i - 1) return false
+      if (i % columns === columns - 1 && index === i + 1) return false
       return true
     })
     .map((index) => card.value?.[index]) as HTMLElement[]
@@ -72,22 +69,21 @@ onMounted(() => {
         transform: `perspective(${perspective}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`
       }"
       :class="
-        cn(
-          'relative grid w-full max-w-full items-center justify-center',
-          props.cards.length < 4 ? `grid-cols-${props.cards.length}` : 'grid-cols-4'
-        )
+        cn('animate-grid-layout relative grid w-full max-w-full items-stretch', props.cards.length ? '' : 'hidden')
       "
     >
       <div
         v-for="(item, index) in props.cards"
         :key="index"
         ref="card"
-        class="card block rounded border border-transparent px-3 py-5 transition-all duration-200"
+        class="card block min-w-0 rounded border border-transparent transition-all duration-200"
         :style="{
           zIndex: index + 1
         }"
       >
-        <slot name="logo" :logo="item.logo" :index="index" />
+        <slot name="card" :card="item" :index="index">
+          <slot name="logo" :logo="item.logo" :index="index" />
+        </slot>
       </div>
     </div>
   </div>
@@ -99,6 +95,25 @@ onMounted(() => {
   max-width: 100%;
   display: block;
   margin: 0 auto;
+}
+
+.animate-grid-layout {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 800px) {
+  .animate-grid-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (max-width: 560px) {
+  .animate-grid-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
 }
 
 .grid-transform:before {

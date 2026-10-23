@@ -60,7 +60,7 @@ const technologies = [
     <div class="orbit-axis axis-y" />
     <div class="orbit-core">
       <span class="core-number">玖<span>.</span></span>
-      <span class="core-caption">IDEAS INTO REALITY</span>
+      <span class="core-caption">TO THE FUTURE</span>
     </div>
     <div class="orbit-tech-tags" aria-label="Technology stack">
       <div

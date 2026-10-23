@@ -1,4 +1,7 @@
 ﻿<script setup lang="ts">
+import AnimatedModal from './ui/animated-modal/AnimatedModal.vue'
+import AnimatedModalBody from './ui/animated-modal/AnimatedModalBody.vue'
+
 const props = withDefaults(
   defineProps<{
     images: { src: string; alt: string }[]
@@ -112,9 +115,9 @@ onUnmounted(() => {
         :close-on-outside="true"
         :lock-scroll="true"
       >
-        <AnimatedModalContent v-if="previewImage" class="photo-lightbox-frame" :style="{ '--accent': accent }">
+        <div v-if="previewImage" class="photo-lightbox-frame" :style="{ '--accent': accent }" @click.stop>
           <img :src="previewImage.src" :alt="previewImage.alt" decoding="async" />
-        </AnimatedModalContent>
+        </div>
       </AnimatedModalBody>
     </AnimatedModal>
   </div>

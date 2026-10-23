@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { cn } from "@inspira-ui/plugins";
+import { cn } from '@inspira-ui/plugins'
 interface Props {
-  class?: string;
+  class?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  class: "",
-});
+  class: ''
+})
 </script>
 
 <template>

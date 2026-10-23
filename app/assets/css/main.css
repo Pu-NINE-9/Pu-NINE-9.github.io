@@ -3513,6 +3513,60 @@ button {
   }
 }
 
+/* Gallery lightbox: the modal fills the viewport while the image keeps its natural ratio. */
+.photo-modal-body {
+  width: min(96vw, 1240px) !important;
+  max-width: 96vw !important;
+  max-height: 96vh !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.photo-modal-content {
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+}
+
+.photo-lightbox-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  max-width: min(94vw, 1180px);
+  max-height: 92vh;
+  padding: clamp(8px, 1.4vw, 18px);
+  border: 3px solid transparent;
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, #131622, #080a12) padding-box,
+    conic-gradient(
+        from var(--card-angle, 0deg),
+        transparent 0 18%,
+        color-mix(in srgb, var(--accent, #a78bfa) 95%, white 5%) 31%,
+        transparent 45% 66%,
+        color-mix(in srgb, var(--accent, #51e0cd) 90%, white 10%) 78%,
+        transparent 92%
+      )
+      border-box;
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--accent, #a78bfa) 70%, transparent),
+    0 0 52px color-mix(in srgb, var(--accent, #51e0cd) 38%, transparent),
+    0 24px 80px #000b;
+  animation: card-border-angle 7s linear infinite;
+}
+
+.photo-lightbox-frame img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(88vw, 1120px);
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 9px;
+}
+
 /* Stack Cards 特效 */
 .stack-cards-wrap {
   position: relative;

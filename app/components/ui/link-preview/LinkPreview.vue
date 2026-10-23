@@ -1,124 +1,124 @@
 <script setup lang="ts">
-import type { CSSProperties } from "vue";
-import { cn } from "@inspira-ui/plugins";
-import { computed, reactive, ref } from "vue";
+import type { CSSProperties } from 'vue'
+import { cn } from '@inspira-ui/plugins'
+import { computed, reactive, ref } from 'vue'
 
 interface BaseProps {
-  class?: string;
-  linkClass?: string;
-  width?: number;
-  height?: number;
+  class?: string
+  linkClass?: string
+  width?: number
+  height?: number
 }
 
 // Props for static image mode
 interface StaticImageProps extends BaseProps {
-  isStatic?: true;
-  imageSrc?: string;
-  url?: string; // optional in static mode
+  isStatic?: true
+  imageSrc?: string
+  url?: string // optional in static mode
 }
 
 // Props for URL preview mode
 interface URLPreviewProps extends BaseProps {
-  isStatic?: false; // optional but must be false if specified
-  imageSrc?: string; // optional in URL mode
-  url?: string;
+  isStatic?: false // optional but must be false if specified
+  imageSrc?: string // optional in URL mode
+  url?: string
 }
 
 // Combined type that enforces the requirements
-type Props = StaticImageProps | URLPreviewProps;
+type Props = StaticImageProps | URLPreviewProps
 const props = withDefaults(defineProps<Props>(), {
   isStatic: false,
-  imageSrc: "",
-  url: "",
+  imageSrc: '',
+  url: '',
   width: 200,
-  height: 125,
-});
+  height: 125
+})
 
-const isVisible = ref(false);
-const isLoading = ref(true);
-const preview = ref<HTMLElement | null>(null);
-const hasPopped = ref(false);
+const isVisible = ref(false)
+const isLoading = ref(true)
+const preview = ref<HTMLElement | null>(null)
+const hasPopped = ref(false)
 
 // Generate preview URL
 const previewSrc = computed(() => {
-  if (props.isStatic) return props.imageSrc;
+  if (props.isStatic) return props.imageSrc
 
   const params = new URLSearchParams({
     url: props.url,
-    screenshot: "true",
-    meta: "false",
-    embed: "screenshot.url",
-    colorScheme: "light",
-    "viewport.isMobile": "true",
-    "viewport.deviceScaleFactor": "1",
-    "viewport.width": String(props.width * 3),
-    "viewport.height": String(props.height * 3),
-  });
+    screenshot: 'true',
+    meta: 'false',
+    embed: 'screenshot.url',
+    colorScheme: 'light',
+    'viewport.isMobile': 'true',
+    'viewport.deviceScaleFactor': '1',
+    'viewport.width': String(props.width * 3),
+    'viewport.height': String(props.height * 3)
+  })
 
-  return `https://api.microlink.io/?${params.toString()}`;
-});
+  return `https://api.microlink.io/?${params.toString()}`
+})
 
 // Position tracking
 const mousePosition = reactive({
   x: 0,
-  y: 0,
-});
+  y: 0
+})
 
 // Calculate preview position
 const previewStyle = computed<CSSProperties>(() => {
-  if (!preview.value) return {};
+  if (!preview.value) return {}
 
-  const offset = 20;
-  const previewWidth = props.width;
-  const previewHeight = props.height;
-  const viewportWidth = window.innerWidth;
+  const offset = 20
+  const previewWidth = props.width
+  const previewHeight = props.height
+  const viewportWidth = window.innerWidth
 
-  let x = mousePosition.x - previewWidth / 2;
-  x = Math.min(Math.max(0, x), viewportWidth - previewWidth);
+  let x = mousePosition.x - previewWidth / 2
+  x = Math.min(Math.max(0, x), viewportWidth - previewWidth)
 
-  const linkRect = preview.value.parentElement?.getBoundingClientRect();
-  const y = linkRect ? linkRect.top - previewHeight - offset : 0;
+  const linkRect = preview.value.parentElement?.getBoundingClientRect()
+  const y = linkRect ? linkRect.top - previewHeight - offset : 0
 
   return {
-    position: "fixed",
+    position: 'fixed',
     left: `${x}px`,
     top: `${y}px`,
     width: `${previewWidth}px`,
-    height: `${previewHeight}px`,
-  };
-});
+    height: `${previewHeight}px`
+  }
+})
 
 // Image specific styling
 const imageStyle = computed<CSSProperties>(() => ({
   width: `${props.width}px`,
-  height: `${props.height}px`,
-}));
+  height: `${props.height}px`
+}))
 
 // Pop animation class
 const popClass = computed(() => {
-  if (!hasPopped.value) return "";
-  return "animate-pop";
-});
+  if (!hasPopped.value) return ''
+  return 'animate-pop'
+})
 
 function handleMouseMove(event: MouseEvent) {
-  mousePosition.x = event.clientX;
-  mousePosition.y = event.clientY;
+  mousePosition.x = event.clientX
+  mousePosition.y = event.clientY
 }
 
 function showPreview() {
-  isVisible.value = true;
+  isVisible.value = true
   setTimeout(() => {
-    hasPopped.value = true;
-  }, 50);
+    hasPopped.value = true
+  }, 50)
 }
 
 function hidePreview() {
-  isVisible.value = false;
-  hasPopped.value = false;
+  isVisible.value = false
+  hasPopped.value = false
 }
 
 function handleImageLoad() {
-  isLoading.value = false;
+  isLoading.value = false
 }
 </script>
 
@@ -136,20 +136,9 @@ function handleImageLoad() {
     </NuxtLink>
 
     <!-- Preview -->
-    <div
-      v-if="isVisible"
-      ref="preview"
-      class="pointer-events-none absolute z-50"
-      :style="previewStyle"
-    >
-      <div
-        :class="
-          cn(`overflow-hidden rounded-xl shadow-xl`, popClass, !props.isStatic && 'transform-gpu')
-        "
-      >
-        <div
-          class="block rounded-xl border-2 border-transparent bg-white p-1 shadow-lg dark:bg-gray-900"
-        >
+    <div v-if="isVisible" ref="preview" class="pointer-events-none absolute z-50" :style="previewStyle">
+      <div :class="cn(`overflow-hidden rounded-xl shadow-xl`, popClass, !props.isStatic && 'transform-gpu')">
+        <div class="block rounded-xl border-2 border-transparent bg-white p-1 shadow-lg dark:bg-gray-900">
           <img
             :src="previewSrc"
             :width="width"
